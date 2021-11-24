@@ -11,6 +11,14 @@ class Article extends Equatable {
     required this.publishedAt,
     required this.content,
   });
+
+  String? author;
+  String title;
+  String? description;
+  String url;
+  String? urlToImage;
+  DateTime? publishedAt;
+  String? content;
   
   Article.bookmark({
     required this.author,
@@ -19,14 +27,6 @@ class Article extends Equatable {
     required this.url,
     required this.urlToImage,
   });
-  
-  String? author;
-  String title;
-  String? description;
-  String? url;
-  String? urlToImage;
-  DateTime? publishedAt;
-  String? content;
 
   @override
   List<Object?> get props => [
