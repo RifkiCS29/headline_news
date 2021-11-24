@@ -5,7 +5,7 @@ import 'package:headline_news/data/models/article_table.dart';
 abstract class ArticleLocalDataSource {
   Future<String> insertBookmarkArticle(ArticleTable article);
   Future<String> removeBookmarkArticle(ArticleTable article);
-  Future<ArticleTable?> getArticleById(String title);
+  Future<ArticleTable?> getArticleByUrl(String url);
   Future<List<ArticleTable>> getBookmarkArticles();
   Future<void> cacheTopHeadlineArticles(List<ArticleTable> articles);
   Future<List<ArticleTable>> getCachedTopHeadlineArticles();
@@ -39,8 +39,8 @@ class ArticleLocalDataSourceImpl implements ArticleLocalDataSource {
   }
 
   @override
-  Future<ArticleTable?> getArticleById(String title) async {
-    final result = await databaseHelper.getArticleById(title);
+  Future<ArticleTable?> getArticleByUrl(String url) async {
+    final result = await databaseHelper.getArticleByUrl(url);
     if (result != null) {
       return ArticleTable.fromMap(result);
     } else {

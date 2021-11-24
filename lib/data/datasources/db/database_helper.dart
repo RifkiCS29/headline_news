@@ -33,14 +33,16 @@ class DatabaseHelper {
   void _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE  $_tblBookmarkArticle (
-        title TEXT PRIMARY KEY,
+        url TEXT PRIMARY KEY,
+        author TEXT,
+        title TEXT,
         description TEXT,
-        url TEXT,
         urlToImage TEXT
       );
     ''');
     await db.execute('''
       CREATE TABLE  $_tblCacheArticle (
+        author TEXT,
         title TEXT,
         description TEXT,
         url TEXT,
@@ -93,17 +95,17 @@ class DatabaseHelper {
     final db = await database;
     return await db!.delete(
       _tblBookmarkArticle,
-      where: 'title = ?',
-      whereArgs: [article.title],
+      where: 'url = ?',
+      whereArgs: [article.url],
     );
   }
 
-  Future<Map<String, dynamic>?> getArticleById(String title) async {
+  Future<Map<String, dynamic>?> getArticleByUrl(String url) async {
     final db = await database;
     final results = await db!.query(
       _tblBookmarkArticle,
-      where: 'title = ?',
-      whereArgs: [title],
+      where: 'url = ?',
+      whereArgs: [url],
     );
 
     if (results.isNotEmpty) {

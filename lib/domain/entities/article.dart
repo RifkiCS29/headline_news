@@ -12,7 +12,8 @@ class Article extends Equatable {
     required this.content,
   });
   
-  Article.watchlist({
+  Article.bookmark({
+    required this.author,
     required this.title,
     required this.description,
     required this.url,
