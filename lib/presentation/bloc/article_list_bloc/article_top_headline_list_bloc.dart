@@ -8,7 +8,12 @@ class ArticleTopHeadlineListBloc extends Bloc<ArticleListEvent, ArticleListState
       final result = await getTopHeadlineArticles.execute();
       result.fold(
         (failure) => emit(ArticleListError(failure.message)),
-        (articlesData) => emit(ArticleListLoaded(articlesData)),
+        (articlesData) { 
+          emit(ArticleListLoaded(articlesData));
+          if(articlesData.isEmpty) {
+            emit(ArticleListEmpty());
+          }
+        }
       );
     });
   }

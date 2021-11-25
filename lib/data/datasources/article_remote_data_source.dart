@@ -25,6 +25,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
         await client.get(Uri.parse('${baseUrl}top-headlines?country=$country&apiKey=$apiKey&pageSize=10'));
 
     if (response.statusCode == 200) {
+      print('Hasil ${response.body}');
       return ArticleResponse.fromJson(json.decode(response.body)).articles;
     } else {
       throw ServerException();

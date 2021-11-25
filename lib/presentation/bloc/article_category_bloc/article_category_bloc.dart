@@ -8,7 +8,7 @@ part 'article_category_state.dart';
 
 class ArticleCategoryBloc extends Bloc<ArticleCategoryEvent, ArticleCategoryState> {
   final GetArticleCategory getArticleCategory;
-  ArticleCategoryBloc(this.getArticleCategory) : super(ArticleCategoryEmpty('')) {
+  ArticleCategoryBloc(this.getArticleCategory) : super(ArticleCategoryEmpty('WHY')) {
     on<FetchArticleCategory>((event, emit) async {
       final category = event.category;
       emit(ArticleCategoryLoading());

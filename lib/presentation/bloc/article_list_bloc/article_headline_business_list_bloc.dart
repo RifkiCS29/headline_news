@@ -8,7 +8,12 @@ class ArticleHeadlineBusinessListBloc extends Bloc<ArticleListEvent, ArticleList
       final result = await getHeadlineBusinessArticles.execute();
       result.fold(
         (failure) => emit(ArticleListError(failure.message)),
-        (articlesData) => emit(ArticleListLoaded(articlesData)),
+        (articlesData) { 
+          emit(ArticleListLoaded(articlesData));
+          if(articlesData.isEmpty) {
+            emit(ArticleListEmpty());
+          }
+        }
       );
     });
   }

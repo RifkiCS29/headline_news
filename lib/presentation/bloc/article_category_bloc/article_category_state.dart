@@ -19,12 +19,12 @@ class ArticleCategoryEmpty extends ArticleCategoryState {
 class ArticleCategoryLoading extends ArticleCategoryState {}
 
 class ArticleCategoryHasData extends ArticleCategoryState {
-  final List<Article> searchResult;
+  final List<Article> articles;
  
-  ArticleCategoryHasData(this.searchResult);
+  ArticleCategoryHasData(this.articles);
  
   @override
-  List<Object> get props => [searchResult];
+  List<Object> get props => [articles];
 }
 
 class ArticleCategoryError extends ArticleCategoryState {
