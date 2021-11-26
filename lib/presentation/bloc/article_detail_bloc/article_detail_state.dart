@@ -1,34 +1,34 @@
 part of 'article_detail_bloc.dart';
 
 class ArticleDetailState extends Equatable {
-  final String watchlistMessage;
-  final bool isAddedToWatchlist;
+  final String bookmarkMessage;
+  final bool isAddedToBookmark;
 
   ArticleDetailState({
-    required this.watchlistMessage,
-    required this.isAddedToWatchlist,
+    required this.bookmarkMessage,
+    required this.isAddedToBookmark,
   });
 
   ArticleDetailState copyWith({
-    String? watchlistMessage,
-    bool? isAddedToWatchlist,
+    String? bookmarkMessage,
+    bool? isAddedToBookmark,
   }) {
     return ArticleDetailState(
-      watchlistMessage: watchlistMessage ?? this.watchlistMessage,
-      isAddedToWatchlist: isAddedToWatchlist ?? this.isAddedToWatchlist,
+      bookmarkMessage: bookmarkMessage ?? this.bookmarkMessage,
+      isAddedToBookmark: isAddedToBookmark ?? this.isAddedToBookmark,
     );
   }
 
   factory ArticleDetailState.initial() {
     return ArticleDetailState(
-      watchlistMessage: '',
-      isAddedToWatchlist: false,
+      bookmarkMessage: '',
+      isAddedToBookmark: false,
     );
   }
 
   @override
   List<Object> get props => [
-    watchlistMessage, 
-    isAddedToWatchlist
+    bookmarkMessage, 
+    isAddedToBookmark
   ];
 }

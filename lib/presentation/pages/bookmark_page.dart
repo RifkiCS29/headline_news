@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:headline_news/common/utils.dart';
 import 'package:headline_news/presentation/bloc/bookmark_article_bloc/bookmark_article_bloc.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -11,13 +12,24 @@ class BookmarkPage extends StatefulWidget {
   State<BookmarkPage> createState() => _BookmarkPageState();
 }
 
-class _BookmarkPageState extends State<BookmarkPage> {
+class _BookmarkPageState extends State<BookmarkPage> with RouteAware {
   @override
   void initState() {
     super.initState();
     Future.microtask(() =>
         Provider.of<BookmarkArticleBloc>(context, listen: false)
             .add(BookmarkArticleEvent()));
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  void didPopNext() {
+    Provider.of<BookmarkArticleBloc>(context, listen: false)
+      .add(BookmarkArticleEvent());
   }
 
   @override
@@ -49,5 +61,11 @@ class _BookmarkPageState extends State<BookmarkPage> {
         }
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
   }
 }

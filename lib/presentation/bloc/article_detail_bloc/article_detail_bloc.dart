@@ -13,8 +13,8 @@ class ArticleDetailBloc extends Bloc<ArticleDetailEvent, ArticleDetailState> {
   final SaveBookmarkArticle saveBookmarkArticle;
   final RemoveBookmarkArticle removeBookmarkArticle;
 
-  static const watchlistAddSuccessMessage = 'Added to Bookmark';
-  static const watchlistRemoveSuccessMessage = 'Removed from Bookmark';
+  static const bookmarkAddSuccessMessage = 'Added to Bookmark';
+  static const bookmarkRemoveSuccessMessage = 'Removed from Bookmark';
 
   ArticleDetailBloc({
     required this.getBookmarkStatus,
@@ -26,10 +26,10 @@ class ArticleDetailBloc extends Bloc<ArticleDetailEvent, ArticleDetailState> {
 
       await result.fold(
         (failure) {
-          emit(state.copyWith(watchlistMessage: failure.message));
+          emit(state.copyWith(bookmarkMessage: failure.message));
         },
         (successMessage) {
-          emit(state.copyWith(watchlistMessage: successMessage));
+          emit(state.copyWith(bookmarkMessage: successMessage));
         }
       );
 
@@ -41,10 +41,10 @@ class ArticleDetailBloc extends Bloc<ArticleDetailEvent, ArticleDetailState> {
 
       await result.fold(
         (failure) {
-          emit(state.copyWith(watchlistMessage: failure.message));
+          emit(state.copyWith(bookmarkMessage: failure.message));
         },
         (successMessage) {
-          emit(state.copyWith(watchlistMessage: successMessage));
+          emit(state.copyWith(bookmarkMessage: successMessage));
         }
       );
 
@@ -53,7 +53,7 @@ class ArticleDetailBloc extends Bloc<ArticleDetailEvent, ArticleDetailState> {
     });
     on<LoadBookmarkStatus>((event, emit) async {
       final result = await getBookmarkStatus.execute(event.url);
-      emit(state.copyWith(isAddedToWatchlist: result));
+      emit(state.copyWith(isAddedToBookmark: result));
     });
   }
 }

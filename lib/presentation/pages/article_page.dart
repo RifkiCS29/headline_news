@@ -53,7 +53,6 @@ class _ArticlePageState extends State<ArticlePage> {
       color: kWhiteColor,
       child: BlocBuilder<ArticleTopHeadlineListBloc, ArticleListState>(
         builder: (context, state) {
-          print(state);
           if(state is ArticleListLoading) {
             return Center(
               child: loadingIndicator

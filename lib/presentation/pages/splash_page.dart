@@ -29,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
           child: Center(
             child:
               Container(
-                height: 300,
+                height: 330,
                 width: 300,
                 child: Lottie.asset('assets/news.json',
                     width: 350, height: 350, fit: BoxFit.fill),
