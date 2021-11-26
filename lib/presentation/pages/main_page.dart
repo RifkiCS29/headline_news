@@ -27,8 +27,8 @@ class _MainPageState extends State<MainPage> {
         label: "Search",
       ),
       BottomNavigationBarItem(
-        icon: Icon(Platform.isIOS ? CupertinoIcons.profile_circled : Icons.person),
-        label: "Profile",
+        icon: Icon(Platform.isIOS ? CupertinoIcons.bookmark_fill : Icons.bookmark),
+        label: "Bookmark",
       ),
   ]; 
 
