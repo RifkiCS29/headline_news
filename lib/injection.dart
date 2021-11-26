@@ -18,6 +18,7 @@ import 'domain/usecases/search_articles.dart';
 import 'presentation/bloc/article_category_bloc/article_category_bloc.dart';
 import 'presentation/bloc/article_detail_bloc/article_detail_bloc.dart';
 import 'presentation/bloc/article_list_bloc/article_list_bloc.dart';
+import 'presentation/bloc/bookmark_article_bloc/bookmark_article_bloc.dart';
 import 'presentation/bloc/search_article_bloc/search_article_bloc.dart';
 
 final locator = GetIt.instance;
@@ -41,6 +42,11 @@ void init() {
   );
   locator.registerFactory(
     () => SearchArticleBloc(
+      locator(),
+    )
+  );
+  locator.registerFactory(
+    () => BookmarkArticleBloc(
       locator(),
     )
   );
