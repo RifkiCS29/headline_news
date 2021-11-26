@@ -51,3 +51,19 @@ FontWeight semiBold = FontWeight.w600;
 FontWeight bold = FontWeight.w700;
 FontWeight extraBold = FontWeight.w800;
 FontWeight black = FontWeight.w900;
+
+ColorScheme kColorScheme = ColorScheme(
+  primary: kPrimaryColor,
+  primaryVariant: kBlackColor,
+  secondary: kGreenColor,
+  secondaryVariant: kGreenColor,
+  surface: kBlackColor,
+  background: kBackgroundColor,
+  error: Colors.red,
+  onPrimary: kPrimaryColor,
+  onSecondary: Colors.white,
+  onSurface: Colors.white,
+  onBackground: Colors.white,
+  onError: Colors.white,
+  brightness: Brightness.light,
+);

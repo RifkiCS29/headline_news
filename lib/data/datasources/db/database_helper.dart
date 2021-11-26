@@ -37,7 +37,9 @@ class DatabaseHelper {
         author TEXT,
         title TEXT,
         description TEXT,
-        urlToImage TEXT
+        urlToImage TEXT,
+        publishedAt TEXT,
+        content TEXT
       );
     ''');
     await db.execute('''
@@ -47,6 +49,8 @@ class DatabaseHelper {
         description TEXT,
         url TEXT,
         urlToImage TEXT,
+        publishedAt TEXT,
+        content TEXT,
         category TEXT,
         idCacheArticle INTEGER PRIMARY KEY AUTOINCREMENT
       );

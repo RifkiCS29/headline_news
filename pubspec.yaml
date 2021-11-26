@@ -28,8 +28,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   analyzer: ^2.7.0
-  cupertino_icons: ^1.0.2
   cached_network_image: ^3.0.0
+  cupertino_icons: ^1.0.2
   dartz: ^0.10.0-nullsafety.2
   data_connection_checker:
     git:
@@ -43,6 +43,7 @@ dependencies:
   get_it: ^7.2.0
   google_fonts: ^2.1.0
   http: ^0.13.4
+  intl: ^0.17.0
   lottie: ^1.2.1
   path_provider: ^2.0.7
   provider: ^6.0.1

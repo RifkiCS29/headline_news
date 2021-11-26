@@ -8,6 +8,8 @@ class ArticleTable extends Equatable {
   final String? description;
   final String url;
   final String? urlToImage;
+  final DateTime? publishedAt;
+  final String? content;
 
   ArticleTable({
     required this.author,
@@ -15,6 +17,8 @@ class ArticleTable extends Equatable {
     required this.description,
     required this.url,
     required this.urlToImage,
+    required this.publishedAt,
+    required this.content,
   });
 
   factory ArticleTable.fromEntity(Article article) => ArticleTable(
@@ -23,6 +27,8 @@ class ArticleTable extends Equatable {
     description: article.description,
     url: article.url,
     urlToImage: article.urlToImage,
+    publishedAt: article.publishedAt,
+    content: article.content,
   );
 
   factory ArticleTable.fromMap(Map<String, dynamic> map) => ArticleTable(
@@ -31,6 +37,8 @@ class ArticleTable extends Equatable {
     description: map['description'],
     url: map['url'],
     urlToImage: map['urlToImage'],
+    publishedAt: DateTime.parse(map['publishedAt']),
+    content: map['content'],
   );
 
   factory ArticleTable.fromDTO(ArticleModel article) => ArticleTable(
@@ -39,6 +47,8 @@ class ArticleTable extends Equatable {
     description: article.description,
     url: article.url,
     urlToImage: article.urlToImage,
+    publishedAt: article.publishedAt,
+    content: article.content,
   );
 
   Map<String, dynamic> toJson() => {
@@ -47,6 +57,8 @@ class ArticleTable extends Equatable {
     'description': description,
     'url': url,
     'urlToImage': urlToImage,
+    'publishedAt': publishedAt?.toIso8601String(),
+    'content': content,
   };
 
   Article toEntity() => Article.bookmark(
@@ -55,6 +67,8 @@ class ArticleTable extends Equatable {
     description: description,
     url: url,
     urlToImage: urlToImage,
+    publishedAt: publishedAt,
+    content: content,
   );
 
   @override
@@ -64,5 +78,7 @@ class ArticleTable extends Equatable {
     description,
     url,
     urlToImage,
+    publishedAt,
+    content,
   ];
 }

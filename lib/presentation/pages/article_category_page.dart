@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:headline_news/common/string_extensions.dart';
 import 'package:headline_news/common/theme.dart';
 import 'package:headline_news/presentation/bloc/article_category_bloc/article_category_bloc.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
@@ -27,9 +28,10 @@ class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: kWhiteColor,
         elevation: 0.0,
         title: Text(
-          widget.category, 
+          widget.category.toCapitalized(), 
           style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semiBold)
         ),
       ),

@@ -26,6 +26,8 @@ class Article extends Equatable {
     required this.description,
     required this.url,
     required this.urlToImage,
+    required this.publishedAt,
+    required this.content,
   });
 
   @override

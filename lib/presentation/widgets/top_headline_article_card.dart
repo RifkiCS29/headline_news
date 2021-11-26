@@ -9,7 +9,12 @@ class TopHeadlineArticleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailPage(article: article),
+          ),
+        ),
       },
       child: Container(
         width: 250,
@@ -35,7 +40,9 @@ class TopHeadlineArticleCard extends StatelessWidget {
                       image: imageProvider, fit: BoxFit.cover),
                   ),
                 ),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                errorWidget: (context, url, error) => Image.asset(
+                          'assets/errorimage.jpg',
+                          fit: BoxFit.cover),
               ),
             ),
             Container(

@@ -45,15 +45,15 @@ class CustomScaffold extends StatelessWidget {
               ),
             ],
           ),
-          // Container(
-          //   width: 50,
-          //   height: 50,
-          //   child: ClipOval(
-          //     child: Image.asset(
-          //         'assets/images/jcc.png',
-          //         fit: BoxFit.cover),
-          //   ),
-          // )
+          Container(
+            width: 50,
+            height: 50,
+            child: ClipRRect(
+              child: Image.asset(
+                  'assets/newspaper.png',
+                  fit: BoxFit.cover),
+            ),
+          )
         ],
       ),
     );

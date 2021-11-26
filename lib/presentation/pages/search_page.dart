@@ -10,23 +10,32 @@ class SearchPage extends StatelessWidget {
 
  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Search'),
-      ),
+    return CustomScaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: TextField(
               onChanged: (query) {
                 context.read<SearchArticleBloc>().add(OnQueryChanged(query));
               },
               decoration: InputDecoration(
-                  hintText: 'Search Title',
+                  hintText: 'Search...',
+                  labelStyle: TextStyle(
+                    color: kPrimaryColor,
+                  ),
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
+                    borderSide: BorderSide(color: kPrimaryColor),
+                    borderRadius: BorderRadius.circular(24)
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: kGreyColor),
+                    borderRadius: BorderRadius.circular(24)
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: kPrimaryColor),
                     borderRadius: BorderRadius.circular(24)
                   ),
                   contentPadding: EdgeInsets.all(12)
@@ -46,7 +55,7 @@ class SearchPage extends StatelessWidget {
               builder: (context, state) {
                 if (state is SearchArticleLoading) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: loadingIndicator
                   );
                 } else if (state is SearchArticleHasData) {
                   final result = state.searchResult;
