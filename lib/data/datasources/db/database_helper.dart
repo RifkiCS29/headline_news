@@ -46,7 +46,7 @@ class DatabaseHelper {
         title TEXT,
         description TEXT,
         url TEXT,
-        urlToImage TEXT
+        urlToImage TEXT,
         category TEXT,
         idCacheArticle INTEGER PRIMARY KEY AUTOINCREMENT
       );

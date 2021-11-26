@@ -24,11 +24,19 @@ class TopHeadlineArticleCard extends StatelessWidget {
           children: [
             Container(
               height: 140,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-                  image: DecorationImage(
-                      image: NetworkImage(article.urlToImage ?? ''), fit: BoxFit.cover)),
+              child: CachedNetworkImage(
+                imageUrl: article.urlToImage ?? '',
+                imageBuilder: (context, imageProvider) => Container(
+                  height: 140,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                    image: DecorationImage(
+                      image: imageProvider, fit: BoxFit.cover),
+                  ),
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(8, 12, 8, 6),

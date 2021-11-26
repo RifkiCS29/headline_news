@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:headline_news/common/theme.dart';
 import 'package:headline_news/presentation/bloc/article_list_bloc/article_list_bloc.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 import 'article_category_page.dart';
 
@@ -14,6 +15,18 @@ class ArticlePage extends StatefulWidget {
 }
 
 class _ArticlePageState extends State<ArticlePage> {
+
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() =>
+        Provider.of<ArticleTopHeadlineListBloc>(context, listen: false)
+            .add(ArticleListEvent()));
+    Future.microtask(() =>
+        Provider.of<ArticleHeadlineBusinessListBloc>(context, listen: false)
+            .add(ArticleListEvent()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(

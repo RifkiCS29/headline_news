@@ -14,22 +14,26 @@ class ArticleList extends StatelessWidget {
       child: Container(
           margin: EdgeInsets.only(
             bottom: 16,
-            left: 20,
-            right: 20,
+            left: defaultMargin,
+            right: defaultMargin,
           ),
           child: Row(children: [
             Container(
-              height: 80,
               width: 110,
-              decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              image: DecorationImage(
-                  image: NetworkImage(
-                    article.urlToImage!
-                  ), 
-                  fit: BoxFit.cover
-                )
-              )
+              height: 80,
+              child: CachedNetworkImage(
+                imageUrl: article.urlToImage ?? '',
+                imageBuilder: (context, imageProvider) => Container(
+                  width: 110,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    image: DecorationImage(
+                      image: imageProvider, fit: BoxFit.cover),
+                  ),
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
             SizedBox(
               width: 10,

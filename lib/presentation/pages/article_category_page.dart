@@ -3,10 +3,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:headline_news/common/theme.dart';
 import 'package:headline_news/presentation/bloc/article_category_bloc/article_category_bloc.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
-class ArticleCategoryPage extends StatelessWidget {
+class ArticleCategoryPage extends StatefulWidget {
   final String category;
   const ArticleCategoryPage({Key? key, required this.category}) : super(key: key);
+
+  @override
+  State<ArticleCategoryPage> createState() => _ArticleCategoryPageState();
+}
+
+class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
+
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() =>
+        Provider.of<ArticleCategoryBloc>(context, listen: false)
+            .add(FetchArticleCategory(widget.category)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +29,13 @@ class ArticleCategoryPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.0,
         title: Text(
-          category, 
+          widget.category, 
           style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semiBold)
         ),
       ),
       body: BlocBuilder<ArticleCategoryBloc, ArticleCategoryState>(
         builder: (context, state) {       
-        print(category);
+        print(widget.category);
          if(state is ArticleCategoryLoading) {
             return Center(child: loadingIndicator);        
           } else if(state is ArticleCategoryHasData) {
