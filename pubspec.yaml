@@ -35,6 +35,7 @@ dependencies:
     git:
       url: https://github.com/chornthorn/data_connection_checker.git
       ref: master
+  encrypt: ^5.0.1
   equatable: ^2.0.3
   flutter:
     sdk: flutter
@@ -49,7 +50,7 @@ dependencies:
   provider: ^6.0.1
   rxdart: ^0.27.3
   share: ^2.0.4
-  sqflite: ^2.0.0+4
+  sqflite_sqlcipher: ^2.1.0
   webview_flutter: ^2.3.1
 
 dev_dependencies:

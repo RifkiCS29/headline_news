@@ -1,3 +1,3 @@
   final String baseUrl = 'https://newsapi.org/v2/';
-  final String apiKey = 'bcb740f8902b48d1b90c3a3570316604';
+  final String apiKey = '1300f132bf6d4fd2aeacae64314c2a6a';
   final String country = 'id';
