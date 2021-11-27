@@ -10,7 +10,7 @@ import 'package:headline_news/domain/usecases/get_headline_business_articles.dar
 import 'package:headline_news/domain/usecases/get_top_headline_articles.dart';
 import 'package:headline_news/domain/usecases/remove_bookmark_article.dart';
 import 'package:headline_news/domain/usecases/save_bookmark_article.dart';
-import 'package:http/http.dart' as http;
+import 'common/http_ssl_pinning.dart';
 import 'common/network_info.dart';
 import 'data/datasources/article_local_data_source.dart';
 import 'data/datasources/db/database_helper.dart';
@@ -92,6 +92,6 @@ void init() {
   locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(locator()));
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
   locator.registerLazySingleton(() => DataConnectionChecker());
 }

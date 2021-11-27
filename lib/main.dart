@@ -8,6 +8,7 @@ import 'package:headline_news/presentation/pages/article_category_page.dart';
 import 'package:headline_news/presentation/pages/detail_page.dart';
 import 'package:headline_news/presentation/pages/splash_page.dart';
 import 'package:provider/provider.dart';
+import 'common/http_ssl_pinning.dart';
 import 'domain/entities/article.dart';
 import 'injection.dart' as di;
 import 'presentation/bloc/article_category_bloc/article_category_bloc.dart';
@@ -18,7 +19,9 @@ import 'presentation/bloc/search_article_bloc/search_article_bloc.dart';
 import 'presentation/pages/article_webview_page.dart';
 import 'presentation/pages/main_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HttpSSLPinning.init();
   di.init();
   runApp(MyApp());
 }
