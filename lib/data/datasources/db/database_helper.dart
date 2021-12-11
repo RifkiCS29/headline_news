@@ -128,7 +128,10 @@ class DatabaseHelper {
   Future<List<Map<String, dynamic>>> getBookmarkArticles() async {
     final db = await database;
     final List<Map<String, dynamic>> results = 
-      await db!.query(_tblBookmarkArticle);
+      await db!.query(
+        _tblBookmarkArticle,
+        orderBy: 'publishedAt DESC'
+      );
 
     return results;
   }
