@@ -29,7 +29,7 @@ final testArticleCacheMap = {
   'description': 'test description',
   'url': 'test url',
   'urlToImage': 'test url to image',
-  'publishedAt': DateTime.parse('2022-01-01T02:15:39Z'),
+  'publishedAt': '2022-01-01T02:15:39Z',
   'content': 'test content',
 };
 
@@ -69,6 +69,6 @@ final testArticleMap = {
   'description': 'test description',
   'url': 'test url',
   'urlToImage': 'test url to image',
-  'publishedAt': DateTime.parse('2022-01-01T02:15:39Z'),
+  'publishedAt': '2022-01-01T02:15:39Z',
   'content': 'test content',
 };
