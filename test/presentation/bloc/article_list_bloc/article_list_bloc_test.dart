@@ -60,6 +60,24 @@ void main() {
     );
 
     blocTest<ArticleTopHeadlineListBloc, ArticleListState> (
+      'Should emit [ArticleListLoading, ArticleListLoaded[], ArticleListEmpty] when data was Empty',
+      build: () {
+        when(mockGetTopHeadlineArticles.execute())
+            .thenAnswer((_) async => Right(<Article>[]));
+        return articleTopHeadlineListBloc;
+      },
+      act: (bloc) => bloc.add(ArticleListEvent()),
+      expect: () => [
+        ArticleListLoading(),
+        ArticleListLoaded([]),
+        ArticleListEmpty(),
+      ],
+      verify: (_) {
+        verify(mockGetTopHeadlineArticles.execute());
+      },
+    );
+
+    blocTest<ArticleTopHeadlineListBloc, ArticleListState> (
       'Should emit [ArticleListLoading, ArticleListError] when get Failure',
       build: () {
         when(mockGetTopHeadlineArticles.execute())
@@ -95,6 +113,24 @@ void main() {
         ArticleListLoaded(tArticleList),
       ],
       verify: (bloc) {
+        verify(mockGetHeadlineBusinessArticles.execute());
+      },
+    );
+
+    blocTest<ArticleHeadlineBusinessListBloc, ArticleListState> (
+      'Should emit [ArticleListLoading, ArticleListLoaded[], ArticleListEmpty] when data was Empty',
+      build: () {
+        when(mockGetHeadlineBusinessArticles.execute())
+            .thenAnswer((_) async => Right(<Article>[]));
+        return articleHeadlineBusinessListBloc;
+      },
+      act: (bloc) => bloc.add(ArticleListEvent()),
+      expect: () => [
+        ArticleListLoading(),
+        ArticleListLoaded([]),
+        ArticleListEmpty(),
+      ],
+      verify: (_) {
         verify(mockGetHeadlineBusinessArticles.execute());
       },
     );
