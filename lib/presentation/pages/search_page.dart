@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:headline_news/common/config.dart';
 import 'package:headline_news/common/theme.dart';
 import 'package:headline_news/presentation/bloc/search_article_bloc/search_article_bloc.dart';
+import 'package:headline_news/presentation/widgets/initial.dart';
+import 'package:headline_news/presentation/widgets/nodata.dart';
+import 'package:headline_news/presentation/widgets/error.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:provider/src/provider.dart';
 
-class SearchPage extends StatelessWidget {
+String _query = '';
+
+class SearchPage extends StatefulWidget {
   const SearchPage({ Key? key }) : super(key: key);
 
- @override
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage>  
+  with AutomaticKeepAliveClientMixin {
+
+  final ScrollController _scrollController = ScrollController();
+  int currentPage = 1;
+  int totalPage = 0;
+
+  @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     return CustomScaffold(
       body: Column(
@@ -18,6 +36,7 @@ class SearchPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: TextField(
               onChanged: (query) {
+                _query = query;
                 context.read<SearchArticleBloc>().add(OnQueryChanged(query));
               },
               decoration: InputDecoration(
@@ -53,30 +72,49 @@ class SearchPage extends StatelessWidget {
           Flexible(
             child: BlocBuilder<SearchArticleBloc, SearchArticleState>(
               builder: (context, state) {
-                if (state is SearchArticleLoading) {
+                if (state is SearchArticleInitial) {
+                  return Center(
+                    child: Initial(message: 'Search the News'),
+                  );
+                } else if (state is SearchArticleLoading) {
                   return Center(
                     child: loadingIndicator
                   );
                 } else if (state is SearchArticleHasData) {
+                  currentPage = state.currentPage;
                   final result = state.searchResult;
                   return ListView.builder(
+                    controller: _scrollController
+                      ..addListener(() {
+                        if (_scrollController.offset ==
+                                _scrollController.position.maxScrollExtent) {
+                            print('currentPageIndside: $currentPage');
+                            totalPage = (result.length / pageSize).ceil();
+                            print('totalPage: $totalPage');
+                            context
+                                .read<SearchArticleBloc>()
+                                .add(OnNextPage(_query, currentPage));
+                        }
+                    }),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     itemBuilder: (context, index) {
-                      final article = state.searchResult[index];
+                      final article = result[index];
                       return ArticleList(article: article);
                     },
                     itemCount: result.length,
                   );
                 } else if (state is SearchArticleEmpty) {
                   return Center(
-                    child: Text(state.message, style: blackTextStyle),
+                    child: NoData(message: state.message),
                   );
                 } else if (state is SearchArticleError) {
                   return Center(
-                    child: Text(state.message, style: blackTextStyle),
+                    child: Error(message: state.message),
                   );
                 } else {
-                  return Container();
+                  return Container(
+                    child: Text(state.runtimeType.toString()),
+                  );
                 }
               },
             ),
@@ -84,5 +122,14 @@ class SearchPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }
