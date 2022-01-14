@@ -39,9 +39,9 @@ class MockSearchArticles extends _i1.Mock implements _i4.SearchArticles {
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeArticleRepository_0()) as _i2.ArticleRepository);
   @override
-  _i5.Future<_i3.Either<_i6.Failure, List<_i7.Article>>> execute(
-          String? query) =>
-      (super.noSuchMethod(Invocation.method(#execute, [query]),
+  _i5.Future<_i3.Either<_i6.Failure, List<_i7.Article>>> execute(String? query,
+          {int? page = 1}) =>
+      (super.noSuchMethod(Invocation.method(#execute, [query], {#page: page}),
           returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Article>>>.value(
               _FakeEither_1<_i6.Failure, List<_i7.Article>>())) as _i5
           .Future<_i3.Either<_i6.Failure, List<_i7.Article>>>);

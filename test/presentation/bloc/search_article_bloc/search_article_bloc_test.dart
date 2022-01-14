@@ -32,11 +32,12 @@ void main() {
 
   final tArticleList = <Article>[tArticleModel];
   final tQuery = 'business';
+  final tPage = 1;
 
   group('Search Articles', () {
 
     test('Initial state should be empty', () {
-      expect(searchArticleBloc.state, SearchArticleEmpty(''));
+      expect(searchArticleBloc.state, SearchArticleInitial());
     });
 
     blocTest<SearchArticleBloc, SearchArticleState> (
@@ -50,7 +51,7 @@ void main() {
       wait: const Duration(milliseconds: 500),
       expect: () => [
         SearchArticleLoading(),
-        SearchArticleHasData(tArticleList),
+        SearchArticleHasData(tArticleList, tPage),
       ],
       verify: (bloc) {
         verify(mockSearchArticles.execute(tQuery));
@@ -68,7 +69,7 @@ void main() {
       wait: const Duration(milliseconds: 500),
       expect: () => [
         SearchArticleLoading(),
-        SearchArticleHasData(<Article>[]),
+        SearchArticleHasData(<Article>[], tPage),
         SearchArticleEmpty('No Result Found'),
       ],
       verify: (bloc) {

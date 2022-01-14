@@ -321,11 +321,12 @@ void main() {
 
   group('Search Articles', () {
     final tQuery = 'spiderman';
+    final tPage = 1;
 
     test('should return Article list when call to data source is successful',
         () async {
       // arrange
-      when(mockRemoteDataSource.searchArticles(tQuery))
+      when(mockRemoteDataSource.searchArticles(tQuery, tPage))
           .thenAnswer((_) async => tArticleModelList);
       // act
       final result = await repository.searchArticles(tQuery);
@@ -338,7 +339,7 @@ void main() {
     test('should return ServerFailure when call to data source is unsuccessful',
         () async {
       // arrange
-      when(mockRemoteDataSource.searchArticles(tQuery))
+      when(mockRemoteDataSource.searchArticles(tQuery, tPage))
           .thenThrow(ServerException());
       // act
       final result = await repository.searchArticles(tQuery);
@@ -350,7 +351,7 @@ void main() {
         'should return Connection Failure when device is not connected to the internet',
         () async {
       // arrange
-      when(mockRemoteDataSource.searchArticles(tQuery))
+      when(mockRemoteDataSource.searchArticles(tQuery, tPage))
           .thenThrow(SocketException('Failed to connect to the network'));
       // act
       final result = await repository.searchArticles(tQuery);
@@ -363,7 +364,7 @@ void main() {
         'should return Certification Failure when the call to remote data source is unsuccessful',
           () async {
       // arrange
-      when(mockRemoteDataSource.searchArticles(tQuery))
+      when(mockRemoteDataSource.searchArticles(tQuery, tPage))
           .thenThrow(TlsException());
       // act
       final result = await repository.searchArticles(tQuery);

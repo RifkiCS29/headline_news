@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   analyzer: ^2.7.0
+  bloc_concurrency: ^0.2.0
   cached_network_image: ^3.0.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0-nullsafety.2

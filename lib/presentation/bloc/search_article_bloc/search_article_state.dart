@@ -7,6 +7,8 @@ abstract class SearchArticleState extends Equatable {
   List<Object> get props => [];
 }
 
+class SearchArticleInitial extends SearchArticleState {}
+
 class SearchArticleEmpty extends SearchArticleState {
   final String message;
  
@@ -20,11 +22,15 @@ class SearchArticleLoading extends SearchArticleState {}
 
 class SearchArticleHasData extends SearchArticleState {
   final List<Article> searchResult;
+  final int currentPage;
  
-  SearchArticleHasData(this.searchResult);
+  SearchArticleHasData(
+    this.searchResult,
+    this.currentPage,
+  );
  
   @override
-  List<Object> get props => [searchResult];
+  List<Object> get props => [searchResult, currentPage];
 }
 
 class SearchArticleError extends SearchArticleState {

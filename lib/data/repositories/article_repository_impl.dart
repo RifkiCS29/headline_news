@@ -82,9 +82,9 @@ class ArticleRepositoryImpl implements ArticleRepository {
   }
 
   @override
-  Future<Either<Failure, List<Article>>> searchArticles(String query) async {
+  Future<Either<Failure, List<Article>>> searchArticles(String query, {int page: 1}) async {
     try {
-      final result = await remoteDataSource.searchArticles(query);
+      final result = await remoteDataSource.searchArticles(query, page);
       return Right(result.map((model) => model.toEntity()).toList());
     } on ServerException {
       return Left(ServerFailure(''));

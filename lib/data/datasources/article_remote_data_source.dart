@@ -10,7 +10,7 @@ abstract class ArticleRemoteDataSource {
   Future<List<ArticleModel>> getTopHeadlineArticles();
   Future<List<ArticleModel>> getHeadlineBusinessArticles();
   Future<List<ArticleModel>> getArticleCategory(String category);
-  Future<List<ArticleModel>> searchArticles(String query);
+  Future<List<ArticleModel>> searchArticles(String query, int page);
 }
 
 class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
@@ -56,9 +56,9 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   }
 
   @override
-  Future<List<ArticleModel>> searchArticles(String query) async {
-    final response = await client
-        .get(Uri.parse('${baseUrl}everything?q=$query&apiKey=$apiKey&pageSize=30'));
+  Future<List<ArticleModel>> searchArticles(String query, int page) async {
+    final response = await client.get(
+      Uri.parse('${baseUrl}everything?q=$query&apiKey=$apiKey&pageSize=$pageSize&page=$page'));
 
     if (response.statusCode == 200) {
       return ArticleResponse.fromJson(json.decode(response.body)).articles;

@@ -70,8 +70,10 @@ class MockArticleRepository extends _i1.Mock implements _i4.ArticleRepository {
           .Future<_i2.Either<_i6.Failure, List<_i7.Article>>>);
   @override
   _i5.Future<_i2.Either<_i6.Failure, List<_i7.Article>>> searchArticles(
-          String? query) =>
-      (super.noSuchMethod(Invocation.method(#searchArticles, [query]),
+          String? query,
+          {int? page = 1}) =>
+      (super.noSuchMethod(
+          Invocation.method(#searchArticles, [query], {#page: page}),
           returnValue: Future<_i2.Either<_i6.Failure, List<_i7.Article>>>.value(
               _FakeEither_0<_i6.Failure, List<_i7.Article>>())) as _i5
           .Future<_i2.Either<_i6.Failure, List<_i7.Article>>>);
@@ -130,8 +132,8 @@ class MockArticleRemoteDataSource extends _i1.Mock
                   Future<List<_i9.ArticleModel>>.value(<_i9.ArticleModel>[]))
           as _i5.Future<List<_i9.ArticleModel>>);
   @override
-  _i5.Future<List<_i9.ArticleModel>> searchArticles(String? query) =>
-      (super.noSuchMethod(Invocation.method(#searchArticles, [query]),
+  _i5.Future<List<_i9.ArticleModel>> searchArticles(String? query, int? page) =>
+      (super.noSuchMethod(Invocation.method(#searchArticles, [query, page]),
               returnValue:
                   Future<List<_i9.ArticleModel>>.value(<_i9.ArticleModel>[]))
           as _i5.Future<List<_i9.ArticleModel>>);

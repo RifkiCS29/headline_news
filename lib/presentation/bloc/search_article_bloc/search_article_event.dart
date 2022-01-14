@@ -15,3 +15,16 @@ class OnQueryChanged extends SearchArticleEvent {
   @override
   List<Object> get props => [query];
 }
+
+class OnNextPage extends SearchArticleEvent {
+  final String query;
+  final int page;
+
+  OnNextPage(
+    this.query,
+    this.page,
+  );
+
+  @override
+  List<Object> get props => [query, page];
+}

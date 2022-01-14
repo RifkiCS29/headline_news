@@ -15,6 +15,7 @@ void main() {
   const API_KEY = 'your_api_key';
   const BASE_URL = 'https://newsapi.org/v2/';
   const COUNTRY = 'id';
+  const pageSize = 20;
 
   late ArticleRemoteDataSourceImpl dataSource;
   late MockHttpClient mockHttpClient;
@@ -135,11 +136,12 @@ void main() {
             json.decode(readJson('dummy_data/search_article.json')))
         .articles;
     final tQuery = 'bitcoin';
+    final tPage = 1;
 
     test('should return list of Articles when response code is 200', () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('${BASE_URL}everything?q=$tQuery&apiKey=$API_KEY&pageSize=30')))
+              .get(Uri.parse('${BASE_URL}everything?q=$tQuery&apiKey=$API_KEY&pageSize=$pageSize&page=$tPage')))
           .thenAnswer((_) async => http.Response(
               readJson('dummy_data/search_article.json'), 200,                   
                   headers: {
@@ -147,7 +149,7 @@ void main() {
                         'application/json; charset=utf-8',
                   }));
       // act
-      final result = await dataSource.searchArticles(tQuery);
+      final result = await dataSource.searchArticles(tQuery, tPage);
       // assert
       expect(result, tSearchResult);
     });
@@ -156,10 +158,10 @@ void main() {
         () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('${BASE_URL}everything?q=$tQuery&apiKey=$API_KEY&pageSize=30')))
+              .get(Uri.parse('${BASE_URL}everything?q=$tQuery&apiKey=$API_KEY&pageSize=$pageSize&page=$tPage')))
           .thenAnswer((_) async => http.Response('Not Found', 404));
       // act
-      final call = dataSource.searchArticles(tQuery);
+      final call = dataSource.searchArticles(tQuery, tPage);
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });
