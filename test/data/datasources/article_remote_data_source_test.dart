@@ -133,8 +133,7 @@ void main() {
 
   group('Search Articles', () {
     final tSearchResult = ArticleResponse.fromJson(
-            json.decode(readJson('dummy_data/search_article.json')))
-        .articles;
+            json.decode(readJson('dummy_data/search_article.json')));
     final tQuery = 'bitcoin';
     final tPage = 1;
 

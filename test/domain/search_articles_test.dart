@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:headline_news/domain/entities/article.dart';
+import 'package:headline_news/domain/entities/articles.dart';
 import 'package:headline_news/domain/usecases/search_articles.dart';
 import 'package:mockito/mockito.dart';
 
@@ -15,7 +16,7 @@ void main() {
     usecase = SearchArticles(mockArticleRepository);
   });
 
-  final tArticles = <Article>[];
+  final tArticles = Articles(totalResults: 1, articles: <Article>[]);
   final tQuery = 'business';
 
   test('should get list of Articles from the repository', () async {

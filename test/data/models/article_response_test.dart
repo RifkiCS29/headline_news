@@ -46,6 +46,7 @@ void main() {
       final result = tArticleResponseModel.toJson();
       // assert
       final expectedJsonMap = {
+        "totalResults": 38,
         "articles": [
           {
             "author": "Ramdani Bur",

@@ -5,8 +5,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:headline_news/common/exception.dart';
 import 'package:headline_news/common/failure.dart';
 import 'package:headline_news/data/models/article_model.dart';
+import 'package:headline_news/data/models/article_response.dart';
 import 'package:headline_news/data/repositories/article_repository_impl.dart';
 import 'package:headline_news/domain/entities/article.dart';
+import 'package:headline_news/domain/entities/articles.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../dummy_data/dummy_objects.dart';
@@ -37,6 +39,11 @@ void main() {
     urlToImage: 'test url to image',
     publishedAt: DateTime.parse('2022-01-01T02:15:39Z'),
     content: 'test content',
+  );
+
+  final tArticleResponse = ArticleResponse(
+    totalResults: 1,
+    articles: [tArticleModel],
   );
 
   final tArticle = Article(
@@ -327,13 +334,13 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.searchArticles(tQuery, tPage))
-          .thenAnswer((_) async => tArticleModelList);
+          .thenAnswer((_) async => tArticleResponse);
       // act
       final result = await repository.searchArticles(tQuery);
       // assert
       /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
-      final resultList = result.getOrElse(() => []);
-      expect(resultList, tArticleList);
+      final resultList = result.getOrElse(() => Articles(totalResults: 1, articles: []));
+      expect(resultList, tArticleResponse.toEntity());
     });
 
     test('should return ServerFailure when call to data source is unsuccessful',

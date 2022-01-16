@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:headline_news/common/failure.dart';
 import 'package:headline_news/domain/entities/article.dart';
+import 'package:headline_news/domain/entities/articles.dart';
 import 'package:headline_news/domain/usecases/search_articles.dart';
 import 'package:headline_news/presentation/bloc/search_article_bloc/search_article_bloc.dart';
 import 'package:mockito/annotations.dart';
@@ -30,8 +31,14 @@ void main() {
     content: 'test content',
   );
 
+  final tArticles = Articles(
+    totalResults: 1,
+    articles: [tArticleModel],
+  );
+
   final tArticleList = <Article>[tArticleModel];
   final tQuery = 'business';
+  final totalResults = 1;
   final tPage = 1;
 
   group('Search Articles', () {
@@ -44,14 +51,14 @@ void main() {
       'Should emit [SearchLoading, SearchHasData] when data is gotten successfully',
       build: () {
         when(mockSearchArticles.execute(tQuery))
-          .thenAnswer((_) async => Right(tArticleList));
+          .thenAnswer((_) async => Right(tArticles));
         return searchArticleBloc;
       },
       act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
         SearchArticleLoading(),
-        SearchArticleHasData(tArticleList, tPage),
+        SearchArticleHasData(tArticleList, totalResults, tPage),
       ],
       verify: (bloc) {
         verify(mockSearchArticles.execute(tQuery));
@@ -62,14 +69,14 @@ void main() {
       'Should emit [SearchLoading, SearchHasData[], SearchEmpty] when data is empty',
       build: () {
         when(mockSearchArticles.execute(tQuery))
-          .thenAnswer((_) async => Right(<Article>[]));
+          .thenAnswer((_) async => Right(Articles(totalResults: 1, articles: [])));
         return searchArticleBloc;
       },
       act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
         SearchArticleLoading(),
-        SearchArticleHasData(<Article>[], tPage),
+        SearchArticleHasData(<Article>[], totalResults, tPage),
         SearchArticleEmpty('No Result Found'),
       ],
       verify: (bloc) {
