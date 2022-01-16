@@ -22,15 +22,17 @@ class SearchArticleLoading extends SearchArticleState {}
 
 class SearchArticleHasData extends SearchArticleState {
   final List<Article> searchResult;
+  final int totalResult;
   final int currentPage;
  
   SearchArticleHasData(
     this.searchResult,
+    this.totalResult,
     this.currentPage,
   );
  
   @override
-  List<Object> get props => [searchResult, currentPage];
+  List<Object> get props => [searchResult, totalResult, currentPage];
 }
 
 class SearchArticleError extends SearchArticleState {

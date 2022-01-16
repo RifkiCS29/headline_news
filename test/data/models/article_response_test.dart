@@ -22,7 +22,10 @@ void main() {
           "MEDIA Vietnam, Soha.vn, membahas potensi Timnas Indonesia menang 7-0 atas Thailand di leg II final Piala AFF 2020, Sabtu (1/1/2022) pukul 19.30 WIB. Mereka menulis artikel dengan judul Fans Indonesia… [+1977 chars]");
 
   final tArticleResponseModel =
-      ArticleResponse(articles: <ArticleModel>[tArticleModel]);
+      ArticleResponse(
+        totalResults: 38,
+        articles: <ArticleModel>[tArticleModel]
+    );
   group('fromJson', () {
     test('should return a valid model from JSON', () async {
       // arrange

@@ -12,15 +12,14 @@ import 'package:provider/src/provider.dart';
 String _query = '';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({ Key? key }) : super(key: key);
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage>  
-  with AutomaticKeepAliveClientMixin {
-
+class _SearchPageState extends State<SearchPage>
+    with AutomaticKeepAliveClientMixin {
   final ScrollController _scrollController = ScrollController();
   int currentPage = 1;
   int totalPage = 0;
@@ -33,7 +32,8 @@ class _SearchPageState extends State<SearchPage>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: TextField(
               onChanged: (query) {
                 _query = query;
@@ -46,20 +46,16 @@ class _SearchPageState extends State<SearchPage>
                   ),
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: kPrimaryColor),
-                    borderRadius: BorderRadius.circular(24)
-                  ),
+                      borderSide: BorderSide(color: kPrimaryColor),
+                      borderRadius: BorderRadius.circular(24)),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kGreyColor),
-                    borderRadius: BorderRadius.circular(24)
-                  ),
+                      borderSide: BorderSide(color: kGreyColor),
+                      borderRadius: BorderRadius.circular(24)),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kPrimaryColor),
-                    borderRadius: BorderRadius.circular(24)
-                  ),
-                  contentPadding: EdgeInsets.all(12)
-                ),
-                textInputAction: TextInputAction.search,
+                      borderSide: BorderSide(color: kPrimaryColor),
+                      borderRadius: BorderRadius.circular(24)),
+                  contentPadding: EdgeInsets.all(12)),
+              textInputAction: TextInputAction.search,
             ),
           ),
           Padding(
@@ -77,25 +73,24 @@ class _SearchPageState extends State<SearchPage>
                     child: Initial(message: 'Search the News'),
                   );
                 } else if (state is SearchArticleLoading) {
-                  return Center(
-                    child: loadingIndicator
-                  );
+                  return Center(child: loadingIndicator);
                 } else if (state is SearchArticleHasData) {
                   currentPage = state.currentPage;
                   final result = state.searchResult;
+                  totalPage = (state.totalResult / pageSize).ceil();
+                  print('totalPage: $totalPage');
                   return ListView.builder(
                     controller: _scrollController
                       ..addListener(() {
-                        if (_scrollController.offset ==
+                            if ((currentPage < 5) && (currentPage < totalPage) && 
+                              _scrollController.offset ==
                                 _scrollController.position.maxScrollExtent) {
-                            print('currentPageIndside: $currentPage');
-                            totalPage = (result.length / pageSize).ceil();
-                            print('totalPage: $totalPage');
-                            context
-                                .read<SearchArticleBloc>()
-                                .add(OnNextPage(_query, currentPage));
-                        }
-                    }),
+                              print('currentPageIndside: $currentPage');
+                              context
+                                  .read<SearchArticleBloc>()
+                                  .add(OnNextPage(_query, currentPage));
+                            }
+                      }),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     itemBuilder: (context, index) {
                       final article = result[index];

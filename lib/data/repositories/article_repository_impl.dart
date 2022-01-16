@@ -6,6 +6,7 @@ import 'package:headline_news/data/datasources/article_local_data_source.dart';
 import 'package:headline_news/data/datasources/article_remote_data_source.dart';
 import 'package:headline_news/data/models/article_table.dart';
 import 'package:headline_news/domain/entities/article.dart';
+import 'package:headline_news/domain/entities/articles.dart';
 import 'package:headline_news/domain/repositories/article_repository.dart';
 import 'package:headline_news/common/exception.dart';
 import 'package:headline_news/common/failure.dart';
@@ -82,10 +83,10 @@ class ArticleRepositoryImpl implements ArticleRepository {
   }
 
   @override
-  Future<Either<Failure, List<Article>>> searchArticles(String query, {int page: 1}) async {
+  Future<Either<Failure, Articles>> searchArticles(String query, {int page: 1}) async {
     try {
       final result = await remoteDataSource.searchArticles(query, page);
-      return Right(result.map((model) => model.toEntity()).toList());
+      return Right(result.toEntity());
     } on ServerException {
       return Left(ServerFailure(''));
     } on SocketException {

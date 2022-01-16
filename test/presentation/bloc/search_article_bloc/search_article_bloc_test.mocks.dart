@@ -6,7 +6,7 @@ import 'dart:async' as _i5;
 
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:headline_news/common/failure.dart' as _i6;
-import 'package:headline_news/domain/entities/article.dart' as _i7;
+import 'package:headline_news/domain/entities/articles.dart' as _i7;
 import 'package:headline_news/domain/repositories/article_repository.dart'
     as _i2;
 import 'package:headline_news/domain/usecases/search_articles.dart' as _i4;
@@ -39,10 +39,10 @@ class MockSearchArticles extends _i1.Mock implements _i4.SearchArticles {
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeArticleRepository_0()) as _i2.ArticleRepository);
   @override
-  _i5.Future<_i3.Either<_i6.Failure, List<_i7.Article>>> execute(String? query,
+  _i5.Future<_i3.Either<_i6.Failure, _i7.Articles>> execute(String? query,
           {int? page = 1}) =>
       (super.noSuchMethod(Invocation.method(#execute, [query], {#page: page}),
-          returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Article>>>.value(
-              _FakeEither_1<_i6.Failure, List<_i7.Article>>())) as _i5
-          .Future<_i3.Either<_i6.Failure, List<_i7.Article>>>);
+              returnValue: Future<_i3.Either<_i6.Failure, _i7.Articles>>.value(
+                  _FakeEither_1<_i6.Failure, _i7.Articles>()))
+          as _i5.Future<_i3.Either<_i6.Failure, _i7.Articles>>);
 }
