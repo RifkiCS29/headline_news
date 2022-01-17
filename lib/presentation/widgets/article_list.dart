@@ -51,7 +51,7 @@ class ArticleList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    article.title,
+                    article.title ?? 'No Title',
                     style: blackTextStyle.copyWith(fontSize: 14),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -59,7 +59,7 @@ class ArticleList extends StatelessWidget {
                   SizedBox(
                     height: 8,
                   ),
-                  Text(article.author ?? "",
+                  Text(article.author ?? 'No Author',
                       style: greyTextStyle.copyWith(fontSize: 12))
                 ],
               ),

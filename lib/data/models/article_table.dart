@@ -4,7 +4,7 @@ import 'package:headline_news/domain/entities/article.dart';
 
 class ArticleTable extends Equatable {
   final String? author;
-  final String title;
+  final String? title;
   final String? description;
   final String url;
   final String? urlToImage;

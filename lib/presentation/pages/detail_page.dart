@@ -211,7 +211,7 @@ class _DetailPageState extends State<DetailPage> {
                               height: 5,
                             ),
                             Text(
-                              widget.article.title,
+                              widget.article.title ?? 'No Title',
                               style: whiteTextStyle.copyWith(
                                   fontSize: 18, fontWeight: semiBold),
                             ),
@@ -219,7 +219,7 @@ class _DetailPageState extends State<DetailPage> {
                               height: 5,
                             ),
                             Text(
-                              widget.article.author ?? '',
+                              widget.article.author ?? 'No Author',
                               style: whiteTextStyle.copyWith(fontSize: 14),
                             ),
                           ],

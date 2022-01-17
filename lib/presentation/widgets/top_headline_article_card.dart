@@ -49,7 +49,7 @@ class TopHeadlineArticleCard extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(8, 12, 8, 6),
               width: 200,
               child: Text(
-                article.title,
+                article.title ?? 'No Title',
                 style: blackTextStyle.copyWith(fontSize: 14),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

@@ -16,11 +16,8 @@ class ArticleResponse extends Equatable {
     articles: List<ArticleModel>.from((json["articles"] as List)
       .map((x) => ArticleModel.fromJson(x))
       .where((article) => 
-        article.author != null &&
-        article.description != null &&
         article.urlToImage != null &&
-        article.publishedAt != null &&
-        article.content != null)),
+        article.publishedAt != null)),
   );
 
   Map<String, dynamic> toJson() => {
