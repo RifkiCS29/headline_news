@@ -7,6 +7,7 @@ import 'package:headline_news/presentation/widgets/initial.dart';
 import 'package:headline_news/presentation/widgets/nodata.dart';
 import 'package:headline_news/presentation/widgets/error.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:provider/src/provider.dart';
 
 String _query = '';
@@ -20,7 +21,6 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage>
     with AutomaticKeepAliveClientMixin {
-  final ScrollController _scrollController = ScrollController();
   int currentPage = 1;
   int totalPage = 0;
 
@@ -79,24 +79,24 @@ class _SearchPageState extends State<SearchPage>
                   final result = state.searchResult;
                   totalPage = (state.totalResult / pageSize).ceil();
                   print('totalPage: $totalPage');
-                  return ListView.builder(
-                    controller: _scrollController
-                      ..addListener(() {
-                            if ((currentPage < 5) && (currentPage < totalPage) && 
-                              _scrollController.offset ==
-                                _scrollController.position.maxScrollExtent) {
-                              print('currentPageIndside: $currentPage');
-                              context
-                                  .read<SearchArticleBloc>()
-                                  .add(OnNextPage(_query, currentPage));
-                            }
-                      }),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    itemBuilder: (context, index) {
-                      final article = result[index];
-                      return ArticleList(article: article);
-                    },
-                    itemCount: result.length,
+                  return LazyLoadScrollView(
+                    onEndOfPage: () {
+                      if ((currentPage < 5) && (currentPage < totalPage)) {
+                        print('currentPageIndside: $currentPage');
+                        context
+                          .read<SearchArticleBloc>()
+                          .add(OnNextPage(_query, currentPage));
+                      }
+                    },                
+                    scrollOffset: 150,
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      itemBuilder: (context, index) {
+                        final article = result[index];
+                        return ArticleList(article: article);
+                      },
+                      itemCount: result.length,
+                    ),
                   );
                 } else if (state is SearchArticleEmpty) {
                   return Center(
@@ -124,7 +124,6 @@ class _SearchPageState extends State<SearchPage>
 
   @override
   void dispose() {
-    _scrollController.dispose();
     super.dispose();
   }
 }
