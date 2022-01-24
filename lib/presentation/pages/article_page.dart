@@ -96,7 +96,7 @@ class _ArticlePageState extends State<ArticlePage> {
       child: Padding(
         padding: const EdgeInsets.only(left: 24, right:24),
         child: ListView(
-          key: Key('article_category_item'),
+          key: Key('article_category'),
           scrollDirection: Axis.horizontal,
           children: [
             GestureDetector(

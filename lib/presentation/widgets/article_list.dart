@@ -17,6 +17,7 @@ class ArticleList extends StatelessWidget {
         ),
       },
       child: Container(
+          key: Key('article_list_item'),
           margin: EdgeInsets.only(
             bottom: 16,
             left: defaultMargin,
