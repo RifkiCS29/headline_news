@@ -59,6 +59,7 @@ class _ArticlePageState extends State<ArticlePage> {
             );        
           } else if(state is ArticleListLoaded) {
             return ListView.builder(
+              key: Key('headline_news_item'),
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: state.articles.length,
@@ -95,6 +96,7 @@ class _ArticlePageState extends State<ArticlePage> {
       child: Padding(
         padding: const EdgeInsets.only(left: 24, right:24),
         child: ListView(
+          key: Key('article_category_item'),
           scrollDirection: Axis.horizontal,
           children: [
             GestureDetector(
@@ -168,6 +170,7 @@ class _ArticlePageState extends State<ArticlePage> {
             width: double.infinity,
             padding: EdgeInsets.only(top: 8),
                child: ListView.builder(
+                  key: Key('headline_business_item'),
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: state.articles.length,

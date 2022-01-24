@@ -264,6 +264,7 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       SizedBox(height: 20),
                       CustomButton(
+                        key: Key('button_read_more'),
                         title: 'Read More',
                         onPressed: () => Navigator.push(
                             context,

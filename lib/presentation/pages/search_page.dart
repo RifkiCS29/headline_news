@@ -35,6 +35,7 @@ class _SearchPageState extends State<SearchPage>
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: TextField(
+              key: Key('edtSearch'),
               onChanged: (query) {
                 _query = query;
                 context.read<SearchArticleBloc>().add(OnQueryChanged(query));
@@ -90,6 +91,7 @@ class _SearchPageState extends State<SearchPage>
                     },                
                     scrollOffset: 150,
                     child: ListView.builder(
+                      key: Key('search_item'),
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       itemBuilder: (context, index) {
                         final article = result[index];

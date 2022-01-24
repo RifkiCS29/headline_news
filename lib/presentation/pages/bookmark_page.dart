@@ -43,6 +43,7 @@ class _BookmarkPageState extends State<BookmarkPage> with RouteAware {
             return Padding(
               padding: const EdgeInsets.only(top:8),
               child: ListView.builder(
+                key: Key('bookmark_item'),
                 shrinkWrap: true,
                 itemCount: state.bookmarkArticle.length,
                 itemBuilder: (context, index) {
