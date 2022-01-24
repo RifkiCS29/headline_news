@@ -82,6 +82,23 @@ void main() {
       final Finder btnBackDetailSearch = find.byIcon(Icons.arrow_back_ios);
       await tester.tap(btnBackDetailSearch);
       await tester.pumpAndSettle();
+
+      // bookmark page and delete bookmark
+      final Finder iconBookmark = find.byIcon(Icons.bookmark);
+      await tester.tap(iconBookmark);
+      await tester.pumpAndSettle();
+
+      final Finder firstItemBookmark = find.byKey(Key('article_list_item')).first;
+      await tester.tap(firstItemBookmark);
+      await tester.pumpAndSettle();
+
+      final Finder btnUnBookmark= find.byIcon(Icons.bookmark);
+      await tester.tap(btnUnBookmark);
+      await tester.pumpAndSettle();
+
+      final Finder btnBackFromBookmark = find.byIcon(Icons.arrow_back_ios);
+      await tester.tap(btnBackFromBookmark);
+      await tester.pumpAndSettle();
     });
   });
 }
