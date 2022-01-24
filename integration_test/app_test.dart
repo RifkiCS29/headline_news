@@ -57,6 +57,31 @@ void main() {
       final Finder btnBackDetailCategory = find.byIcon(Icons.arrow_back_ios);
       await tester.tap(btnBackDetailCategory);
       await tester.pumpAndSettle();
+
+      final Finder btnBackToHome = find.byIcon(Icons.arrow_back);
+      await tester.tap(btnBackToHome);
+      await tester.pumpAndSettle();
+
+      // search news and add to bookmark
+      final Finder iconSearch = find.byIcon(Icons.search);
+      await tester.tap(iconSearch);
+      await tester.pumpAndSettle();
+
+      final Finder edtSearch = find.byKey(Key('edtSearch'));
+      await tester.enterText(edtSearch, 'kalimantan');
+      await tester.pumpAndSettle();
+
+      final Finder firstItemSearch = find.byKey(Key('article_list_item')).first;
+      await tester.tap(firstItemSearch);
+      await tester.pumpAndSettle();
+
+      final Finder btnBookmarkSearch = find.byIcon(Icons.bookmark_border);
+      await tester.tap(btnBookmarkSearch);
+      await tester.pumpAndSettle();
+
+      final Finder btnBackDetailSearch = find.byIcon(Icons.arrow_back_ios);
+      await tester.tap(btnBackDetailSearch);
+      await tester.pumpAndSettle();
     });
   });
 }
