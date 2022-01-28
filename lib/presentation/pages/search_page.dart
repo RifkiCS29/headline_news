@@ -4,6 +4,7 @@ import 'package:headline_news/common/config.dart';
 import 'package:headline_news/common/theme.dart';
 import 'package:headline_news/presentation/bloc/search_article_bloc/search_article_bloc.dart';
 import 'package:headline_news/presentation/widgets/initial.dart';
+import 'package:headline_news/presentation/widgets/loading_article_list.dart';
 import 'package:headline_news/presentation/widgets/nodata.dart';
 import 'package:headline_news/presentation/widgets/error.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
@@ -74,7 +75,7 @@ class _SearchPageState extends State<SearchPage>
                     child: Initial(message: 'Search the News'),
                   );
                 } else if (state is SearchArticleLoading) {
-                  return Center(child: loadingIndicator);
+                  return LoadingArticleList();
                 } else if (state is SearchArticleHasData) {
                   currentPage = state.currentPage;
                   final result = state.searchResult;
