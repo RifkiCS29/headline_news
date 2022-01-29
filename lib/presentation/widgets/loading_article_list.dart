@@ -11,6 +11,7 @@ class LoadingArticleList extends StatelessWidget {
       baseColor: Color(0xFFa1a1a1),
       highlightColor: Color(0xFFe1e1e1),
       child: ListView.builder(
+        shrinkWrap: true,
         itemBuilder: (context, index) {
           return Container(
           key: Key('article_list_item'),
@@ -26,7 +27,7 @@ class LoadingArticleList extends StatelessWidget {
               height: 80,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Colors.grey[500],
+                color: Colors.grey[400],
               ),
             ),
             SizedBox(
@@ -41,7 +42,10 @@ class LoadingArticleList extends StatelessWidget {
                     height: 20,
                     width: double.infinity,
                     child: Container(
-                      color: Colors.grey[500],
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey[400],
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -51,7 +55,10 @@ class LoadingArticleList extends StatelessWidget {
                     height: 20,
                     width: double.infinity,
                     child: Container(
-                      color: Colors.grey[500],
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey[400],
+                      ),
                     ),
                   ),
                 ],

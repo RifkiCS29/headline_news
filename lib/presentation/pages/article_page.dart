@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:headline_news/common/theme.dart';
 import 'package:headline_news/presentation/bloc/article_list_bloc/article_list_bloc.dart';
+import 'package:headline_news/presentation/widgets/loading_article_list.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -163,7 +164,12 @@ class _ArticlePageState extends State<ArticlePage> {
     return BlocBuilder<ArticleHeadlineBusinessListBloc, ArticleListState>(
       builder: (context, state) {
         if(state is ArticleListLoading) {
-          return Center(child: loadingIndicator);        
+          return Container(            
+            color: kWhiteColor,
+            width: double.infinity,
+            padding: EdgeInsets.only(top: 8),
+            child: LoadingArticleList()
+          );        
         } else if(state is ArticleListLoaded) {
           return Container(
             color: kWhiteColor,
