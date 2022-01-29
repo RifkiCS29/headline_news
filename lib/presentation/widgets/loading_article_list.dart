@@ -14,58 +14,58 @@ class LoadingArticleList extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return Container(
-          key: Key('article_list_item'),
-          margin: EdgeInsets.only(
-            bottom: 16,
-            left: defaultMargin,
-            right: defaultMargin,
-          ),
-          child: Row(
-            children: [
-            Container(
-              width: 110,
-              height: 80,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.grey[400],
+            key: Key('article_list_item'),
+            margin: EdgeInsets.only(
+              bottom: 16,
+              left: defaultMargin,
+              right: defaultMargin,
+            ),
+            child: Row(
+              children: [
+              Container(
+                width: 110,
+                height: 80,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.grey[400],
+                ),
               ),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 20,
-                    width: double.infinity,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.grey[400],
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 20,
+                      width: double.infinity,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.grey[400],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  SizedBox(
-                    height: 20,
-                    width: double.infinity,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.grey[400],
+                    SizedBox(
+                      height: 8,
+                    ),
+                    SizedBox(
+                      height: 20,
+                      width: double.infinity,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.grey[400],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
-          ]),
-        );
+                  ],
+                ),
+              )
+            ]),
+          );
         },
         itemCount: 7,
       )

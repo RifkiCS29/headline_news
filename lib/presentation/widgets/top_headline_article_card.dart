@@ -24,7 +24,8 @@ class TopHeadlineArticleCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(spreadRadius: 1, color: Colors.black12)
-            ]),
+            ]
+        ),
         child: Column(
           children: [
             Container(
