@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:headline_news/common/utils.dart';
 import 'package:headline_news/presentation/bloc/bookmark_article_bloc/bookmark_article_bloc.dart';
+import 'package:headline_news/presentation/widgets/loading_article_list.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -38,7 +39,10 @@ class _BookmarkPageState extends State<BookmarkPage> with RouteAware {
       body: BlocBuilder<BookmarkArticleBloc, BookmarkArticleState>(
         builder: (context, state) {       
          if(state is BookmarkArticleLoading) {
-            return Center(child: loadingIndicator);        
+            return Padding(
+              padding: const EdgeInsets.only(top:8),
+              child: LoadingArticleList(),
+            );          
           } else if(state is BookmarkArticleHasData) {
             return Padding(
               padding: const EdgeInsets.only(top:8),
