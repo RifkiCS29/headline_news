@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:headline_news/common/string_extensions.dart';
 import 'package:headline_news/common/theme.dart';
 import 'package:headline_news/presentation/bloc/article_category_bloc/article_category_bloc.dart';
+import 'package:headline_news/presentation/widgets/loading_article_list.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +40,10 @@ class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
         builder: (context, state) {       
         print(widget.category);
          if(state is ArticleCategoryLoading) {
-            return Center(child: loadingIndicator);        
+            return Padding(
+              padding: const EdgeInsets.only(top:8),
+              child: LoadingArticleList(),
+            );       
           } else if(state is ArticleCategoryHasData) {
             return Padding(
               padding: const EdgeInsets.only(top:8),
