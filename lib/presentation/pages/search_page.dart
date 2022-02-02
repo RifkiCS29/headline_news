@@ -9,7 +9,6 @@ import 'package:headline_news/presentation/widgets/nodata.dart';
 import 'package:headline_news/presentation/widgets/error.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
-import 'package:provider/src/provider.dart';
 
 String _query = '';
 
