@@ -9,7 +9,6 @@ import 'package:headline_news/presentation/widgets/nodata.dart';
 import 'package:headline_news/presentation/widgets/error.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
-import 'package:provider/src/provider.dart';
 
 String _query = '';
 
@@ -86,10 +85,10 @@ class _SearchPageState extends State<SearchPage>
                       if ((currentPage < 5) && (currentPage < totalPage)) {
                         print('currentPageIndside: $currentPage');
                         context
-                          .read<SearchArticleBloc>()
-                          .add(OnNextPage(_query, currentPage));
+                            .read<SearchArticleBloc>()
+                            .add(OnNextPage(_query, currentPage));
                       }
-                    },                
+                    },
                     scrollOffset: 150,
                     child: ListView.builder(
                       key: Key('search_item'),
