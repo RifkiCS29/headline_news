@@ -85,10 +85,10 @@ class _SearchPageState extends State<SearchPage>
                       if ((currentPage < 5) && (currentPage < totalPage)) {
                         print('currentPageIndside: $currentPage');
                         context
-                          .read<SearchArticleBloc>()
-                          .add(OnNextPage(_query, currentPage));
+                            .read<SearchArticleBloc>()
+                            .add(OnNextPage(_query, currentPage));
                       }
-                    },                
+                    },
                     scrollOffset: 150,
                     child: ListView.builder(
                       key: Key('search_item'),
