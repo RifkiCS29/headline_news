@@ -54,9 +54,9 @@ FontWeight black = FontWeight.w900;
 
 ColorScheme kColorScheme = ColorScheme(
   primary: kPrimaryColor,
-  primaryVariant: kBlackColor,
+  primaryContainer: kBlackColor,
   secondary: kGreenColor,
-  secondaryVariant: kGreenColor,
+  secondaryContainer: kGreenColor,
   surface: kBlackColor,
   background: kBackgroundColor,
   error: Colors.red,
