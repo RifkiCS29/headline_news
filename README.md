@@ -13,3 +13,4 @@
 1. Extract Project
 2. Flutter pub get in Terminal
 3. Add ApiKey in common/config.dart
+4. If get error "certifcates not valid", you can export the certificates from https://newsapi.org and replace file in folder certificates
