@@ -3,7 +3,7 @@ part of 'widgets.dart';
 class ArticleList extends StatelessWidget {
   final Article article;
 
-  const ArticleList({required this.article});
+  const ArticleList({Key? key, required this.article}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class ArticleList extends StatelessWidget {
         ),
       },
       child: Container(
-          key: Key('article_list_item'),
+          key: const Key('article_list_item'),
           margin: EdgeInsets.only(
             bottom: 16,
             left: defaultMargin,
@@ -35,15 +35,15 @@ class ArticleList extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     image: DecorationImage(
-                      image: imageProvider, fit: BoxFit.cover),
+                      image: imageProvider, fit: BoxFit.cover,),
                   ),
                 ),
                 errorWidget: (context, url, error) => Image.asset(
                           'assets/errorimage.jpg',
-                          fit: BoxFit.cover),
+                          fit: BoxFit.cover,),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Expanded(
@@ -57,15 +57,15 @@ class ArticleList extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Text(article.author ?? 'No Author',
-                      style: greyTextStyle.copyWith(fontSize: 12))
+                      style: greyTextStyle.copyWith(fontSize: 12),)
                 ],
               ),
             )
-          ]),
+          ],),
         ),
     );
   }

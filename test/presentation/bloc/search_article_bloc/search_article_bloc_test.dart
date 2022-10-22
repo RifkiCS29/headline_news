@@ -76,8 +76,8 @@ void main() {
       wait: const Duration(milliseconds: 500),
       expect: () => [
         SearchArticleLoading(),
-        SearchArticleHasData(const <Article>[], totalResults, tPage),
-        SearchArticleEmpty('No Result Found'),
+        const SearchArticleHasData(<Article>[], totalResults, tPage),
+        const SearchArticleEmpty('No Result Found'),
       ],
       verify: (bloc) {
         verify(mockSearchArticles.execute(tQuery));
@@ -95,7 +95,7 @@ void main() {
       wait: const Duration(milliseconds: 500),
       expect: () => [
         SearchArticleLoading(),
-        SearchArticleError('Server Failure'),
+        const SearchArticleError('Server Failure'),
       ],
       verify: (bloc) {
         verify(mockSearchArticles.execute(tQuery));

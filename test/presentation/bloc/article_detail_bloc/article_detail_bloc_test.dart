@@ -51,7 +51,7 @@ void main() {
       'Shoud emit bookmarkMessage and isAddedToBookmark True when Success AddBookmark',
       build: () {
         when(mockSaveBookmarkArticle.execute(tArticle))
-            .thenAnswer((_) async => Right('Added to Bookmark'));
+            .thenAnswer((_) async => const Right('Added to Bookmark'));
         when(mockGetBookmarkStatus.execute(tArticle.url))
             .thenAnswer((_) async => true);
         return articleDetailBloc;
@@ -61,7 +61,7 @@ void main() {
         ArticleDetailStateInit.copyWith(bookmarkMessage: 'Added to Bookmark'),
         ArticleDetailStateInit.copyWith(
           bookmarkMessage: 'Added to Bookmark', 
-          isAddedToBookmark: true
+          isAddedToBookmark: true,
         ),
       ],
       verify: (_) {
@@ -74,7 +74,7 @@ void main() {
       'Shoud emit bookmarkMessage when Failed',
       build: () {
         when(mockSaveBookmarkArticle.execute(tArticle))
-            .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+            .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
         when(mockGetBookmarkStatus.execute(tArticle.url))
             .thenAnswer((_) async => false);
         return articleDetailBloc;
@@ -96,7 +96,7 @@ void main() {
       'Shoud emit bookmarkMessage and isAddedToBookmark False when Success RemoveFromBookmark',
       build: () {
         when(mockRemoveBookmarkArticle.execute(tArticle))
-            .thenAnswer((_) async => Right('Removed From Bookmark'));
+            .thenAnswer((_) async => const Right('Removed From Bookmark'));
         when(mockGetBookmarkStatus.execute(tArticle.url))
             .thenAnswer((_) async => false);
         return articleDetailBloc;
@@ -105,7 +105,7 @@ void main() {
       expect: () => [
         ArticleDetailStateInit.copyWith(
           bookmarkMessage: 'Removed From Bookmark',
-          isAddedToBookmark: false
+          isAddedToBookmark: false,
         ),
       ],
       verify: (_) {
@@ -118,7 +118,7 @@ void main() {
       'Shoud emit bookmarkMessage when Failed',
       build: () {
         when(mockRemoveBookmarkArticle.execute(tArticle))
-            .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+            .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
         when(mockGetBookmarkStatus.execute(tArticle.url))
             .thenAnswer((_) async => false);
         return articleDetailBloc;
@@ -145,7 +145,7 @@ void main() {
       act: (bloc) => bloc.add(LoadBookmarkStatus(tArticle.url)),
       expect: () => [
         ArticleDetailStateInit.copyWith(
-          isAddedToBookmark: true
+          isAddedToBookmark: true,
         ),
       ],
       verify: (_) {

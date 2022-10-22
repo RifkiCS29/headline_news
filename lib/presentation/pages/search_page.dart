@@ -48,14 +48,14 @@ class _SearchPageState extends State<SearchPage>
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor),
-                      borderRadius: BorderRadius.circular(24)),
+                      borderRadius: BorderRadius.circular(24),),
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kGreyColor),
-                      borderRadius: BorderRadius.circular(24)),
+                      borderRadius: BorderRadius.circular(24),),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor),
-                      borderRadius: BorderRadius.circular(24)),
-                  contentPadding: const EdgeInsets.all(12)),
+                      borderRadius: BorderRadius.circular(24),),
+                  contentPadding: const EdgeInsets.all(12),),
               textInputAction: TextInputAction.search,
             ),
           ),
@@ -70,7 +70,7 @@ class _SearchPageState extends State<SearchPage>
             child: BlocBuilder<SearchArticleBloc, SearchArticleState>(
               builder: (context, state) {
                 if (state is SearchArticleInitial) {
-                  return Center(
+                  return const Center(
                     child: Initial(message: 'Search the News'),
                   );
                 } else if (state is SearchArticleLoading) {
@@ -79,11 +79,9 @@ class _SearchPageState extends State<SearchPage>
                   currentPage = state.currentPage;
                   final result = state.searchResult;
                   totalPage = (state.totalResult / pageSize).ceil();
-                  print('totalPage: $totalPage');
                   return LazyLoadScrollView(
                     onEndOfPage: () {
                       if ((currentPage < 5) && (currentPage < totalPage)) {
-                        print('currentPageIndside: $currentPage');
                         context
                             .read<SearchArticleBloc>()
                             .add(OnNextPage(_query, currentPage));
@@ -109,7 +107,7 @@ class _SearchPageState extends State<SearchPage>
                     child: Error(message: state.message),
                   );
                 } else {
-                  return Container(
+                  return Center(
                     child: Text(state.runtimeType.toString()),
                   );
                 }

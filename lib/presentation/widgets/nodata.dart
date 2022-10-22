@@ -5,7 +5,7 @@ import 'package:headline_news/common/theme.dart';
 class NoData extends StatelessWidget {
   final String message;
 
-  const NoData({ required this.message });
+  const NoData({Key? key,  required this.message }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,24 +13,22 @@ class NoData extends StatelessWidget {
   }
 
   Widget _buildNoData(BuildContext context, String message) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Lottie.asset(
-            'assets/nodata.json',
-            width: 200, height: 200, fit: BoxFit.fill,
-            repeat: false,
-            reverse: false,
-            animate: false,
-          ),
-          SizedBox(height:8),
-          Text(
-            message, 
-            style: primaryTextStyle
-          )
-        ]
-      )
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Lottie.asset(
+          'assets/nodata.json',
+          width: 200, height: 200, fit: BoxFit.fill,
+          repeat: false,
+          reverse: false,
+          animate: false,
+        ),
+        const SizedBox(height:8),
+        Text(
+          message, 
+          style: primaryTextStyle,
+        )
+      ],
     );
   }
 }

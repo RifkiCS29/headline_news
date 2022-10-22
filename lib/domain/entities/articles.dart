@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'article.dart';
+import 'package:headline_news/domain/entities/article.dart';
 
 // ignore: must_be_immutable
 class Articles extends Equatable { 

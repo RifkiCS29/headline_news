@@ -5,6 +5,8 @@ import 'package:headline_news/presentation/pages/main_page.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashPage extends StatefulWidget {
+  const SplashPage({Key? key}) : super(key: key);
+
   @override
   _SplashPageState createState() => _SplashPageState();
 }
@@ -12,10 +14,10 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    Timer(Duration(milliseconds: 2000), () {
+    Timer(const Duration(milliseconds: 2000), () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => MainPage()),
+          MaterialPageRoute(builder: (context) => const MainPage()),
         );
     });
     super.initState();
@@ -32,10 +34,10 @@ class _SplashPageState extends State<SplashPage> {
                 height: 330,
                 width: 300,
                 child: Lottie.asset('assets/news.json',
-                    width: 350, height: 350, fit: BoxFit.fill),
+                    width: 350, height: 350, fit: BoxFit.fill,),
               ),
           ),
-        )
+        ),
     );
   }
 }

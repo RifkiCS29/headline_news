@@ -114,7 +114,7 @@ void main() {
         final result = await repository.getTopHeadlineArticles();
         // assert
         verify(mockRemoteDataSource.getTopHeadlineArticles());
-        expect(result, equals(Left(ServerFailure(''))));
+        expect(result, equals(const Left(ServerFailure(''))));
       });
 
       test(
@@ -122,12 +122,12 @@ void main() {
           () async {
         // arrange
         when(mockRemoteDataSource.getTopHeadlineArticles())
-            .thenThrow(TlsException());
+            .thenThrow(const TlsException());
         // act
         final result = await repository.getTopHeadlineArticles();
         // assert
         verify(mockRemoteDataSource.getTopHeadlineArticles());
-        expect(result, equals(Left(CommonFailure('Certificated Not Valid:\n'))));
+        expect(result, equals(const Left(CommonFailure('Certificated Not Valid:\n'))));
       });
     });
     
@@ -158,7 +158,7 @@ void main() {
         final result = await repository.getTopHeadlineArticles();
         // assert
         verify(mockLocalDataSource.getCachedTopHeadlineArticles());
-        expect(result, Left(CacheFailure('No Cache')));
+        expect(result, const Left(CacheFailure('No Cache')));
       });
     });
   });
@@ -218,7 +218,7 @@ void main() {
         final result = await repository.getHeadlineBusinessArticles();
         // assert
         verify(mockRemoteDataSource.getHeadlineBusinessArticles());
-        expect(result, equals(Left(ServerFailure(''))));
+        expect(result, equals(const Left(ServerFailure(''))));
       });
 
       test(
@@ -226,12 +226,12 @@ void main() {
           () async {
         // arrange
         when(mockRemoteDataSource.getHeadlineBusinessArticles())
-            .thenThrow(TlsException());
+            .thenThrow(const TlsException());
         // act
         final result = await repository.getHeadlineBusinessArticles();
         // assert
         verify(mockRemoteDataSource.getHeadlineBusinessArticles());
-        expect(result, equals(Left(CommonFailure('Certificated Not Valid:\n'))));
+        expect(result, equals(const Left(CommonFailure('Certificated Not Valid:\n'))));
       });
     });
     
@@ -262,7 +262,7 @@ void main() {
         final result = await repository.getHeadlineBusinessArticles();
         // assert
         verify(mockLocalDataSource.getCachedHeadlineBusinessArticles());
-        expect(result, Left(CacheFailure('No Cache')));
+        expect(result, const Left(CacheFailure('No Cache')));
       });
     });
   });
@@ -295,7 +295,7 @@ void main() {
       final result = await repository.getArticleCategory(tCategory);
       // assertbuild runner
       verify(mockRemoteDataSource.getArticleCategory(tCategory));
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test(
@@ -303,13 +303,13 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getArticleCategory(tCategory))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getArticleCategory(tCategory);
       // assert
       verify(mockRemoteDataSource.getArticleCategory(tCategory));
       expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+          equals(const Left(ConnectionFailure('Failed to connect to the network'))),);
     });
 
     test(
@@ -317,12 +317,12 @@ void main() {
           () async {
       // arrange
       when(mockRemoteDataSource.getArticleCategory(tCategory))
-          .thenThrow(TlsException());
+          .thenThrow(const TlsException());
       // act
       final result = await repository.getArticleCategory(tCategory);
       // assert
       verify(mockRemoteDataSource.getArticleCategory(tCategory));
-      expect(result, equals(Left(CommonFailure('Certificated Not Valid:\n'))));
+      expect(result, equals(const Left(CommonFailure('Certificated Not Valid:\n'))));
     });
   });
 
@@ -351,7 +351,7 @@ void main() {
       // act
       final result = await repository.searchArticles(tQuery);
       // assert
-      expect(result, Left(ServerFailure('')));
+      expect(result, const Left(ServerFailure('')));
     });
 
     test(
@@ -359,12 +359,13 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.searchArticles(tQuery, tPage))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.searchArticles(tQuery);
       // assert
+      // ignore: require_trailing_commas
       expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+          result, const Left(ConnectionFailure('Failed to connect to the network')),);
     });
 
     test(
@@ -372,11 +373,11 @@ void main() {
           () async {
       // arrange
       when(mockRemoteDataSource.searchArticles(tQuery, tPage))
-          .thenThrow(TlsException());
+          .thenThrow(const TlsException());
       // act
       final result = await repository.searchArticles(tQuery);
       // assert
-      expect(result, equals(Left(CommonFailure('Certificated Not Valid:\n'))));
+      expect(result, equals(const Left(CommonFailure('Certificated Not Valid:\n'))));
     });
   });
 
@@ -388,7 +389,7 @@ void main() {
       // act
       final result = await repository.saveBookmarkArticle(testArticle);
       // assert
-      expect(result, Right('Added to Bookmark'));
+      expect(result, const Right('Added to Bookmark'));
     });
 
     test('should return DatabaseFailure when saving unsuccessful', () async {
@@ -398,7 +399,7 @@ void main() {
       // act
       final result = await repository.saveBookmarkArticle(testArticle);
       // assert
-      expect(result, Left(DatabaseFailure('Failed to add Bookmark')));
+      expect(result, const Left(DatabaseFailure('Failed to add Bookmark')));
     });
   });
 
@@ -410,7 +411,7 @@ void main() {
       // act
       final result = await repository.removeBookmarkArticle(testArticle);
       // assert
-      expect(result, Right('Removed from Bookmark'));
+      expect(result, const Right('Removed from Bookmark'));
     });
 
     test('should return DatabaseFailure when remove unsuccessful', () async {
@@ -420,7 +421,7 @@ void main() {
       // act
       final result = await repository.removeBookmarkArticle(testArticle);
       // assert
-      expect(result, Left(DatabaseFailure('Failed to remove Bookmark')));
+      expect(result, const Left(DatabaseFailure('Failed to remove Bookmark')));
     });
   });
 

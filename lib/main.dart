@@ -59,16 +59,16 @@ class MyApp extends StatelessWidget {
           primaryColor: kWhiteColor,
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
           colorScheme: kColorScheme.copyWith(secondary: kPrimaryColor),
-          bottomNavigationBarTheme: bottomNavigationBarTheme
+          bottomNavigationBarTheme: bottomNavigationBarTheme,
         ),
-        home: SplashPage(),
+        home: const SplashPage(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case '/':
-              return MaterialPageRoute(builder: (_) => SplashPage());
+              return MaterialPageRoute(builder: (_) => const SplashPage());
             case '/main-page':
-              return CupertinoPageRoute(builder: (_) => MainPage());
+              return CupertinoPageRoute(builder: (_) => const MainPage());
             case 'article-category-page':
               final category = settings.arguments as String;
               return MaterialPageRoute(
@@ -94,9 +94,9 @@ class MyApp extends StatelessWidget {
                     child: Text('Page not found :('),
                   ),
                 );
-              });
+              },);
           }
-        }
+        },
       ),
     );
   }

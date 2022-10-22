@@ -63,13 +63,13 @@ void main() {
       'Should emit [ArticleListLoading, ArticleListLoaded[], ArticleListEmpty] when data was Empty',
       build: () {
         when(mockGetTopHeadlineArticles.execute())
-            .thenAnswer((_) async => Right(<Article>[]));
+            .thenAnswer((_) async => const Right(<Article>[]));
         return articleTopHeadlineListBloc;
       },
       act: (bloc) => bloc.add(ArticleListEvent()),
       expect: () => [
         ArticleListLoading(),
-        ArticleListLoaded(const []),
+        const ArticleListLoaded([]),
         ArticleListEmpty(),
       ],
       verify: (_) {
@@ -81,13 +81,13 @@ void main() {
       'Should emit [ArticleListLoading, ArticleListError] when get Failure',
       build: () {
         when(mockGetTopHeadlineArticles.execute())
-            .thenAnswer((_) async => Left(ServerFailure('Failed')));
+            .thenAnswer((_) async => const Left(ServerFailure('Failed')));
         return articleTopHeadlineListBloc;
       },
       act: (bloc) => bloc.add(ArticleListEvent()),
       expect: () => [
         ArticleListLoading(),
-        ArticleListError('Failed'),
+        const ArticleListError('Failed'),
       ],
       verify: (_) {
         verify(mockGetTopHeadlineArticles.execute());
@@ -121,13 +121,13 @@ void main() {
       'Should emit [ArticleListLoading, ArticleListLoaded[], ArticleListEmpty] when data was Empty',
       build: () {
         when(mockGetHeadlineBusinessArticles.execute())
-            .thenAnswer((_) async => Right(<Article>[]));
+            .thenAnswer((_) async => const Right(<Article>[]));
         return articleHeadlineBusinessListBloc;
       },
       act: (bloc) => bloc.add(ArticleListEvent()),
       expect: () => [
         ArticleListLoading(),
-        ArticleListLoaded(const []),
+        const ArticleListLoaded([]),
         ArticleListEmpty(),
       ],
       verify: (_) {
@@ -139,13 +139,13 @@ void main() {
       'Should emit [ArticleListLoading, ArticleListError] when get Failure',
       build: () {
         when(mockGetHeadlineBusinessArticles.execute())
-            .thenAnswer((_) async => Left(ServerFailure('Failed')));
+            .thenAnswer((_) async => const Left(ServerFailure('Failed')));
         return articleHeadlineBusinessListBloc;
       },
       act: (bloc) => bloc.add(ArticleListEvent()),
       expect: () => [
         ArticleListLoading(),
-        ArticleListError('Failed'),
+        const ArticleListError('Failed'),
       ],
       verify: (_) {
         verify(mockGetHeadlineBusinessArticles.execute());

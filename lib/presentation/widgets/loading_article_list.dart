@@ -8,13 +8,13 @@ class LoadingArticleList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Color(0xFFa1a1a1),
-      highlightColor: Color(0xFFe1e1e1),
+      baseColor: const Color(0xFFa1a1a1),
+      highlightColor: const Color(0xFFe1e1e1),
       child: ListView.builder(
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return Container(
-            key: Key('article_list_item'),
+            key: const Key('article_list_item'),
             margin: EdgeInsets.only(
               bottom: 16,
               left: defaultMargin,
@@ -30,7 +30,7 @@ class LoadingArticleList extends StatelessWidget {
                   color: Colors.grey[400],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(
@@ -48,7 +48,7 @@ class LoadingArticleList extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     SizedBox(
@@ -64,11 +64,11 @@ class LoadingArticleList extends StatelessWidget {
                   ],
                 ),
               )
-            ]),
+            ],),
           );
         },
         itemCount: 7,
-      )
+      ),
     );
   }
 }

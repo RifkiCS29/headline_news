@@ -29,7 +29,7 @@ class DatabaseHelper {
       databasePath, 
       version: 1, 
       onCreate: _onCreate,
-      password: encrypt('HeadlineNews')
+      password: encrypt('HeadlineNews'),
     );
     return db;
   }
@@ -62,7 +62,7 @@ class DatabaseHelper {
   }
 
   Future<void> insertCacheTransactionArticles(
-    List<ArticleTable> articles, String category
+    List<ArticleTable> articles, String category,
   ) async {
     final db = await database;
     db!.transaction((txn) async {
@@ -87,7 +87,7 @@ class DatabaseHelper {
 
   Future<int> clearCacheArticles(String category) async {
     final db = await database;
-    return await db!.delete(
+    return db!.delete(
       _tblCacheArticle,
       where: 'category = ?',
       whereArgs: [category],
@@ -96,12 +96,12 @@ class DatabaseHelper {
 
   Future<int> insertBookmarkArticle(ArticleTable article) async {
     final db = await database;
-    return await db!.insert(_tblBookmarkArticle, article.toJson());
+    return db!.insert(_tblBookmarkArticle, article.toJson());
   }
 
   Future<int> removeBookmarkArticle(ArticleTable article) async {
     final db = await database;
-    return await db!.delete(
+    return db!.delete(
       _tblBookmarkArticle,
       where: 'url = ?',
       whereArgs: [article.url],
@@ -128,7 +128,7 @@ class DatabaseHelper {
     final List<Map<String, dynamic>> results = 
       await db!.query(
         _tblBookmarkArticle,
-        orderBy: 'publishedAt DESC'
+        orderBy: 'publishedAt DESC',
       );
 
     return results;

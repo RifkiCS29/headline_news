@@ -19,7 +19,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
   ArticleRepositoryImpl({
     required this.remoteDataSource,
     required this.localDataSource,
-    required this.networkInfo
+    required this.networkInfo,
   });
 
   @override
@@ -28,7 +28,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
       try {
         final result = await remoteDataSource.getTopHeadlineArticles();
         localDataSource.cacheTopHeadlineArticles(
-            result.map((article) => ArticleTable.fromDTO(article)).toList());
+            result.map((article) => ArticleTable.fromDTO(article)).toList(),);
         return Right(result.map((model) => model.toEntity()).toList());
       } on ServerException {
         return const Left(ServerFailure(''));
@@ -51,7 +51,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
       try {
         final result = await remoteDataSource.getHeadlineBusinessArticles();
         localDataSource.cacheHeadlineBusinessArticles(
-            result.map((article) => ArticleTable.fromDTO(article)).toList());
+            result.map((article) => ArticleTable.fromDTO(article)).toList(),);
         return Right(result.map((model) => model.toEntity()).toList());
       } on ServerException {
         return const Left(ServerFailure(''));

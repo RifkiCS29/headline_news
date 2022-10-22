@@ -22,7 +22,7 @@ class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
     super.initState();
     Future.microtask(() =>
         Provider.of<ArticleCategoryBloc>(context, listen: false)
-            .add(FetchArticleCategory(widget.category)));
+            .add(FetchArticleCategory(widget.category)),);
   }
 
   @override
@@ -33,7 +33,7 @@ class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
         elevation: 0.0,
         title: Text(
           widget.category.toCapitalized(), 
-          style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semiBold)
+          style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semiBold),
         ),
       ),
       body: BlocBuilder<ArticleCategoryBloc, ArticleCategoryState>(
@@ -52,7 +52,7 @@ class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
                 itemBuilder: (context, index) {
                   var article = state.articles[index];
                   return ArticleList(article: article);              
-                } 
+                }, 
               ),
             );
           } else if(state is ArticleCategoryEmpty) {
@@ -62,8 +62,8 @@ class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
           } else {
             return const Center(child: Text(''));
           }
-        }
-      )
+        },
+      ),
     );
   }
 }

@@ -8,7 +8,7 @@ void main() {
 
   group('Top Headline Article card Widget Test', () {
     Widget _makeTestableWidget() {
-      return MaterialApp(home: Scaffold(body: CategoryCard(name, image)));
+      return const MaterialApp(home: Scaffold(body: CategoryCard(name, image)));
     }
 
     testWidgets('Testing if title Article shows', (WidgetTester tester) async {

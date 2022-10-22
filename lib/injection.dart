@@ -10,16 +10,16 @@ import 'package:headline_news/domain/usecases/get_headline_business_articles.dar
 import 'package:headline_news/domain/usecases/get_top_headline_articles.dart';
 import 'package:headline_news/domain/usecases/remove_bookmark_article.dart';
 import 'package:headline_news/domain/usecases/save_bookmark_article.dart';
-import 'common/http_ssl_pinning.dart';
-import 'common/network_info.dart';
-import 'data/datasources/article_local_data_source.dart';
-import 'data/datasources/db/database_helper.dart';
-import 'domain/usecases/search_articles.dart';
-import 'presentation/bloc/article_category_bloc/article_category_bloc.dart';
-import 'presentation/bloc/article_detail_bloc/article_detail_bloc.dart';
-import 'presentation/bloc/article_list_bloc/article_list_bloc.dart';
-import 'presentation/bloc/bookmark_article_bloc/bookmark_article_bloc.dart';
-import 'presentation/bloc/search_article_bloc/search_article_bloc.dart';
+import 'package:headline_news/common/http_ssl_pinning.dart';
+import 'package:headline_news/common/network_info.dart';
+import 'package:headline_news/data/datasources/article_local_data_source.dart';
+import 'package:headline_news/data/datasources/db/database_helper.dart';
+import 'package:headline_news/domain/usecases/search_articles.dart';
+import 'package:headline_news/presentation/bloc/article_category_bloc/article_category_bloc.dart';
+import 'package:headline_news/presentation/bloc/article_detail_bloc/article_detail_bloc.dart';
+import 'package:headline_news/presentation/bloc/article_list_bloc/article_list_bloc.dart';
+import 'package:headline_news/presentation/bloc/bookmark_article_bloc/bookmark_article_bloc.dart';
+import 'package:headline_news/presentation/bloc/search_article_bloc/search_article_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -28,34 +28,34 @@ void init() {
   locator.registerFactory(
     () => ArticleTopHeadlineListBloc(
       locator(),
-    )
+    ),
   );
   locator.registerFactory(
     () => ArticleHeadlineBusinessListBloc(
       locator(),
-    )
+    ),
   );
   locator.registerFactory(
     () => ArticleCategoryBloc(
       locator(),
-    )
+    ),
   );
   locator.registerFactory(
     () => SearchArticleBloc(
       locator(),
-    )
+    ),
   );
   locator.registerFactory(
     () => BookmarkArticleBloc(
       locator(),
-    )
+    ),
   );
   locator.registerFactory(
     () => ArticleDetailBloc(
       getBookmarkStatus: locator(),
       saveBookmarkArticle: locator(),
       removeBookmarkArticle: locator(),
-    )
+    ),
   );
 
   //usecase
@@ -73,7 +73,7 @@ void init() {
     () => ArticleRepositoryImpl(
       remoteDataSource: locator(), 
       localDataSource: locator(), 
-      networkInfo: locator()
+      networkInfo: locator(),
     ),
   );
 

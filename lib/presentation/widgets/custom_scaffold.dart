@@ -3,7 +3,7 @@ part of 'widgets.dart';
 class CustomScaffold extends StatelessWidget {
   final Widget body;
 
-  const CustomScaffold({required this.body});
+  const CustomScaffold({Key? key, required this.body}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class CustomScaffold extends StatelessWidget {
             children: [
               Text(
                 'Headline News',
-                style: blackTextStyle.copyWith(fontSize: 16, fontWeight: semiBold)
+                style: blackTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),
               ),
               Text(
                 "Read Top Headline News Today",
@@ -51,7 +51,7 @@ class CustomScaffold extends StatelessWidget {
             child: ClipRRect(
               child: Image.asset(
                   'assets/newspaper.png',
-                  fit: BoxFit.cover),
+                  fit: BoxFit.cover,),
             ),
           )
         ],

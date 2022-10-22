@@ -4,7 +4,7 @@ class CategoryCard extends StatelessWidget {
   final String name;
   final String image;
 
-  const CategoryCard(this.name, this.image);
+  const CategoryCard(this.name, this.image, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,30 +15,29 @@ class CategoryCard extends StatelessWidget {
           child: Container(
             width: 90,
             height: 90,
-            padding: EdgeInsets.all(4),
+            padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
                 color: kWhiteColor,
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: const [
                   BoxShadow(spreadRadius: 1, blurRadius: 1, color: Colors.black12)
-                ]),
+                ],),
             child: Column(
               children: [
                 Container(
                   height: 65,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4),
-                          topRight: Radius.circular(4)),
+                          topRight: Radius.circular(4),),
                       image: DecorationImage(
                           image: AssetImage(image),
-                          fit: BoxFit.contain)),
+                          fit: BoxFit.contain,),),
                 ),
                 SizedBox(
                   width: 80,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         name,

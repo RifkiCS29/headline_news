@@ -58,7 +58,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   @override
   Future<ArticleResponse> searchArticles(String query, int page) async {
     final response = await client.get(
-      Uri.parse('${baseUrl}everything?q=$query&apiKey=$apiKey&pageSize=$pageSize&page=$page'));
+      Uri.parse('${baseUrl}everything?q=$query&apiKey=$apiKey&pageSize=$pageSize&page=$page'),);
 
     if (response.statusCode == 200) {
       return ArticleResponse.fromJson(json.decode(response.body));

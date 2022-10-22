@@ -35,7 +35,7 @@ void main() {
   group('Article Category', () {
 
     test('Initial state should be empty', () {
-      expect(articleCategoryBloc.state, ArticleCategoryEmpty(''));
+      expect(articleCategoryBloc.state, const ArticleCategoryEmpty(''));
     });
 
     blocTest<ArticleCategoryBloc, ArticleCategoryState> (
@@ -45,7 +45,7 @@ void main() {
           .thenAnswer((_) async => Right(tArticleList));
         return articleCategoryBloc;
       },
-      act: (bloc) => bloc.add(FetchArticleCategory(tCategory)),
+      act: (bloc) => bloc.add(const FetchArticleCategory(tCategory)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
         ArticleCategoryLoading(),
@@ -60,15 +60,15 @@ void main() {
       'Should emit [ArticleCategoryLoading, ArticleCategoryHasData[], ArticleCategoryEmpty] when data is empty',
       build: () {
         when(mockGetArticleCategory.execute(tCategory))
-          .thenAnswer((_) async => Right(<Article>[]));
+          .thenAnswer((_) async => const Right(<Article>[]));
         return articleCategoryBloc;
       },
-      act: (bloc) => bloc.add(FetchArticleCategory(tCategory)),
+      act: (bloc) => bloc.add(const FetchArticleCategory(tCategory)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
         ArticleCategoryLoading(),
-        ArticleCategoryHasData(const <Article>[]),
-        ArticleCategoryEmpty('Empty Article'),
+        const ArticleCategoryHasData(<Article>[]),
+        const ArticleCategoryEmpty('Empty Article'),
       ],
       verify: (bloc) {
         verify(mockGetArticleCategory.execute(tCategory));
@@ -79,14 +79,14 @@ void main() {
       'Should emit [ArticleCategoryLoading, ArticleCategoryError] when data is unsuccessful',
       build: () {
         when(mockGetArticleCategory.execute(tCategory))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return articleCategoryBloc;
       },
-      act: (bloc) => bloc.add(FetchArticleCategory(tCategory)),
+      act: (bloc) => bloc.add(const FetchArticleCategory(tCategory)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
         ArticleCategoryLoading(),
-        ArticleCategoryError('Server Failure'),
+        const ArticleCategoryError('Server Failure'),
       ],
       verify: (bloc) {
         verify(mockGetArticleCategory.execute(tCategory));

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -27,20 +29,20 @@ void main() {
 
   group('Get Top Headline Articles', () {
     final tArticleList = ArticleResponse.fromJson(
-            json.decode(readJson('dummy_data/top_headlines.json')))
+            json.decode(readJson('dummy_data/top_headlines.json')),)
         .articles;
 
     test('should return list of Article Model when the response code is 200',
         () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('${BASE_URL}top-headlines?country=$COUNTRY&apiKey=$API_KEY&pageSize=10')))
+              .get(Uri.parse('${BASE_URL}top-headlines?country=$COUNTRY&apiKey=$API_KEY&pageSize=10')),)
           .thenAnswer((_) async =>
               http.Response(readJson('dummy_data/top_headlines.json'), 200,                  
                   headers: {
                     HttpHeaders.contentTypeHeader:
                         'application/json; charset=utf-8',
-                  }));
+                  },),);
       // act
       final result = await dataSource.getTopHeadlineArticles();
       // assert
@@ -52,7 +54,7 @@ void main() {
         () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('${BASE_URL}top-headlines?country=$COUNTRY&apiKey=$API_KEY&pageSize=10')))
+              .get(Uri.parse('${BASE_URL}top-headlines?country=$COUNTRY&apiKey=$API_KEY&pageSize=10')),)
           .thenAnswer((_) async => http.Response('Not Found', 404));
       // act
       final call = dataSource.getTopHeadlineArticles();
@@ -75,7 +77,7 @@ void main() {
                   headers: {
                     HttpHeaders.contentTypeHeader:
                         'application/json; charset=utf-8',
-                  }));
+                  },),);
       // act
       final result = await dataSource.getHeadlineBusinessArticles();
       // assert
@@ -97,7 +99,7 @@ void main() {
 
   group('Get Article Category', () {
     final tArticleList = ArticleResponse.fromJson(
-            json.decode(readJson('dummy_data/article_category.json')))
+            json.decode(readJson('dummy_data/article_category.json')),)
         .articles;
     const tCategory = 'business';
 
@@ -105,13 +107,13 @@ void main() {
         () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('${BASE_URL}top-headlines?country=$COUNTRY&category=$tCategory&apiKey=$API_KEY&pageSize=30')))
+              .get(Uri.parse('${BASE_URL}top-headlines?country=$COUNTRY&category=$tCategory&apiKey=$API_KEY&pageSize=30')),)
           .thenAnswer((_) async => http.Response(
               readJson('dummy_data/article_category.json'), 200,                   
                   headers: {
                     HttpHeaders.contentTypeHeader:
                         'application/json; charset=utf-8',
-                  }));
+                  },),);
       // act
       final result = await dataSource.getArticleCategory(tCategory);
       // assert
@@ -122,7 +124,7 @@ void main() {
         () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('${BASE_URL}top-headlines?country=$COUNTRY&category=$tCategory&apiKey=$API_KEY&pageSize=30')))
+              .get(Uri.parse('${BASE_URL}top-headlines?country=$COUNTRY&category=$tCategory&apiKey=$API_KEY&pageSize=30')),)
           .thenAnswer((_) async => http.Response('Not Found', 404));
       // act
       final call = dataSource.getArticleCategory(tCategory);
@@ -133,20 +135,20 @@ void main() {
 
   group('Search Articles', () {
     final tSearchResult = ArticleResponse.fromJson(
-            json.decode(readJson('dummy_data/search_article.json')));
+            json.decode(readJson('dummy_data/search_article.json')),);
     const tQuery = 'bitcoin';
     const tPage = 1;
 
     test('should return list of Articles when response code is 200', () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('${BASE_URL}everything?q=$tQuery&apiKey=$API_KEY&pageSize=$pageSize&page=$tPage')))
+              .get(Uri.parse('${BASE_URL}everything?q=$tQuery&apiKey=$API_KEY&pageSize=$pageSize&page=$tPage')),)
           .thenAnswer((_) async => http.Response(
               readJson('dummy_data/search_article.json'), 200,                   
                   headers: {
                     HttpHeaders.contentTypeHeader:
                         'application/json; charset=utf-8',
-                  }));
+                  },),);
       // act
       final result = await dataSource.searchArticles(tQuery, tPage);
       // assert
@@ -157,7 +159,7 @@ void main() {
         () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('${BASE_URL}everything?q=$tQuery&apiKey=$API_KEY&pageSize=$pageSize&page=$tPage')))
+              .get(Uri.parse('${BASE_URL}everything?q=$tQuery&apiKey=$API_KEY&pageSize=$pageSize&page=$tPage')),)
           .thenAnswer((_) async => http.Response('Not Found', 404));
       // act
       final call = dataSource.searchArticles(tQuery, tPage);

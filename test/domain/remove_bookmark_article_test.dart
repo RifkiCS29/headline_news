@@ -18,11 +18,11 @@ void main() {
   test('should remove Bookmark Article from repository', () async {
     // arrange
     when(mockArticleRepository.removeBookmarkArticle(testArticle))
-        .thenAnswer((_) async => Right('Removed from Bookmark'));
+        .thenAnswer((_) async => const Right('Removed from Bookmark'));
     // act
     final result = await usecase.execute(testArticle);
     // assert
     verify(mockArticleRepository.removeBookmarkArticle(testArticle));
-    expect(result, Right('Removed from Bookmark'));
+    expect(result, const Right('Removed from Bookmark'));
   });
 }

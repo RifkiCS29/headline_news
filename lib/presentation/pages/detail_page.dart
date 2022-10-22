@@ -44,7 +44,7 @@ class _DetailPageState extends State<DetailPage> {
                   backgroundColor: state.bookmarkMessage ==
                   ArticleDetailBloc.bookmarkAddSuccessMessage ? kGreenColor : kRedColor,
                   content: Text(state.bookmarkMessage),
-                ));
+                ),);
           } else {
             await showDialog(
               context: context,
@@ -52,7 +52,7 @@ class _DetailPageState extends State<DetailPage> {
                 return AlertDialog(
                   content: Text(state.bookmarkMessage),
                 );
-              }
+              },
             );
           }
         },
@@ -85,12 +85,12 @@ class _DetailPageState extends State<DetailPage> {
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: imageProvider, fit: BoxFit.cover),
+                                image: imageProvider, fit: BoxFit.cover,),
                           ),
                         ),
                         errorWidget: (context, url, error) => Image.asset(
                             'assets/errorimage.jpg',
-                            fit: BoxFit.cover),
+                            fit: BoxFit.cover,),
                       ),
                     ),
                   ),
@@ -115,7 +115,7 @@ class _DetailPageState extends State<DetailPage> {
                                 color: kWhiteColor,
                                 borderRadius: BorderRadius.circular(
                                   10,
-                                )),
+                                ),),
                             child: Center(
                               child: Icon(
                                 Icons.arrow_back_ios,
@@ -132,12 +132,12 @@ class _DetailPageState extends State<DetailPage> {
                                 if (!state.isAddedToBookmark) {
                                     Provider.of<ArticleDetailBloc>(
                                           context,
-                                          listen: false)
+                                          listen: false,)
                                         .add(AddToBookmark(widget.article))
                                   } else {
                                     Provider.of<ArticleDetailBloc>(
                                           context,
-                                          listen: false)
+                                          listen: false,)
                                         .add(RemoveFromBookmark(widget.article))
                                   }
                               },
@@ -148,7 +148,7 @@ class _DetailPageState extends State<DetailPage> {
                                     color: kWhiteColor,
                                     borderRadius: BorderRadius.circular(
                                       10,
-                                    )),
+                                    ),),
                                 child: Center(
                                   child: Icon(
                                     state.isAddedToBookmark 
@@ -165,7 +165,7 @@ class _DetailPageState extends State<DetailPage> {
                             ),
                             GestureDetector(
                               onTap: () => Share.share(
-                                  "${widget.article.title}\nDetail: ${widget.article.url}"),
+                                  "${widget.article.title}\nDetail: ${widget.article.url}",),
                               child: Container(
                                 height: 40,
                                 width: 40,
@@ -173,7 +173,7 @@ class _DetailPageState extends State<DetailPage> {
                                     color: kWhiteColor,
                                     borderRadius: BorderRadius.circular(
                                       10,
-                                    )),
+                                    ),),
                                 child: Center(
                                   child: Icon(
                                     Icons.share,
@@ -203,7 +203,7 @@ class _DetailPageState extends State<DetailPage> {
                         children: [
                           Text(
                             DateFormat('dd/MM/yyyy kk:mm').format(
-                                widget.article.publishedAt ?? DateTime.now()),
+                                widget.article.publishedAt ?? DateTime.now(),),
                             style: whiteTextStyle.copyWith(fontSize: 14),
                           ),
                           const SizedBox(
@@ -212,7 +212,7 @@ class _DetailPageState extends State<DetailPage> {
                           Text(
                             widget.article.title ?? 'No Title',
                             style: whiteTextStyle.copyWith(
-                                fontSize: 18, fontWeight: semiBold),
+                                fontSize: 18, fontWeight: semiBold,),
                           ),
                           const SizedBox(
                             height: 5,
@@ -269,7 +269,7 @@ class _DetailPageState extends State<DetailPage> {
                             MaterialPageRoute(
                               builder: (context) =>
                                   ArticleWebviewPage(url: widget.article.url),
-                            )),
+                            ),),
                       )
                     ],
                   ),
@@ -277,7 +277,7 @@ class _DetailPageState extends State<DetailPage> {
               )
             ],
           );
-        }
+        },
       ),
     );
   }

@@ -19,7 +19,7 @@ class _BookmarkPageState extends State<BookmarkPage> with RouteAware {
     super.initState();
     Future.microtask(() =>
         Provider.of<BookmarkArticleBloc>(context, listen: false)
-            .add(BookmarkArticleEvent()));
+            .add(BookmarkArticleEvent()),);
   }
 
   @override
@@ -54,7 +54,7 @@ class _BookmarkPageState extends State<BookmarkPage> with RouteAware {
                 itemBuilder: (context, index) {
                   var article = state.bookmarkArticle[index];
                   return ArticleList(article: article);              
-                } 
+                }, 
               ),
             );
           } else if(state is BookmarkArticleEmpty) {
@@ -64,7 +64,7 @@ class _BookmarkPageState extends State<BookmarkPage> with RouteAware {
           } else {
             return const Center(child: Text(''));
           }
-        }
+        },
       ),
     );
   }

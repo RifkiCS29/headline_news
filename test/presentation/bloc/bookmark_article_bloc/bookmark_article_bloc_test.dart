@@ -26,7 +26,7 @@ void main() {
   group('Bookmark Articles', () {
 
     test('Initial state should be empty', () {
-      expect(bookmarkArticleBloc.state, BookmarkArticleEmpty(''));
+      expect(bookmarkArticleBloc.state, const BookmarkArticleEmpty(''));
     });
 
     blocTest<BookmarkArticleBloc, BookmarkArticleState> (
@@ -50,14 +50,14 @@ void main() {
       'Should emit [BookmarkArticleLoading, BookmarkArticleHasData[], BookmarkArticleEmpty] when data is empty',
       build: () {
         when(mockGetBookmarkArticles.execute())
-          .thenAnswer((_) async => Right(<Article>[]));
+          .thenAnswer((_) async => const Right(<Article>[]));
         return bookmarkArticleBloc;
       },
       act: (bloc) => bloc.add(BookmarkArticleEvent()),
       expect: () => [
         BookmarkArticleLoading(),
-        BookmarkArticleHasData(const <Article>[]),
-        BookmarkArticleEmpty('You haven\'t added a bookmark'),
+        const BookmarkArticleHasData(<Article>[]),
+        const BookmarkArticleEmpty("You haven't added a bookmark"),
       ],
       verify: (bloc) {
         verify(mockGetBookmarkArticles.execute());
@@ -68,13 +68,13 @@ void main() {
       'Should emit [BookmarkArticleLoading, BookmarkArticleError] when data is unsuccessful',
       build: () {
         when(mockGetBookmarkArticles.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return bookmarkArticleBloc;
       },
       act: (bloc) => bloc.add(BookmarkArticleEvent()),
       expect: () => [
         BookmarkArticleLoading(),
-        BookmarkArticleError('Server Failure'),
+        const BookmarkArticleError('Server Failure'),
       ],
       verify: (bloc) {
         verify(mockGetBookmarkArticles.execute());

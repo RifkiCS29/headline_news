@@ -8,7 +8,7 @@ class ArticleResponse extends Equatable {
 
   const ArticleResponse({
     required this.totalResults,
-    required this.articles
+    required this.articles,
   });
 
   factory ArticleResponse.fromJson(Map<String, dynamic> json) => ArticleResponse(
@@ -17,7 +17,7 @@ class ArticleResponse extends Equatable {
       .map((x) => ArticleModel.fromJson(x))
       .where((article) => 
         article.urlToImage != null &&
-        article.publishedAt != null)),
+        article.publishedAt != null,),),
   );
 
   Map<String, dynamic> toJson() => {
@@ -28,7 +28,7 @@ class ArticleResponse extends Equatable {
   Articles toEntity() {
     return Articles(
       totalResults: totalResults,
-      articles: articles.map((article) => article.toEntity()).toList()
+      articles: articles.map((article) => article.toEntity()).toList(),
     );
   } 
 

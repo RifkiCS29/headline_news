@@ -7,7 +7,7 @@ import 'package:headline_news/presentation/widgets/loading_article_list.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-import 'article_category_page.dart';
+import 'package:headline_news/presentation/pages/article_category_page.dart';
 
 class ArticlePage extends StatefulWidget {
   const ArticlePage({ Key? key}) : super(key: key);
@@ -23,10 +23,10 @@ class _ArticlePageState extends State<ArticlePage> {
     super.initState();
     Future.microtask(() =>
         Provider.of<ArticleTopHeadlineListBloc>(context, listen: false)
-            .add(ArticleListEvent()));
+            .add(ArticleListEvent()),);
     Future.microtask(() =>
         Provider.of<ArticleHeadlineBusinessListBloc>(context, listen: false)
-            .add(ArticleListEvent()));
+            .add(ArticleListEvent()),);
   }
 
   @override
@@ -41,10 +41,10 @@ class _ArticlePageState extends State<ArticlePage> {
               _listCategory(),
               const SizedBox(height: 8),
               _listHeadlineBusinessArticles()
-            ]
+            ],
           )
-        ]
-      )
+        ],
+      ),
     );
   }
 
@@ -70,11 +70,11 @@ class _ArticlePageState extends State<ArticlePage> {
                     (article == state.articles.first) ? 24 : 6,
                     8,
                     (article == state.articles.last) ? 24 : 6,
-                    8
+                    8,
                   ),
                   child: TopHeadlineArticleCard(article: article),
                 );      
-              } 
+              }, 
             );
           } else if(state is ArticleListEmpty) {
             return const Center(child: Text('Empty Article'));
@@ -103,57 +103,57 @@ class _ArticlePageState extends State<ArticlePage> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'sport')
-                )
+                  builder: (context) => const ArticleCategoryPage(category: 'sport'),
+                ),
               ),
-              child: const CategoryCard('Sport', 'assets/sports.png')
+              child: const CategoryCard('Sport', 'assets/sports.png'),
             ),
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'business')
-                )
+                  builder: (context) => const ArticleCategoryPage(category: 'business'),
+                ),
               ),
-              child: const CategoryCard('Business', 'assets/business.png')
+              child: const CategoryCard('Business', 'assets/business.png'),
             ),
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'health')
-                )
+                  builder: (context) => const ArticleCategoryPage(category: 'health'),
+                ),
               ),
-              child: const CategoryCard('Health', 'assets/health.png')
+              child: const CategoryCard('Health', 'assets/health.png'),
             ),
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'science')
-                )
+                  builder: (context) => const ArticleCategoryPage(category: 'science'),
+                ),
               ),
-              child: const CategoryCard('Science', 'assets/science.png')
+              child: const CategoryCard('Science', 'assets/science.png'),
             ),
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'technology')
-                )
+                  builder: (context) => const ArticleCategoryPage(category: 'technology'),
+                ),
               ),
-              child: const CategoryCard('Technology', 'assets/technology.png')
+              child: const CategoryCard('Technology', 'assets/technology.png'),
             ),
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'entertainment')
-                )
+                  builder: (context) => const ArticleCategoryPage(category: 'entertainment'),
+                ),
               ),
-              child: const CategoryCard('Entertainment', 'assets/entertainment.png')
+              child: const CategoryCard('Entertainment', 'assets/entertainment.png'),
             ),
-          ]
+          ],
         ),
       ),
     );
@@ -167,7 +167,7 @@ class _ArticlePageState extends State<ArticlePage> {
             color: kWhiteColor,
             width: double.infinity,
             padding: const EdgeInsets.only(top: 8),
-            child: const LoadingArticleList()
+            child: const LoadingArticleList(),
           );        
         } else if(state is ArticleListLoaded) {
           return Container(
@@ -182,7 +182,7 @@ class _ArticlePageState extends State<ArticlePage> {
                   itemBuilder: (context, index) {
                     var article = state.articles[index];
                     return ArticleList(article: article);              
-                  } 
+                  }, 
                 ),
           );
         } else if(state is ArticleListEmpty) {

@@ -3,8 +3,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:headline_news/domain/entities/article.dart';
 import 'package:headline_news/domain/usecases/search_articles.dart';
-import 'package:rxdart/src/transformers/backpressure/debounce.dart';
-import 'package:rxdart/src/transformers/flat_map.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'search_article_event.dart';
 part 'search_article_state.dart';
@@ -31,7 +30,7 @@ class SearchArticleBloc extends Bloc<SearchArticleEvent, SearchArticleState> {
           }
         );
       }
-    }, transformer: debounce(const Duration(milliseconds: 500)));
+    }, transformer: debounce(const Duration(milliseconds: 500)),);
     on<OnNextPage>((event, emit) async {
       final query = event.query;
       final page = event.page + 1;
@@ -50,7 +49,7 @@ class SearchArticleBloc extends Bloc<SearchArticleEvent, SearchArticleState> {
           }
         );
       }
-    }, transformer: droppable());
+    }, transformer: droppable(),);
   }
 }
 

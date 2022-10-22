@@ -85,7 +85,7 @@ void main() {
       // assert
       verify(mockDatabaseHelper.clearCacheArticles('top headline'));
       verify(mockDatabaseHelper
-          .insertCacheTransactionArticles([testArticleCache], 'top headline'));
+          .insertCacheTransactionArticles([testArticleCache], 'top headline'),);
     });
 
     test('should return list of Articles from db when data exist', () async {
@@ -119,7 +119,7 @@ void main() {
       // assert
       verify(mockDatabaseHelper.clearCacheArticles('headline business'));
       verify(mockDatabaseHelper
-          .insertCacheTransactionArticles([testArticleCache], 'headline business'));
+          .insertCacheTransactionArticles([testArticleCache], 'headline business'),);
     });
 
     test('should return list of Articles from db when data exist', () async {

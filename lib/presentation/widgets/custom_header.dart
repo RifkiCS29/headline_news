@@ -3,7 +3,7 @@ part of 'widgets.dart';
 class CustomHeader extends StatelessWidget {
   final Widget body;
 
-  const CustomHeader({required this.body});
+  const CustomHeader({Key? key, required this.body}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +18,19 @@ class CustomHeader extends StatelessWidget {
 
   Widget _buildShortAppBar(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(0),
-      shape: BeveledRectangleBorder(
+      margin: const EdgeInsets.all(0),
+      shape: const BeveledRectangleBorder(
           borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(16.0)
-            )
+            bottomRight: Radius.circular(16.0),
+            ),
           ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
             icon: defaultTargetPlatform == TargetPlatform.iOS
-                ? Icon(CupertinoIcons.back)
-                : Icon(Icons.arrow_back),
+                ? const Icon(CupertinoIcons.back)
+                : const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
