@@ -6,9 +6,11 @@ import 'package:headline_news/presentation/pages/bookmark_page.dart';
 import 'package:headline_news/presentation/pages/search_page.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 
-import 'article_page.dart';
+import 'package:headline_news/presentation/pages/article_page.dart';
 
 class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
+
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -17,7 +19,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _bottomNavIndex = 0;
 
-  List<BottomNavigationBarItem> _bottomNavbarItems = [
+  final List<BottomNavigationBarItem> _bottomNavbarItems = [
       BottomNavigationBarItem(
         icon: Icon(Platform.isIOS ? CupertinoIcons.home : Icons.home),
         label: "Home",
@@ -32,10 +34,10 @@ class _MainPageState extends State<MainPage> {
       ),
   ]; 
 
-  List<Widget> _listWidget = [
-    ArticlePage(),
-    SearchPage(),
-    BookmarkPage()
+  final List<Widget> _listWidget = [
+    const ArticlePage(),
+    const SearchPage(),
+    const BookmarkPage()
   ];
 
   @override

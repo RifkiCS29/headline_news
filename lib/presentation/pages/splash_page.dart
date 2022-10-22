@@ -28,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
         body: SafeArea(
           child: Center(
             child:
-              Container(
+              SizedBox(
                 height: 330,
                 width: 300,
                 child: Lottie.asset('assets/news.json',

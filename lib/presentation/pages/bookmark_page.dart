@@ -28,6 +28,7 @@ class _BookmarkPageState extends State<BookmarkPage> with RouteAware {
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
     Provider.of<BookmarkArticleBloc>(context, listen: false)
       .add(BookmarkArticleEvent());
@@ -39,15 +40,15 @@ class _BookmarkPageState extends State<BookmarkPage> with RouteAware {
       body: BlocBuilder<BookmarkArticleBloc, BookmarkArticleState>(
         builder: (context, state) {       
          if(state is BookmarkArticleLoading) {
-            return Padding(
-              padding: const EdgeInsets.only(top:8),
+            return const Padding(
+              padding: EdgeInsets.only(top:8),
               child: LoadingArticleList(),
             );          
           } else if(state is BookmarkArticleHasData) {
             return Padding(
               padding: const EdgeInsets.only(top:8),
               child: ListView.builder(
-                key: Key('bookmark_item'),
+                key: const Key('bookmark_item'),
                 shrinkWrap: true,
                 itemCount: state.bookmarkArticle.length,
                 itemBuilder: (context, index) {
@@ -61,7 +62,7 @@ class _BookmarkPageState extends State<BookmarkPage> with RouteAware {
           } else if (state is BookmarkArticleError) {
             return Center(child: Text(state.message));
           } else {
-            return Center(child: Text(''));
+            return const Center(child: Text(''));
           }
         }
       ),

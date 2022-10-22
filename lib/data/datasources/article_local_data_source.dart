@@ -63,7 +63,7 @@ class ArticleLocalDataSourceImpl implements ArticleLocalDataSource {
   @override
   Future<List<ArticleTable>> getCachedTopHeadlineArticles() async {
     final result = await databaseHelper.getCacheArticles('top headline');
-    if (result.length > 0) {
+    if (result.isNotEmpty) {
       return result.map((data) => ArticleTable.fromMap(data)).toList();
     } else {
       throw CacheException("Can't get the data :(");
@@ -79,7 +79,7 @@ class ArticleLocalDataSourceImpl implements ArticleLocalDataSource {
   @override
   Future<List<ArticleTable>> getCachedHeadlineBusinessArticles() async {
     final result = await databaseHelper.getCacheArticles('headline business');
-    if (result.length > 0) {
+    if (result.isNotEmpty) {
       return result.map((data) => ArticleTable.fromMap(data)).toList();
     } else {
       throw CacheException("Can't get the data :(");

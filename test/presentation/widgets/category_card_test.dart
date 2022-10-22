@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 
 void main() {
-  final String name = 'name';
-  final String image = 'assets/science.png';
+  const String name = 'name';
+  const String image = 'assets/science.png';
 
   group('Top Headline Article card Widget Test', () {
     Widget _makeTestableWidget() {

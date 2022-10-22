@@ -99,7 +99,7 @@ void main() {
     final tArticleList = ArticleResponse.fromJson(
             json.decode(readJson('dummy_data/article_category.json')))
         .articles;
-    final tCategory = 'business';
+    const tCategory = 'business';
 
     test('should return list of Article Model when the response code is 200',
         () async {
@@ -134,8 +134,8 @@ void main() {
   group('Search Articles', () {
     final tSearchResult = ArticleResponse.fromJson(
             json.decode(readJson('dummy_data/search_article.json')));
-    final tQuery = 'bitcoin';
-    final tPage = 1;
+    const tQuery = 'bitcoin';
+    const tPage = 1;
 
     test('should return list of Articles when response code is 200', () async {
       // arrange

@@ -14,7 +14,7 @@ class ArticleListLoading extends ArticleListState {}
 class ArticleListLoaded extends ArticleListState {
   final List<Article> articles;
 
-  ArticleListLoaded(this.articles);
+  const ArticleListLoaded(this.articles);
 
   @override
   List<Object> get props => [articles];
@@ -23,7 +23,7 @@ class ArticleListLoaded extends ArticleListState {
 class ArticleListError extends ArticleListState {
   final String message;
 
-  ArticleListError(this.message);
+  const ArticleListError(this.message);
 
   @override
   List<Object> get props => [message];

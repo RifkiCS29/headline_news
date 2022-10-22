@@ -10,7 +10,7 @@ abstract class ArticleDetailEvent extends Equatable {
 class AddToBookmark extends ArticleDetailEvent {
   final Article article;
 
-  AddToBookmark(this.article);
+  const AddToBookmark(this.article);
 
   @override
   List<Object> get props => [article];
@@ -19,7 +19,7 @@ class AddToBookmark extends ArticleDetailEvent {
 class RemoveFromBookmark extends ArticleDetailEvent {
   final Article article;
 
-  RemoveFromBookmark(this.article);
+  const RemoveFromBookmark(this.article);
 
   @override
   List<Object> get props => [article];
@@ -28,7 +28,7 @@ class RemoveFromBookmark extends ArticleDetailEvent {
 class LoadBookmarkStatus extends ArticleDetailEvent {
   final String url;
 
-  LoadBookmarkStatus(this.url);
+  const LoadBookmarkStatus(this.url);
 
   @override
   List<Object> get props => [url];

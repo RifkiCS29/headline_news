@@ -22,13 +22,13 @@ class TopHeadlineArticleCard extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(8),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(spreadRadius: 1, color: Colors.black12)
             ]
         ),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 140,
               child: CachedNetworkImage(
                 imageUrl: article.urlToImage ?? '',

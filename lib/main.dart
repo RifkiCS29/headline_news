@@ -8,22 +8,22 @@ import 'package:headline_news/presentation/pages/article_category_page.dart';
 import 'package:headline_news/presentation/pages/detail_page.dart';
 import 'package:headline_news/presentation/pages/splash_page.dart';
 import 'package:provider/provider.dart';
-import 'common/http_ssl_pinning.dart';
-import 'domain/entities/article.dart';
-import 'injection.dart' as di;
-import 'presentation/bloc/article_category_bloc/article_category_bloc.dart';
-import 'presentation/bloc/article_detail_bloc/article_detail_bloc.dart';
-import 'presentation/bloc/article_list_bloc/article_list_bloc.dart';
-import 'presentation/bloc/bookmark_article_bloc/bookmark_article_bloc.dart';
-import 'presentation/bloc/search_article_bloc/search_article_bloc.dart';
-import 'presentation/pages/article_webview_page.dart';
-import 'presentation/pages/main_page.dart';
+import 'package:headline_news/common/http_ssl_pinning.dart';
+import 'package:headline_news/domain/entities/article.dart';
+import 'package:headline_news/injection.dart' as di;
+import 'package:headline_news/presentation/bloc/article_category_bloc/article_category_bloc.dart';
+import 'package:headline_news/presentation/bloc/article_detail_bloc/article_detail_bloc.dart';
+import 'package:headline_news/presentation/bloc/article_list_bloc/article_list_bloc.dart';
+import 'package:headline_news/presentation/bloc/bookmark_article_bloc/bookmark_article_bloc.dart';
+import 'package:headline_news/presentation/bloc/search_article_bloc/search_article_bloc.dart';
+import 'package:headline_news/presentation/pages/article_webview_page.dart';
+import 'package:headline_news/presentation/pages/main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HttpSSLPinning.init();
   di.init();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -89,7 +89,7 @@ class MyApp extends StatelessWidget {
               );
             default:
               return MaterialPageRoute(builder: (_) {
-                return Scaffold(
+                return const Scaffold(
                   body: Center(
                     child: Text('Page not found :('),
                   ),

@@ -5,7 +5,7 @@ import 'package:headline_news/common/theme.dart';
 class Error extends StatelessWidget {
   final String message;
 
-  Error({ required this.message });
+  const Error({ required this.message });
 
   @override
   Widget build(BuildContext context) {

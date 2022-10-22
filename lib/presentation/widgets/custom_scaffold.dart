@@ -3,7 +3,7 @@ part of 'widgets.dart';
 class CustomScaffold extends StatelessWidget {
   final Widget body;
 
-  CustomScaffold({required this.body});
+  const CustomScaffold({required this.body});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class CustomScaffold extends StatelessWidget {
               ),
             ],
           ),
-          Container(
+          SizedBox(
             width: 50,
             height: 50,
             child: ClipRRect(

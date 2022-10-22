@@ -4,7 +4,7 @@ class CategoryCard extends StatelessWidget {
   final String name;
   final String image;
 
-  CategoryCard(this.name, this.image);
+  const CategoryCard(this.name, this.image);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CategoryCard extends StatelessWidget {
             decoration: BoxDecoration(
                 color: kWhiteColor,
                 borderRadius: BorderRadius.circular(8),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(spreadRadius: 1, blurRadius: 1, color: Colors.black12)
                 ]),
             child: Column(
@@ -34,7 +34,7 @@ class CategoryCard extends StatelessWidget {
                           image: AssetImage(image),
                           fit: BoxFit.contain)),
                 ),
-                Container(
+                SizedBox(
                   width: 80,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

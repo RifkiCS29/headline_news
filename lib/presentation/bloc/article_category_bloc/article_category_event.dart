@@ -10,7 +10,7 @@ abstract class ArticleCategoryEvent extends Equatable {
 class FetchArticleCategory extends ArticleCategoryEvent {
   final String category;
  
-  FetchArticleCategory(this.category);
+  const FetchArticleCategory(this.category);
  
   @override
   List<Object> get props => [category];

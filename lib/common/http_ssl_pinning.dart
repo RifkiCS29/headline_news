@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'shared.dart';
+import 'package:headline_news/common/shared.dart';
 
 class HttpSSLPinning {
   static Future<http.Client> get _instance async =>

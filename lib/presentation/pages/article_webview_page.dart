@@ -5,7 +5,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class ArticleWebviewPage extends StatelessWidget {
   final String url;
 
-  ArticleWebviewPage({required this.url});
+  const ArticleWebviewPage({Key? key, required this.url}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

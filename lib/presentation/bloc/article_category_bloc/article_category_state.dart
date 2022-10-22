@@ -10,7 +10,7 @@ abstract class ArticleCategoryState extends Equatable {
 class ArticleCategoryEmpty extends ArticleCategoryState {
   final String message;
  
-  ArticleCategoryEmpty(this.message);
+  const ArticleCategoryEmpty(this.message);
  
   @override
   List<Object> get props => [message];
@@ -21,7 +21,7 @@ class ArticleCategoryLoading extends ArticleCategoryState {}
 class ArticleCategoryHasData extends ArticleCategoryState {
   final List<Article> articles;
  
-  ArticleCategoryHasData(this.articles);
+  const ArticleCategoryHasData(this.articles);
  
   @override
   List<Object> get props => [articles];
@@ -30,7 +30,7 @@ class ArticleCategoryHasData extends ArticleCategoryState {
 class ArticleCategoryError extends ArticleCategoryState {
   final String message;
  
-  ArticleCategoryError(this.message);
+  const ArticleCategoryError(this.message);
  
   @override
   List<Object> get props => [message];

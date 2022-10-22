@@ -14,5 +14,5 @@ import 'package:http/http.dart' as http;
   DatabaseHelper,
 ], customMocks: [
   MockSpec<http.Client>(as: #MockHttpClient)
-])
+],)
 void main() {}

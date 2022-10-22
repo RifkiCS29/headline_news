@@ -3,7 +3,7 @@ part of 'widgets.dart';
 class CustomHeader extends StatelessWidget {
   final Widget body;
 
-  CustomHeader({required this.body});
+  const CustomHeader({required this.body});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,11 @@ class CustomHeader extends StatelessWidget {
   Widget _buildShortAppBar(BuildContext context) {
     return Card(
       margin: EdgeInsets.all(0),
+      shape: BeveledRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(16.0)
+            )
+          ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -39,11 +44,6 @@ class CustomHeader extends StatelessWidget {
           ),
         ],
       ),
-      shape: BeveledRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(16.0)
-            )
-          ),
     );
   }
 }

@@ -6,7 +6,7 @@ class ArticleResponse extends Equatable {
   final int totalResults;
   final List<ArticleModel> articles;
 
-  ArticleResponse({
+  const ArticleResponse({
     required this.totalResults,
     required this.articles
   });

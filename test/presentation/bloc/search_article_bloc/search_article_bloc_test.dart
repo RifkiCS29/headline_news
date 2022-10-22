@@ -37,9 +37,9 @@ void main() {
   );
 
   final tArticleList = <Article>[tArticleModel];
-  final tQuery = 'business';
-  final totalResults = 1;
-  final tPage = 1;
+  const tQuery = 'business';
+  const totalResults = 1;
+  const tPage = 1;
 
   group('Search Articles', () {
 
@@ -54,7 +54,7 @@ void main() {
           .thenAnswer((_) async => Right(tArticles));
         return searchArticleBloc;
       },
-      act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
+      act: (bloc) => bloc.add(const OnQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
         SearchArticleLoading(),
@@ -69,14 +69,14 @@ void main() {
       'Should emit [SearchLoading, SearchHasData[], SearchEmpty] when data is empty',
       build: () {
         when(mockSearchArticles.execute(tQuery))
-          .thenAnswer((_) async => Right(Articles(totalResults: 1, articles: [])));
+          .thenAnswer((_) async => Right(Articles(totalResults: 1, articles: const [])));
         return searchArticleBloc;
       },
-      act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
+      act: (bloc) => bloc.add(const OnQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
         SearchArticleLoading(),
-        SearchArticleHasData(<Article>[], totalResults, tPage),
+        SearchArticleHasData(const <Article>[], totalResults, tPage),
         SearchArticleEmpty('No Result Found'),
       ],
       verify: (bloc) {
@@ -88,10 +88,10 @@ void main() {
       'Should emit [SearchLoading, SearchError] when data is unsuccessful',
       build: () {
         when(mockSearchArticles.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return searchArticleBloc;
       },
-      act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
+      act: (bloc) => bloc.add(const OnQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
         SearchArticleLoading(),

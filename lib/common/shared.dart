@@ -7,7 +7,7 @@ import 'package:http/io_client.dart';
 
 class Shared {
   static Future<HttpClient> customHttpClient() async {
-    SecurityContext context = SecurityContext(withTrustedRoots: false);
+    SecurityContext context = SecurityContext();
     try {
       List<int> bytes = [];
       bytes = (await rootBundle.load('certificates/certificates.cer'))

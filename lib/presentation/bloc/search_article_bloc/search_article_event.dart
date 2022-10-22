@@ -10,7 +10,7 @@ abstract class SearchArticleEvent extends Equatable {
 class OnQueryChanged extends SearchArticleEvent {
   final String query;
  
-  OnQueryChanged(this.query);
+  const OnQueryChanged(this.query);
  
   @override
   List<Object> get props => [query];
@@ -20,7 +20,7 @@ class OnNextPage extends SearchArticleEvent {
   final String query;
   final int page;
 
-  OnNextPage(
+  const OnNextPage(
     this.query,
     this.page,
   );

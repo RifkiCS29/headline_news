@@ -56,7 +56,7 @@ void main() {
       act: (bloc) => bloc.add(BookmarkArticleEvent()),
       expect: () => [
         BookmarkArticleLoading(),
-        BookmarkArticleHasData(<Article>[]),
+        BookmarkArticleHasData(const <Article>[]),
         BookmarkArticleEmpty('You haven\'t added a bookmark'),
       ],
       verify: (bloc) {

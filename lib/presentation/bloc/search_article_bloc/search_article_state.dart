@@ -12,7 +12,7 @@ class SearchArticleInitial extends SearchArticleState {}
 class SearchArticleEmpty extends SearchArticleState {
   final String message;
  
-  SearchArticleEmpty(this.message);
+  const SearchArticleEmpty(this.message);
  
   @override
   List<Object> get props => [message];
@@ -25,7 +25,7 @@ class SearchArticleHasData extends SearchArticleState {
   final int totalResult;
   final int currentPage;
  
-  SearchArticleHasData(
+  const SearchArticleHasData(
     this.searchResult,
     this.totalResult,
     this.currentPage,
@@ -38,7 +38,7 @@ class SearchArticleHasData extends SearchArticleState {
 class SearchArticleError extends SearchArticleState {
   final String message;
  
-  SearchArticleError(this.message);
+  const SearchArticleError(this.message);
  
   @override
   List<Object> get props => [message];

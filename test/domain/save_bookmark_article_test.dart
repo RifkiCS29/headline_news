@@ -18,11 +18,11 @@ void main() {
   test('should save Article to the repository', () async {
     // arrange
     when(mockArticleRepository.saveBookmarkArticle(testArticle))
-        .thenAnswer((_) async => Right('Added to Bookmark'));
+        .thenAnswer((_) async => const Right('Added to Bookmark'));
     // act
     final result = await usecase.execute(testArticle);
     // assert
     verify(mockArticleRepository.saveBookmarkArticle(testArticle));
-    expect(result, Right('Added to Bookmark'));
+    expect(result, const Right('Added to Bookmark'));
   });
 }

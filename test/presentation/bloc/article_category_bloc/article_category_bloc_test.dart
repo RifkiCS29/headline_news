@@ -30,7 +30,7 @@ void main() {
     content: 'test content',
   );
   final tArticleList = <Article>[tArticleModel];
-  final tCategory = 'business';
+  const tCategory = 'business';
 
   group('Article Category', () {
 
@@ -67,7 +67,7 @@ void main() {
       wait: const Duration(milliseconds: 500),
       expect: () => [
         ArticleCategoryLoading(),
-        ArticleCategoryHasData(<Article>[]),
+        ArticleCategoryHasData(const <Article>[]),
         ArticleCategoryEmpty('Empty Article'),
       ],
       verify: (bloc) {

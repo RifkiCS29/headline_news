@@ -38,10 +38,9 @@ class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
       ),
       body: BlocBuilder<ArticleCategoryBloc, ArticleCategoryState>(
         builder: (context, state) {       
-        print(widget.category);
          if(state is ArticleCategoryLoading) {
-            return Padding(
-              padding: const EdgeInsets.only(top:8),
+            return const Padding(
+              padding: EdgeInsets.only(top:8),
               child: LoadingArticleList(),
             );       
           } else if(state is ArticleCategoryHasData) {
@@ -61,7 +60,7 @@ class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
           } else if (state is ArticleCategoryError) {
             return Center(child: Text(state.message));
           } else {
-            return Center(child: Text(''));
+            return const Center(child: Text(''));
           }
         }
       )

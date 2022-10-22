@@ -37,9 +37,9 @@ class _ArticlePageState extends State<ArticlePage> {
           Column(
             children: [ 
               _listTopHeadlineArticles(),
-              SizedBox(height:8),
+              const SizedBox(height:8),
               _listCategory(),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               _listHeadlineBusinessArticles()
             ]
           )
@@ -56,10 +56,10 @@ class _ArticlePageState extends State<ArticlePage> {
       child: BlocBuilder<ArticleTopHeadlineListBloc, ArticleListState>(
         builder: (context, state) {
           if(state is ArticleListLoading) {
-            return LoadingArticleCard();       
+            return const LoadingArticleCard();       
           } else if(state is ArticleListLoaded) {
             return ListView.builder(
-              key: Key('headline_news_item'),
+              key: const Key('headline_news_item'),
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: state.articles.length,
@@ -77,11 +77,11 @@ class _ArticlePageState extends State<ArticlePage> {
               } 
             );
           } else if(state is ArticleListEmpty) {
-            return Center(child: Text('Empty Article'));
+            return const Center(child: Text('Empty Article'));
           } else if (state is ArticleListError) {
             return Center(child: Text(state.message));
           } else {
-            return Center(child: Text(''));
+            return const Center(child: Text(''));
           }
         },
       ),
@@ -96,62 +96,62 @@ class _ArticlePageState extends State<ArticlePage> {
       child: Padding(
         padding: const EdgeInsets.only(left: 24, right:24),
         child: ListView(
-          key: Key('article_category'),
+          key: const Key('article_category'),
           scrollDirection: Axis.horizontal,
           children: [
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ArticleCategoryPage(category: 'sport')
+                  builder: (context) => const ArticleCategoryPage(category: 'sport')
                 )
               ),
-              child: CategoryCard('Sport', 'assets/sports.png')
+              child: const CategoryCard('Sport', 'assets/sports.png')
             ),
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ArticleCategoryPage(category: 'business')
+                  builder: (context) => const ArticleCategoryPage(category: 'business')
                 )
               ),
-              child: CategoryCard('Business', 'assets/business.png')
+              child: const CategoryCard('Business', 'assets/business.png')
             ),
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ArticleCategoryPage(category: 'health')
+                  builder: (context) => const ArticleCategoryPage(category: 'health')
                 )
               ),
-              child: CategoryCard('Health', 'assets/health.png')
+              child: const CategoryCard('Health', 'assets/health.png')
             ),
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ArticleCategoryPage(category: 'science')
+                  builder: (context) => const ArticleCategoryPage(category: 'science')
                 )
               ),
-              child: CategoryCard('Science', 'assets/science.png')
+              child: const CategoryCard('Science', 'assets/science.png')
             ),
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ArticleCategoryPage(category: 'technology')
+                  builder: (context) => const ArticleCategoryPage(category: 'technology')
                 )
               ),
-              child: CategoryCard('Technology', 'assets/technology.png')
+              child: const CategoryCard('Technology', 'assets/technology.png')
             ),
             GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ArticleCategoryPage(category: 'entertainment')
+                  builder: (context) => const ArticleCategoryPage(category: 'entertainment')
                 )
               ),
-              child: CategoryCard('Entertainment', 'assets/entertainment.png')
+              child: const CategoryCard('Entertainment', 'assets/entertainment.png')
             ),
           ]
         ),
@@ -166,18 +166,18 @@ class _ArticlePageState extends State<ArticlePage> {
           return Container(            
             color: kWhiteColor,
             width: double.infinity,
-            padding: EdgeInsets.only(top: 8),
-            child: LoadingArticleList()
+            padding: const EdgeInsets.only(top: 8),
+            child: const LoadingArticleList()
           );        
         } else if(state is ArticleListLoaded) {
           return Container(
             color: kWhiteColor,
             width: double.infinity,
-            padding: EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(top: 8),
                child: ListView.builder(
-                  key: Key('headline_business_item'),
+                  key: const Key('headline_business_item'),
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: state.articles.length,
                   itemBuilder: (context, index) {
                     var article = state.articles[index];
@@ -186,11 +186,11 @@ class _ArticlePageState extends State<ArticlePage> {
                 ),
           );
         } else if(state is ArticleListEmpty) {
-          return Center(child: Text('Empty Article'));
+          return const Center(child: Text('Empty Article'));
         } else if (state is ArticleListError) {
           return Center(child: Text(state.message));
         } else {
-          return Center(child: Text(''));
+          return const Center(child: Text(''));
         }
       },
     );

@@ -5,7 +5,7 @@ import 'package:headline_news/common/theme.dart';
 class NoData extends StatelessWidget {
   final String message;
 
-  NoData({ required this.message });
+  const NoData({ required this.message });
 
   @override
   Widget build(BuildContext context) {

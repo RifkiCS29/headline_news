@@ -10,7 +10,7 @@ abstract class BookmarkArticleState extends Equatable {
 class BookmarkArticleEmpty extends BookmarkArticleState {
   final String message;
  
-  BookmarkArticleEmpty(this.message);
+  const BookmarkArticleEmpty(this.message);
  
   @override
   List<Object> get props => [message];
@@ -21,7 +21,7 @@ class BookmarkArticleLoading extends BookmarkArticleState {}
 class BookmarkArticleError extends BookmarkArticleState {
   final String message;
  
-  BookmarkArticleError(this.message);
+  const BookmarkArticleError(this.message);
  
   @override
   List<Object> get props => [message];
@@ -30,7 +30,7 @@ class BookmarkArticleError extends BookmarkArticleState {
 class BookmarkArticleHasData extends BookmarkArticleState {
   final List<Article> bookmarkArticle;
  
-  BookmarkArticleHasData(this.bookmarkArticle);
+  const BookmarkArticleHasData(this.bookmarkArticle);
  
   @override
   List<Object> get props => [bookmarkArticle];

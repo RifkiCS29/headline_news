@@ -35,7 +35,7 @@ class _SearchPageState extends State<SearchPage>
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: TextField(
-              key: Key('edtSearch'),
+              key: const Key('edtSearch'),
               onChanged: (query) {
                 _query = query;
                 context.read<SearchArticleBloc>().add(OnQueryChanged(query));
@@ -45,7 +45,7 @@ class _SearchPageState extends State<SearchPage>
                   labelStyle: TextStyle(
                     color: kPrimaryColor,
                   ),
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor),
                       borderRadius: BorderRadius.circular(24)),
@@ -55,7 +55,7 @@ class _SearchPageState extends State<SearchPage>
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor),
                       borderRadius: BorderRadius.circular(24)),
-                  contentPadding: EdgeInsets.all(12)),
+                  contentPadding: const EdgeInsets.all(12)),
               textInputAction: TextInputAction.search,
             ),
           ),
@@ -74,7 +74,7 @@ class _SearchPageState extends State<SearchPage>
                     child: Initial(message: 'Search the News'),
                   );
                 } else if (state is SearchArticleLoading) {
-                  return LoadingArticleList();
+                  return const LoadingArticleList();
                 } else if (state is SearchArticleHasData) {
                   currentPage = state.currentPage;
                   final result = state.searchResult;
@@ -91,7 +91,7 @@ class _SearchPageState extends State<SearchPage>
                     },
                     scrollOffset: 150,
                     child: ListView.builder(
-                      key: Key('search_item'),
+                      key: const Key('search_item'),
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       itemBuilder: (context, index) {
                         final article = result[index];

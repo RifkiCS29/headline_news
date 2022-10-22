@@ -5,7 +5,7 @@ import 'package:headline_news/common/theme.dart';
 class Initial extends StatelessWidget {
   final String message;
 
-  Initial({ required this.message });
+  const Initial({ required this.message });
 
   @override
   Widget build(BuildContext context) {

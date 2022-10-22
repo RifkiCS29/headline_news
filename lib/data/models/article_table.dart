@@ -11,7 +11,7 @@ class ArticleTable extends Equatable {
   final DateTime? publishedAt;
   final String? content;
 
-  ArticleTable({
+  const ArticleTable({
     required this.author,
     required this.title,
     required this.description,

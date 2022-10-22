@@ -69,7 +69,7 @@ void main() {
       act: (bloc) => bloc.add(ArticleListEvent()),
       expect: () => [
         ArticleListLoading(),
-        ArticleListLoaded([]),
+        ArticleListLoaded(const []),
         ArticleListEmpty(),
       ],
       verify: (_) {
@@ -127,7 +127,7 @@ void main() {
       act: (bloc) => bloc.add(ArticleListEvent()),
       expect: () => [
         ArticleListLoading(),
-        ArticleListLoaded([]),
+        ArticleListLoaded(const []),
         ArticleListEmpty(),
       ],
       verify: (_) {

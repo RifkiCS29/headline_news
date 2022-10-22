@@ -4,7 +4,7 @@ class ArticleDetailState extends Equatable {
   final String bookmarkMessage;
   final bool isAddedToBookmark;
 
-  ArticleDetailState({
+  const ArticleDetailState({
     required this.bookmarkMessage,
     required this.isAddedToBookmark,
   });
@@ -20,7 +20,7 @@ class ArticleDetailState extends Equatable {
   }
 
   factory ArticleDetailState.initial() {
-    return ArticleDetailState(
+    return const ArticleDetailState(
       bookmarkMessage: '',
       isAddedToBookmark: false,
     );

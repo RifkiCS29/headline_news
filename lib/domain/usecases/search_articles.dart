@@ -8,7 +8,7 @@ class SearchArticles {
 
   SearchArticles(this.repository);
 
-  Future<Either<Failure, Articles>> execute(String query, {int page: 1}) {
+  Future<Either<Failure, Articles>> execute(String query, {int page = 1}) {
     return repository.searchArticles(query, page: page);
   }
 }

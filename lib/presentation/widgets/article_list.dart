@@ -24,7 +24,7 @@ class ArticleList extends StatelessWidget {
             right: defaultMargin,
           ),
           child: Row(children: [
-            Container(
+            SizedBox(
               width: 110,
               height: 80,
               child: CachedNetworkImage(

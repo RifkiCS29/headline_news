@@ -4,11 +4,18 @@
 # The issues identified by the analyzer are surfaced in the UI of Dart-enabled
 # IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
 # invoked from the command line by running `flutter analyze`.
-
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
-# include: package:flutter_lints/flutter.yaml
-
+include: package:flutter_lints/flutter.yaml
+analyzer:
+  # exclude:
+  #   - "*/.g.dart"
+  #   - "*/.freezed.dart"
+  #   - "*/.config.dart"
+  errors:
+    invalid_annotation_target: ignore
+    non_constant_identifier_names: ignore
+    prefer_adjacent_string_concatenation: ignore
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
@@ -24,6 +31,29 @@ linter:
   rules:
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
-
+    depend_on_referenced_packages: false
+    sort_child_properties_last: true
+    avoid_print: true
+    prefer_relative_imports: false
+    always_use_package_imports: true
+    avoid_function_literals_in_foreach_calls: false
+    prefer_single_quotes: false 
+    avoid_types_as_parameter_names: true
+    prefer_conditional_assignment: true
+    require_trailing_commas: true
+    invalid_annotation_target: false
+    use_build_context_synchronously: false
+    always_declare_return_types: true
+    avoid_double_and_int_checks: true 
+    avoid_escaping_inner_quotes: true
+    avoid_redundant_argument_values: true
+    avoid_shadowing_type_parameters: true
+    await_only_futures: true
+    cancel_subscriptions: true
+    unnecessary_await_in_return: true
+    unnecessary_brace_in_string_interps: true
+    avoid_type_to_string: true
+    avoid_shadowing_type_parameters_in_closure: true
+    iterable_contains_unrelated_type: true
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

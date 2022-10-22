@@ -31,7 +31,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
             result.map((article) => ArticleTable.fromDTO(article)).toList());
         return Right(result.map((model) => model.toEntity()).toList());
       } on ServerException {
-        return Left(ServerFailure(''));
+        return const Left(ServerFailure(''));
       } on TlsException catch (e) {
         return Left(CommonFailure('Certificated Not Valid:\n${e.message}'));
       }
@@ -54,7 +54,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
             result.map((article) => ArticleTable.fromDTO(article)).toList());
         return Right(result.map((model) => model.toEntity()).toList());
       } on ServerException {
-        return Left(ServerFailure(''));
+        return const Left(ServerFailure(''));
       } on TlsException catch (e) {
         return Left(CommonFailure('Certificated Not Valid:\n${e.message}'));
       }
@@ -74,23 +74,23 @@ class ArticleRepositoryImpl implements ArticleRepository {
       final result = await remoteDataSource.getArticleCategory(category);
       return Right(result.map((model) => model.toEntity()).toList());
     } on ServerException {
-      return Left(ServerFailure(''));
+      return const Left(ServerFailure(''));
     } on SocketException {
-      return Left(ConnectionFailure('Failed to connect to the network'));
+      return const Left(ConnectionFailure('Failed to connect to the network'));
     } on TlsException catch (e) {
       return Left(CommonFailure('Certificated Not Valid:\n${e.message}'));
     }
   }
 
   @override
-  Future<Either<Failure, Articles>> searchArticles(String query, {int page: 1}) async {
+  Future<Either<Failure, Articles>> searchArticles(String query, {int page = 1}) async {
     try {
       final result = await remoteDataSource.searchArticles(query, page);
       return Right(result.toEntity());
     } on ServerException {
-      return Left(ServerFailure(''));
+      return const Left(ServerFailure(''));
     } on SocketException {
-      return Left(ConnectionFailure('Failed to connect to the network'));
+      return const Left(ConnectionFailure('Failed to connect to the network'));
     } on TlsException catch (e) {
       return Left(CommonFailure('Certificated Not Valid:\n${e.message}'));
     }
@@ -105,7 +105,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 

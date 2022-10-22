@@ -15,7 +15,7 @@ void main() {
     usecase = GetArticleCategory(mockArticleRepository);
   });
 
-  final tCategory = 'business';
+  const tCategory = 'business';
   final tArticles = <Article>[];
 
   test('should get list of Article Category from the repository',

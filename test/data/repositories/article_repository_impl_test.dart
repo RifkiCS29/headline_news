@@ -269,7 +269,7 @@ void main() {
 
   group('Get Article Recommendations', () {
     final tArticleList = <ArticleModel>[];
-    final tCategory = 'business';
+    const tCategory = 'business';
 
     test('should return data (Article list) when the call is successful',
         () async {
@@ -327,8 +327,8 @@ void main() {
   });
 
   group('Search Articles', () {
-    final tQuery = 'spiderman';
-    final tPage = 1;
+    const tQuery = 'spiderman';
+    const tPage = 1;
 
     test('should return Article list when call to data source is successful',
         () async {
@@ -339,7 +339,7 @@ void main() {
       final result = await repository.searchArticles(tQuery);
       // assert
       /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
-      final resultList = result.getOrElse(() => Articles(totalResults: 1, articles: []));
+      final resultList = result.getOrElse(() => Articles(totalResults: 1, articles: const []));
       expect(resultList, tArticleResponse.toEntity());
     });
 
@@ -427,7 +427,7 @@ void main() {
   group('get Bookmark status', () {
     test('should return watch status whether data is found', () async {
       // arrange
-      final tUrl = 'url';
+      const tUrl = 'url';
       when(mockLocalDataSource.getArticleByUrl(tUrl)).thenAnswer((_) async => null);
       // act
       final result = await repository.isAddedToBookmarkArticle(tUrl);

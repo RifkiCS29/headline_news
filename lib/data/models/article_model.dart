@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:headline_news/domain/entities/article.dart';
 
 class ArticleModel extends Equatable {
-  ArticleModel({
+  const ArticleModel({
     required this.author,
     required this.title,
     required this.description,
@@ -42,13 +42,13 @@ class ArticleModel extends Equatable {
 
   Article toEntity() {
     return Article(
-      author: this.author,
-      title: this.title,
-      description: this.description,
-      url: this.url,
-      urlToImage: this.urlToImage,
-      publishedAt: this.publishedAt,
-      content: this.content,
+      author: author,
+      title: title,
+      description: description,
+      url: url,
+      urlToImage: urlToImage,
+      publishedAt: publishedAt,
+      content: content,
     );
   } 
 

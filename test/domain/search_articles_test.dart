@@ -16,8 +16,8 @@ void main() {
     usecase = SearchArticles(mockArticleRepository);
   });
 
-  final tArticles = Articles(totalResults: 1, articles: <Article>[]);
-  final tQuery = 'business';
+  final tArticles = Articles(totalResults: 1, articles: const <Article>[]);
+  const tQuery = 'business';
 
   test('should get list of Articles from the repository', () async {
     // arrange
