@@ -25,7 +25,7 @@ class _DetailPageState extends State<DetailPage> {
     super.initState();
     Future.microtask(() {
       Provider.of<ArticleDetailBloc>(context, listen: false)
-          .add(LoadBookmarkStatus(widget.article.url));
+          .add(LoadBookmarkStatus(widget.article.url ?? ''));
     });
   }
 
@@ -268,7 +268,7 @@ class _DetailPageState extends State<DetailPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  ArticleWebviewPage(url: widget.article.url),
+                                  ArticleWebviewPage(url: widget.article.url ?? ''),
                             ),),
                       )
                     ],

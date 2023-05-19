@@ -16,16 +16,16 @@ void main() {
     usecase = SearchArticles(mockArticleRepository);
   });
 
-  final tArticles = Articles(totalResults: 1, articles: const <Article>[]);
+  const tArticles = Articles(totalResults: 1, articles: <Article>[]);
   const tQuery = 'business';
 
   test('should get list of Articles from the repository', () async {
     // arrange
     when(mockArticleRepository.searchArticles(tQuery))
-        .thenAnswer((_) async => Right(tArticles));
+        .thenAnswer((_) async => const Right(tArticles));
     // act
     final result = await usecase.execute(tQuery);
     // assert
-    expect(result, Right(tArticles));
+    expect(result, const Right(tArticles));
   });
 }

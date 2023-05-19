@@ -29,8 +29,7 @@ void main() {
 
   group('Get Top Headline Articles', () {
     final tArticleList = ArticleResponse.fromJson(
-            json.decode(readJson('dummy_data/top_headlines.json')),)
-        .articles;
+            json.decode(readJson('dummy_data/top_headlines.json')),);
 
     test('should return list of Article Model when the response code is 200',
         () async {
@@ -66,7 +65,7 @@ void main() {
   group('Get Headline Business Articles', () {
     final tArticleList =
         ArticleResponse.fromJson(json.decode(readJson('dummy_data/headline_business.json')))
-            .articles;
+            ;
 
     test('should return list of Articles when response is success (200)',
         () async {
@@ -99,8 +98,7 @@ void main() {
 
   group('Get Article Category', () {
     final tArticleList = ArticleResponse.fromJson(
-            json.decode(readJson('dummy_data/article_category.json')),)
-        .articles;
+            json.decode(readJson('dummy_data/article_category.json')),);
     const tCategory = 'business';
 
     test('should return list of Article Model when the response code is 200',

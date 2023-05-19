@@ -3,27 +3,26 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i6;
-import 'dart:convert' as _i17;
-import 'dart:typed_data' as _i18;
+import 'dart:convert' as _i16;
+import 'dart:typed_data' as _i17;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:headline_news/common/failure.dart' as _i7;
-import 'package:headline_news/common/network_info.dart' as _i14;
+import 'package:headline_news/common/network_info.dart' as _i13;
 import 'package:headline_news/data/datasources/article_local_data_source.dart'
-    as _i12;
+    as _i11;
 import 'package:headline_news/data/datasources/article_remote_data_source.dart'
     as _i10;
-import 'package:headline_news/data/datasources/db/database_helper.dart' as _i15;
-import 'package:headline_news/data/models/article_model.dart' as _i11;
+import 'package:headline_news/data/datasources/db/database_helper.dart' as _i14;
 import 'package:headline_news/data/models/article_response.dart' as _i3;
-import 'package:headline_news/data/models/article_table.dart' as _i13;
+import 'package:headline_news/data/models/article_table.dart' as _i12;
 import 'package:headline_news/domain/entities/article.dart' as _i8;
 import 'package:headline_news/domain/entities/articles.dart' as _i9;
 import 'package:headline_news/domain/repositories/article_repository.dart'
     as _i5;
 import 'package:http/http.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:sqflite_sqlcipher/sqflite.dart' as _i16;
+import 'package:sqflite_sqlcipher/sqflite.dart' as _i15;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -119,23 +118,23 @@ class MockArticleRemoteDataSource extends _i1.Mock
   }
 
   @override
-  _i6.Future<List<_i11.ArticleModel>> getTopHeadlineArticles() =>
+  _i6.Future<_i3.ArticleResponse> getTopHeadlineArticles() =>
       (super.noSuchMethod(Invocation.method(#getTopHeadlineArticles, []),
               returnValue:
-                  Future<List<_i11.ArticleModel>>.value(<_i11.ArticleModel>[]))
-          as _i6.Future<List<_i11.ArticleModel>>);
+                  Future<_i3.ArticleResponse>.value(_FakeArticleResponse_1()))
+          as _i6.Future<_i3.ArticleResponse>);
   @override
-  _i6.Future<List<_i11.ArticleModel>> getHeadlineBusinessArticles() =>
+  _i6.Future<_i3.ArticleResponse> getHeadlineBusinessArticles() =>
       (super.noSuchMethod(Invocation.method(#getHeadlineBusinessArticles, []),
               returnValue:
-                  Future<List<_i11.ArticleModel>>.value(<_i11.ArticleModel>[]))
-          as _i6.Future<List<_i11.ArticleModel>>);
+                  Future<_i3.ArticleResponse>.value(_FakeArticleResponse_1()))
+          as _i6.Future<_i3.ArticleResponse>);
   @override
-  _i6.Future<List<_i11.ArticleModel>> getArticleCategory(String? category) =>
+  _i6.Future<_i3.ArticleResponse> getArticleCategory(String? category) =>
       (super.noSuchMethod(Invocation.method(#getArticleCategory, [category]),
               returnValue:
-                  Future<List<_i11.ArticleModel>>.value(<_i11.ArticleModel>[]))
-          as _i6.Future<List<_i11.ArticleModel>>);
+                  Future<_i3.ArticleResponse>.value(_FakeArticleResponse_1()))
+          as _i6.Future<_i3.ArticleResponse>);
   @override
   _i6.Future<_i3.ArticleResponse> searchArticles(String? query, int? page) =>
       (super.noSuchMethod(Invocation.method(#searchArticles, [query, page]),
@@ -148,63 +147,63 @@ class MockArticleRemoteDataSource extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockArticleLocalDataSource extends _i1.Mock
-    implements _i12.ArticleLocalDataSource {
+    implements _i11.ArticleLocalDataSource {
   MockArticleLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<String> insertBookmarkArticle(_i13.ArticleTable? article) =>
+  _i6.Future<String> insertBookmarkArticle(_i12.ArticleTable? article) =>
       (super.noSuchMethod(Invocation.method(#insertBookmarkArticle, [article]),
           returnValue: Future<String>.value('')) as _i6.Future<String>);
   @override
-  _i6.Future<String> removeBookmarkArticle(_i13.ArticleTable? article) =>
+  _i6.Future<String> removeBookmarkArticle(_i12.ArticleTable? article) =>
       (super.noSuchMethod(Invocation.method(#removeBookmarkArticle, [article]),
           returnValue: Future<String>.value('')) as _i6.Future<String>);
   @override
-  _i6.Future<_i13.ArticleTable?> getArticleByUrl(String? url) =>
+  _i6.Future<_i12.ArticleTable?> getArticleByUrl(String? url) =>
       (super.noSuchMethod(Invocation.method(#getArticleByUrl, [url]),
-              returnValue: Future<_i13.ArticleTable?>.value())
-          as _i6.Future<_i13.ArticleTable?>);
+              returnValue: Future<_i12.ArticleTable?>.value())
+          as _i6.Future<_i12.ArticleTable?>);
   @override
-  _i6.Future<List<_i13.ArticleTable>> getBookmarkArticles() =>
+  _i6.Future<List<_i12.ArticleTable>> getBookmarkArticles() =>
       (super.noSuchMethod(Invocation.method(#getBookmarkArticles, []),
               returnValue:
-                  Future<List<_i13.ArticleTable>>.value(<_i13.ArticleTable>[]))
-          as _i6.Future<List<_i13.ArticleTable>>);
+                  Future<List<_i12.ArticleTable>>.value(<_i12.ArticleTable>[]))
+          as _i6.Future<List<_i12.ArticleTable>>);
   @override
   _i6.Future<void> cacheTopHeadlineArticles(
-          List<_i13.ArticleTable>? articles) =>
+          List<_i12.ArticleTable>? articles) =>
       (super.noSuchMethod(
           Invocation.method(#cacheTopHeadlineArticles, [articles]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
-  _i6.Future<List<_i13.ArticleTable>> getCachedTopHeadlineArticles() =>
+  _i6.Future<List<_i12.ArticleTable>> getCachedTopHeadlineArticles() =>
       (super.noSuchMethod(Invocation.method(#getCachedTopHeadlineArticles, []),
               returnValue:
-                  Future<List<_i13.ArticleTable>>.value(<_i13.ArticleTable>[]))
-          as _i6.Future<List<_i13.ArticleTable>>);
+                  Future<List<_i12.ArticleTable>>.value(<_i12.ArticleTable>[]))
+          as _i6.Future<List<_i12.ArticleTable>>);
   @override
   _i6.Future<void> cacheHeadlineBusinessArticles(
-          List<_i13.ArticleTable>? articles) =>
+          List<_i12.ArticleTable>? articles) =>
       (super.noSuchMethod(
           Invocation.method(#cacheHeadlineBusinessArticles, [articles]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
-  _i6.Future<List<_i13.ArticleTable>> getCachedHeadlineBusinessArticles() =>
+  _i6.Future<List<_i12.ArticleTable>> getCachedHeadlineBusinessArticles() =>
       (super.noSuchMethod(
               Invocation.method(#getCachedHeadlineBusinessArticles, []),
               returnValue:
-                  Future<List<_i13.ArticleTable>>.value(<_i13.ArticleTable>[]))
-          as _i6.Future<List<_i13.ArticleTable>>);
+                  Future<List<_i12.ArticleTable>>.value(<_i12.ArticleTable>[]))
+          as _i6.Future<List<_i12.ArticleTable>>);
 }
 
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i14.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i13.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }
@@ -218,19 +217,19 @@ class MockNetworkInfo extends _i1.Mock implements _i14.NetworkInfo {
 /// A class which mocks [DatabaseHelper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDatabaseHelper extends _i1.Mock implements _i15.DatabaseHelper {
+class MockDatabaseHelper extends _i1.Mock implements _i14.DatabaseHelper {
   MockDatabaseHelper() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<_i16.Database?> get database =>
+  _i6.Future<_i15.Database?> get database =>
       (super.noSuchMethod(Invocation.getter(#database),
-              returnValue: Future<_i16.Database?>.value())
-          as _i6.Future<_i16.Database?>);
+              returnValue: Future<_i15.Database?>.value())
+          as _i6.Future<_i15.Database?>);
   @override
   _i6.Future<void> insertCacheTransactionArticles(
-          List<_i13.ArticleTable>? articles, String? category) =>
+          List<_i12.ArticleTable>? articles, String? category) =>
       (super.noSuchMethod(
           Invocation.method(
               #insertCacheTransactionArticles, [articles, category]),
@@ -247,11 +246,11 @@ class MockDatabaseHelper extends _i1.Mock implements _i15.DatabaseHelper {
       (super.noSuchMethod(Invocation.method(#clearCacheArticles, [category]),
           returnValue: Future<int>.value(0)) as _i6.Future<int>);
   @override
-  _i6.Future<int> insertBookmarkArticle(_i13.ArticleTable? article) =>
+  _i6.Future<int> insertBookmarkArticle(_i12.ArticleTable? article) =>
       (super.noSuchMethod(Invocation.method(#insertBookmarkArticle, [article]),
           returnValue: Future<int>.value(0)) as _i6.Future<int>);
   @override
-  _i6.Future<int> removeBookmarkArticle(_i13.ArticleTable? article) =>
+  _i6.Future<int> removeBookmarkArticle(_i12.ArticleTable? article) =>
       (super.noSuchMethod(Invocation.method(#removeBookmarkArticle, [article]),
           returnValue: Future<int>.value(0)) as _i6.Future<int>);
   @override
@@ -289,7 +288,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
   _i6.Future<_i4.Response> post(Uri? url,
           {Map<String, String>? headers,
           Object? body,
-          _i17.Encoding? encoding}) =>
+          _i16.Encoding? encoding}) =>
       (super.noSuchMethod(
               Invocation.method(#post, [url],
                   {#headers: headers, #body: body, #encoding: encoding}),
@@ -299,7 +298,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
   _i6.Future<_i4.Response> put(Uri? url,
           {Map<String, String>? headers,
           Object? body,
-          _i17.Encoding? encoding}) =>
+          _i16.Encoding? encoding}) =>
       (super.noSuchMethod(
               Invocation.method(#put, [url],
                   {#headers: headers, #body: body, #encoding: encoding}),
@@ -309,7 +308,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
   _i6.Future<_i4.Response> patch(Uri? url,
           {Map<String, String>? headers,
           Object? body,
-          _i17.Encoding? encoding}) =>
+          _i16.Encoding? encoding}) =>
       (super.noSuchMethod(
               Invocation.method(#patch, [url],
                   {#headers: headers, #body: body, #encoding: encoding}),
@@ -319,7 +318,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
   _i6.Future<_i4.Response> delete(Uri? url,
           {Map<String, String>? headers,
           Object? body,
-          _i17.Encoding? encoding}) =>
+          _i16.Encoding? encoding}) =>
       (super.noSuchMethod(
               Invocation.method(#delete, [url],
                   {#headers: headers, #body: body, #encoding: encoding}),
@@ -330,12 +329,12 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
       (super.noSuchMethod(Invocation.method(#read, [url], {#headers: headers}),
           returnValue: Future<String>.value('')) as _i6.Future<String>);
   @override
-  _i6.Future<_i18.Uint8List> readBytes(Uri? url,
+  _i6.Future<_i17.Uint8List> readBytes(Uri? url,
           {Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#readBytes, [url], {#headers: headers}),
-              returnValue: Future<_i18.Uint8List>.value(_i18.Uint8List(0)))
-          as _i6.Future<_i18.Uint8List>);
+              returnValue: Future<_i17.Uint8List>.value(_i17.Uint8List(0)))
+          as _i6.Future<_i17.Uint8List>);
   @override
   _i6.Future<_i4.StreamedResponse> send(_i4.BaseRequest? request) =>
       (super.noSuchMethod(Invocation.method(#send, [request]),

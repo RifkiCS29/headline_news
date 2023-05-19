@@ -42,6 +42,7 @@ void main() {
   );
 
   final tArticleResponse = ArticleResponse(
+    status: "ok",
     totalResults: 1,
     articles: [tArticleModel],
   );
@@ -56,7 +57,7 @@ void main() {
     content: 'test content',
   );
 
-  final tArticleModelList = <ArticleModel>[tArticleModel];
+  // final tArticleModelList = <ArticleModel>[tArticleModel];
   final tArticleList = <Article>[tArticle];
 
   group('Now Playing Articles', () {
@@ -64,7 +65,7 @@ void main() {
       //arrange
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(mockRemoteDataSource.getTopHeadlineArticles())
-        .thenAnswer((_) async => []);
+        .thenAnswer((_) async => tArticleResponse);
       //act 
       await repository.getTopHeadlineArticles();
       //assert
@@ -81,7 +82,7 @@ void main() {
           () async {
         // arrange
         when(mockRemoteDataSource.getTopHeadlineArticles())
-            .thenAnswer((_) async => tArticleModelList);
+            .thenAnswer((_) async => tArticleResponse);
         // act
         final result = await repository.getTopHeadlineArticles();
         // assert
@@ -96,7 +97,7 @@ void main() {
       () async {
         // arrange
         when(mockRemoteDataSource.getTopHeadlineArticles())
-            .thenAnswer((_) async => tArticleModelList);
+            .thenAnswer((_) async => tArticleResponse);
         // act
         await repository.getTopHeadlineArticles();
         // assert
@@ -168,7 +169,7 @@ void main() {
       //arrange
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(mockRemoteDataSource.getHeadlineBusinessArticles())
-        .thenAnswer((_) async => []);
+        .thenAnswer((_) async => tArticleResponse);
       //act 
       await repository.getHeadlineBusinessArticles();
       //assert
@@ -185,7 +186,7 @@ void main() {
           () async {
         // arrange
         when(mockRemoteDataSource.getHeadlineBusinessArticles())
-            .thenAnswer((_) async => tArticleModelList);
+            .thenAnswer((_) async => tArticleResponse);
         // act
         final result = await repository.getHeadlineBusinessArticles();
         // assert
@@ -200,7 +201,7 @@ void main() {
       () async {
         // arrange
         when(mockRemoteDataSource.getHeadlineBusinessArticles())
-            .thenAnswer((_) async => tArticleModelList);
+            .thenAnswer((_) async => tArticleResponse);
         // act
         await repository.getHeadlineBusinessArticles();
         // assert
@@ -268,14 +269,16 @@ void main() {
   });
 
   group('Get Article Recommendations', () {
-    final tArticleList = <ArticleModel>[];
+    final tArticle = Article(author: "test author",title: "test title", description: "test description", url: "test url", urlToImage: "test url to image", publishedAt: DateTime.parse("2022-01-01 02:15:39.000Z"), content: "test content");
+    final tArticleList = [tArticle];
     const tCategory = 'business';
+    
 
     test('should return data (Article list) when the call is successful',
         () async {
       // arrange
       when(mockRemoteDataSource.getArticleCategory(tCategory))
-          .thenAnswer((_) async => tArticleList);
+          .thenAnswer((_) async => tArticleResponse);
       // act
       final result = await repository.getArticleCategory(tCategory);
       // assert
@@ -339,7 +342,7 @@ void main() {
       final result = await repository.searchArticles(tQuery);
       // assert
       /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
-      final resultList = result.getOrElse(() => Articles(totalResults: 1, articles: const []));
+      final resultList = result.getOrElse(() => const Articles(totalResults: 1, articles: []));
       expect(resultList, tArticleResponse.toEntity());
     });
 

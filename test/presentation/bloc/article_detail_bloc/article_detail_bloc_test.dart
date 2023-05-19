@@ -142,7 +142,7 @@ void main() {
           .thenAnswer((_) async => true);
         return articleDetailBloc;
       },
-      act: (bloc) => bloc.add(LoadBookmarkStatus(tArticle.url)),
+      act: (bloc) => bloc.add(LoadBookmarkStatus(tArticle.url ?? '')),
       expect: () => [
         ArticleDetailStateInit.copyWith(
           isAddedToBookmark: true,

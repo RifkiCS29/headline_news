@@ -28,8 +28,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
       try {
         final result = await remoteDataSource.getTopHeadlineArticles();
         localDataSource.cacheTopHeadlineArticles(
-            result.map((article) => ArticleTable.fromDTO(article)).toList(),);
-        return Right(result.map((model) => model.toEntity()).toList());
+            result.articles?.map((article) => ArticleTable.fromDTO(article)).toList() ?? [],);
+        return Right(result.articles?.map((model) => model.toEntity()).toList() ?? [],);
       } on ServerException {
         return const Left(ServerFailure(''));
       } on TlsException catch (e) {
@@ -51,8 +51,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
       try {
         final result = await remoteDataSource.getHeadlineBusinessArticles();
         localDataSource.cacheHeadlineBusinessArticles(
-            result.map((article) => ArticleTable.fromDTO(article)).toList(),);
-        return Right(result.map((model) => model.toEntity()).toList());
+            result.articles?.map((article) => ArticleTable.fromDTO(article)).toList() ?? [],);
+        return Right(result.articles?.map((model) => model.toEntity()).toList() ?? [],);
       } on ServerException {
         return const Left(ServerFailure(''));
       } on TlsException catch (e) {
@@ -72,7 +72,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
   Future<Either<Failure, List<Article>>> getArticleCategory(String category) async {
     try {
       final result = await remoteDataSource.getArticleCategory(category);
-      return Right(result.map((model) => model.toEntity()).toList());
+      return Right(result.articles?.map((model) => model.toEntity()).toList() ?? [],);
     } on ServerException {
       return const Left(ServerFailure(''));
     } on SocketException {

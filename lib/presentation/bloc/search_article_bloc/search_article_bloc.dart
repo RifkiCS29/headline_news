@@ -22,9 +22,9 @@ class SearchArticleBloc extends Bloc<SearchArticleEvent, SearchArticleState> {
         result.fold(
           (failure) => emit(SearchArticleError(failure.message)),
           (articlesData) { 
-            articles = articlesData.articles;
-            emit(SearchArticleHasData(articlesData.articles, articlesData.totalResults, 1));
-            if(articlesData.articles.isEmpty) {
+            articles = articlesData.articles ?? [];
+            emit(SearchArticleHasData(articlesData.articles ?? [], articlesData.totalResults ?? 0, 1));
+            if(articlesData.articles?.isEmpty == true) {
               emit(const SearchArticleEmpty('No Result Found'));
             }
           }
@@ -41,9 +41,9 @@ class SearchArticleBloc extends Bloc<SearchArticleEvent, SearchArticleState> {
         result.fold(
           (failure) => emit(SearchArticleError(failure.message)),
           (articleData) {
-            articles.addAll(articleData.articles);
-            emit(SearchArticleHasData(articles, articleData.totalResults, page));
-            if (articleData.articles.isEmpty) {
+            articles.addAll(articleData.articles ?? []);
+            emit(SearchArticleHasData(articles, articleData.totalResults ?? 0, page));
+            if (articleData.articles?.isEmpty == true) {
               emit(const SearchArticleEmpty('No Result Found'));
             }
           }

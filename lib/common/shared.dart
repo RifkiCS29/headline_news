@@ -10,7 +10,7 @@ class Shared {
     SecurityContext context = SecurityContext();
     try {
       List<int> bytes = [];
-      bytes = (await rootBundle.load('certificates/certificates.cer'))
+      bytes = (await rootBundle.load('certificates/certificates.crt'))
           .buffer
           .asUint8List();
       context.setTrustedCertificatesBytes(bytes);

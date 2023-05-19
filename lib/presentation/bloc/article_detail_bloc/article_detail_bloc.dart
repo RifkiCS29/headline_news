@@ -33,7 +33,7 @@ class ArticleDetailBloc extends Bloc<ArticleDetailEvent, ArticleDetailState> {
         }
       );
 
-      add(LoadBookmarkStatus(event.article.url));
+      add(LoadBookmarkStatus(event.article.url ?? ''));
 
     });
     on<RemoveFromBookmark>((event, emit) async {
@@ -48,7 +48,7 @@ class ArticleDetailBloc extends Bloc<ArticleDetailEvent, ArticleDetailState> {
         }
       );
 
-      add(LoadBookmarkStatus(event.article.url));
+      add(LoadBookmarkStatus(event.article.url ?? ''));
       
     });
     on<LoadBookmarkStatus>((event, emit) async {

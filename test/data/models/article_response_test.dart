@@ -23,6 +23,7 @@ void main() {
 
   final tArticleResponseModel =
       ArticleResponse(
+        status: "ok",
         totalResults: 38,
         articles: <ArticleModel>[tArticleModel],
     );
@@ -46,6 +47,7 @@ void main() {
       final result = tArticleResponseModel.toJson();
       // assert
       final expectedJsonMap = {
+        "status": "ok",
         "totalResults": 38,
         "articles": [
           {

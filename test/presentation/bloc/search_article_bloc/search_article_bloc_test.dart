@@ -69,7 +69,7 @@ void main() {
       'Should emit [SearchLoading, SearchHasData[], SearchEmpty] when data is empty',
       build: () {
         when(mockSearchArticles.execute(tQuery))
-          .thenAnswer((_) async => Right(Articles(totalResults: 1, articles: const [])));
+          .thenAnswer((_) async => const Right(Articles(totalResults: 1, articles: [])));
         return searchArticleBloc;
       },
       act: (bloc) => bloc.add(const OnQueryChanged(tQuery)),
