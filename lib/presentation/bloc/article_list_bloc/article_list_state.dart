@@ -2,7 +2,7 @@ part of 'article_list_bloc.dart';
 
 abstract class ArticleListState extends Equatable {
   const ArticleListState();
-  
+
   @override
   List<Object> get props => [];
 }

@@ -27,7 +27,7 @@ class Error extends StatelessWidget {
         Text(
           message, 
           style: primaryTextStyle,
-        )
+        ),
       ],
     );
   }

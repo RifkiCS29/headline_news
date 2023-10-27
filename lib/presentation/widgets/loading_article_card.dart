@@ -28,7 +28,7 @@ class LoadingArticleCard extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
                   boxShadow: const [
-                    BoxShadow(spreadRadius: 1, color: Colors.black12)
+                    BoxShadow(spreadRadius: 1, color: Colors.black12),
                   ],),
               child: Column(
                 children: [

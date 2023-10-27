@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:headline_news/common/encrypt.dart';
 import 'package:headline_news/data/models/article_table.dart';
 import 'package:sqflite_sqlcipher/sqflite.dart';
 
@@ -26,10 +25,10 @@ class DatabaseHelper {
     final databasePath = '$path/newsapp.db';
 
     var db = await openDatabase(
-      databasePath, 
-      version: 1, 
+      databasePath,
+      version: 1,
       onCreate: _onCreate,
-      password: encrypt('HeadlineNews'),
+      password: 'HeadlineNews',
     );
     return db;
   }
@@ -62,11 +61,12 @@ class DatabaseHelper {
   }
 
   Future<void> insertCacheTransactionArticles(
-    List<ArticleTable> articles, String category,
+    List<ArticleTable> articles,
+    String category,
   ) async {
     final db = await database;
     db!.transaction((txn) async {
-      for(final article in articles) {
+      for (final article in articles) {
         final articleJson = article.toJson();
         articleJson['category'] = category;
         txn.insert(_tblCacheArticle, articleJson);
@@ -125,11 +125,10 @@ class DatabaseHelper {
 
   Future<List<Map<String, dynamic>>> getBookmarkArticles() async {
     final db = await database;
-    final List<Map<String, dynamic>> results = 
-      await db!.query(
-        _tblBookmarkArticle,
-        orderBy: 'publishedAt DESC',
-      );
+    final List<Map<String, dynamic>> results = await db!.query(
+      _tblBookmarkArticle,
+      orderBy: 'publishedAt DESC',
+    );
 
     return results;
   }

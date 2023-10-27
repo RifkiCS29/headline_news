@@ -11,39 +11,39 @@ import 'package:headline_news/presentation/pages/article_page.dart';
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
-
   @override
-  _MainPageState createState() => _MainPageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
   int _bottomNavIndex = 0;
 
   final List<BottomNavigationBarItem> _bottomNavbarItems = [
-      BottomNavigationBarItem(
-        icon: Icon(Platform.isIOS ? CupertinoIcons.home : Icons.home),
-        label: "Home",
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Platform.isIOS ? CupertinoIcons.search : Icons.search),
-        label: "Search",
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Platform.isIOS ? CupertinoIcons.bookmark_fill : Icons.bookmark),
-        label: "Bookmark",
-      ),
-  ]; 
+    BottomNavigationBarItem(
+      icon: Icon(Platform.isIOS ? CupertinoIcons.home : Icons.home),
+      label: "Home",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Platform.isIOS ? CupertinoIcons.search : Icons.search),
+      label: "Search",
+    ),
+    BottomNavigationBarItem(
+      icon:
+          Icon(Platform.isIOS ? CupertinoIcons.bookmark_fill : Icons.bookmark),
+      label: "Bookmark",
+    ),
+  ];
 
   final List<Widget> _listWidget = [
     const ArticlePage(),
     const SearchPage(),
-    const BookmarkPage()
+    const BookmarkPage(),
   ];
 
   @override
-  void initState() { 
+  void initState() {
     super.initState();
-  } 
+  }
 
   @override
   void dispose() {
@@ -52,7 +52,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-     return PlatformWidget(
+    return PlatformWidget(
       androidBuilder: _buildAndroid,
       iosBuilder: _buildIos,
     );
@@ -76,7 +76,7 @@ class _MainPageState extends State<MainPage> {
   Widget _buildIos(BuildContext context) {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
-        items:_bottomNavbarItems,
+        items: _bottomNavbarItems,
       ),
       tabBuilder: (context, index) {
         return _listWidget[index];

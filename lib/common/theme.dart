@@ -36,13 +36,14 @@ TextStyle primaryTextStyle = GoogleFonts.poppins(
   color: kPrimaryColor,
 );
 
-BottomNavigationBarThemeData bottomNavigationBarTheme = 
-  BottomNavigationBarThemeData(
-                selectedItemColor: kPrimaryColor,
-                unselectedItemColor: kGreyColor,
-                showSelectedLabels: true,
-                showUnselectedLabels: true,
-                type: BottomNavigationBarType.fixed,);
+BottomNavigationBarThemeData bottomNavigationBarTheme =
+    BottomNavigationBarThemeData(
+  selectedItemColor: kPrimaryColor,
+  unselectedItemColor: kGreyColor,
+  showSelectedLabels: true,
+  showUnselectedLabels: true,
+  type: BottomNavigationBarType.fixed,
+);
 
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;

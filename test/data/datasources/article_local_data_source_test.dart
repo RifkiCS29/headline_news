@@ -84,8 +84,10 @@ void main() {
       await dataSource.cacheTopHeadlineArticles([testArticleCache]);
       // assert
       verify(mockDatabaseHelper.clearCacheArticles('top headline'));
-      verify(mockDatabaseHelper
-          .insertCacheTransactionArticles([testArticleCache], 'top headline'),);
+      verify(
+        mockDatabaseHelper
+            .insertCacheTransactionArticles([testArticleCache], 'top headline'),
+      );
     });
 
     test('should return list of Articles from db when data exist', () async {
@@ -118,8 +120,12 @@ void main() {
       await dataSource.cacheHeadlineBusinessArticles([testArticleCache]);
       // assert
       verify(mockDatabaseHelper.clearCacheArticles('headline business'));
-      verify(mockDatabaseHelper
-          .insertCacheTransactionArticles([testArticleCache], 'headline business'),);
+      verify(
+        mockDatabaseHelper.insertCacheTransactionArticles(
+          [testArticleCache],
+          'headline business',
+        ),
+      );
     });
 
     test('should return list of Articles from db when data exist', () async {

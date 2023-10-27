@@ -10,40 +10,53 @@ import 'package:provider/provider.dart';
 import 'package:headline_news/presentation/pages/article_category_page.dart';
 
 class ArticlePage extends StatefulWidget {
-  const ArticlePage({ Key? key}) : super(key: key);
+  const ArticlePage({Key? key}) : super(key: key);
 
   @override
   State<ArticlePage> createState() => _ArticlePageState();
 }
 
 class _ArticlePageState extends State<ArticlePage> {
-
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<ArticleTopHeadlineListBloc>(context, listen: false)
-            .add(ArticleListEvent()),);
-    Future.microtask(() =>
-        Provider.of<ArticleHeadlineBusinessListBloc>(context, listen: false)
-            .add(ArticleListEvent()),);
+    Future.microtask(
+      () => Provider.of<ArticleTopHeadlineListBloc>(context, listen: false)
+          .add(ArticleListEvent()),
+    );
+    Future.microtask(
+      () => Provider.of<ArticleHeadlineBusinessListBloc>(context, listen: false)
+          .add(ArticleListEvent()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: ListView(
-        children: [
-          Column(
-            children: [ 
-              _listTopHeadlineArticles(),
-              const SizedBox(height:8),
-              _listCategory(),
-              const SizedBox(height: 8),
-              _listHeadlineBusinessArticles()
-            ],
-          )
-        ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Future.delayed(const Duration(seconds: 1));
+          await Future.microtask(
+            () =>
+                Provider.of<ArticleTopHeadlineListBloc>(context, listen: false)
+                    .add(ArticleListEvent()),
+          );
+          await Future.microtask(
+            () => Provider.of<ArticleHeadlineBusinessListBloc>(
+              context,
+              listen: false,
+            ).add(ArticleListEvent()),
+          );
+        },
+        child: ListView(
+          children: [
+            _listTopHeadlineArticles(),
+            const SizedBox(height: 8),
+            _listCategory(),
+            const SizedBox(height: 8),
+            _listHeadlineBusinessArticles(),
+          ],
+        ),
       ),
     );
   }
@@ -55,9 +68,9 @@ class _ArticlePageState extends State<ArticlePage> {
       color: kWhiteColor,
       child: BlocBuilder<ArticleTopHeadlineListBloc, ArticleListState>(
         builder: (context, state) {
-          if(state is ArticleListLoading) {
-            return const LoadingArticleCard();       
-          } else if(state is ArticleListLoaded) {
+          if (state is ArticleListLoading) {
+            return const LoadingArticleCard();
+          } else if (state is ArticleListLoaded) {
             return ListView.builder(
               key: const Key('headline_news_item'),
               shrinkWrap: true,
@@ -73,10 +86,10 @@ class _ArticlePageState extends State<ArticlePage> {
                     8,
                   ),
                   child: TopHeadlineArticleCard(article: article),
-                );      
-              }, 
+                );
+              },
             );
-          } else if(state is ArticleListEmpty) {
+          } else if (state is ArticleListEmpty) {
             return const Center(child: Text('Empty Article'));
           } else if (state is ArticleListError) {
             return Center(child: Text(state.message));
@@ -94,7 +107,7 @@ class _ArticlePageState extends State<ArticlePage> {
       width: double.infinity,
       color: kWhiteColor,
       child: Padding(
-        padding: const EdgeInsets.only(left: 24, right:24),
+        padding: const EdgeInsets.only(left: 24, right: 24),
         child: ListView(
           key: const Key('article_category'),
           scrollDirection: Axis.horizontal,
@@ -103,7 +116,8 @@ class _ArticlePageState extends State<ArticlePage> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'sport'),
+                  builder: (context) =>
+                      const ArticleCategoryPage(category: 'sport'),
                 ),
               ),
               child: const CategoryCard('Sport', 'assets/sports.png'),
@@ -112,7 +126,8 @@ class _ArticlePageState extends State<ArticlePage> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'business'),
+                  builder: (context) =>
+                      const ArticleCategoryPage(category: 'business'),
                 ),
               ),
               child: const CategoryCard('Business', 'assets/business.png'),
@@ -121,7 +136,8 @@ class _ArticlePageState extends State<ArticlePage> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'health'),
+                  builder: (context) =>
+                      const ArticleCategoryPage(category: 'health'),
                 ),
               ),
               child: const CategoryCard('Health', 'assets/health.png'),
@@ -130,7 +146,8 @@ class _ArticlePageState extends State<ArticlePage> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'science'),
+                  builder: (context) =>
+                      const ArticleCategoryPage(category: 'science'),
                 ),
               ),
               child: const CategoryCard('Science', 'assets/science.png'),
@@ -139,7 +156,8 @@ class _ArticlePageState extends State<ArticlePage> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'technology'),
+                  builder: (context) =>
+                      const ArticleCategoryPage(category: 'technology'),
                 ),
               ),
               child: const CategoryCard('Technology', 'assets/technology.png'),
@@ -148,10 +166,14 @@ class _ArticlePageState extends State<ArticlePage> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ArticleCategoryPage(category: 'entertainment'),
+                  builder: (context) =>
+                      const ArticleCategoryPage(category: 'entertainment'),
                 ),
               ),
-              child: const CategoryCard('Entertainment', 'assets/entertainment.png'),
+              child: const CategoryCard(
+                'Entertainment',
+                'assets/entertainment.png',
+              ),
             ),
           ],
         ),
@@ -162,30 +184,30 @@ class _ArticlePageState extends State<ArticlePage> {
   Widget _listHeadlineBusinessArticles() {
     return BlocBuilder<ArticleHeadlineBusinessListBloc, ArticleListState>(
       builder: (context, state) {
-        if(state is ArticleListLoading) {
-          return Container(            
-            color: kWhiteColor,
-            width: double.infinity,
-            padding: const EdgeInsets.only(top: 8),
-            child: const LoadingArticleList(),
-          );        
-        } else if(state is ArticleListLoaded) {
+        if (state is ArticleListLoading) {
           return Container(
             color: kWhiteColor,
             width: double.infinity,
             padding: const EdgeInsets.only(top: 8),
-               child: ListView.builder(
-                  key: const Key('headline_business_item'),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: state.articles.length,
-                  itemBuilder: (context, index) {
-                    var article = state.articles[index];
-                    return ArticleList(article: article);              
-                  }, 
-                ),
+            child: const LoadingArticleList(),
           );
-        } else if(state is ArticleListEmpty) {
+        } else if (state is ArticleListLoaded) {
+          return Container(
+            color: kWhiteColor,
+            width: double.infinity,
+            padding: const EdgeInsets.only(top: 8),
+            child: ListView.builder(
+              key: const Key('headline_business_item'),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: state.articles.length,
+              itemBuilder: (context, index) {
+                var article = state.articles[index];
+                return ArticleList(article: article);
+              },
+            ),
+          );
+        } else if (state is ArticleListEmpty) {
           return const Center(child: Text('Empty Article'));
         } else if (state is ArticleListError) {
           return Center(child: Text(state.message));

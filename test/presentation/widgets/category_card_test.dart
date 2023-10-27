@@ -7,12 +7,12 @@ void main() {
   const String image = 'assets/science.png';
 
   group('Top Headline Article card Widget Test', () {
-    Widget _makeTestableWidget() {
+    Widget makeTestableWidget() {
       return const MaterialApp(home: Scaffold(body: CategoryCard(name, image)));
     }
 
     testWidgets('Testing if title Article shows', (WidgetTester tester) async {
-      await tester.pumpWidget(_makeTestableWidget());
+      await tester.pumpWidget(makeTestableWidget());
       expect(find.byType(Text), findsOneWidget);
       expect(find.byType(Container), findsWidgets);
     });

@@ -22,63 +22,63 @@ class ArticleTable extends Equatable {
   });
 
   factory ArticleTable.fromEntity(Article article) => ArticleTable(
-    author: article.author,
-    title: article.title,
-    description: article.description,
-    url: article.url,
-    urlToImage: article.urlToImage,
-    publishedAt: article.publishedAt,
-    content: article.content,
-  );
+        author: article.author,
+        title: article.title,
+        description: article.description,
+        url: article.url,
+        urlToImage: article.urlToImage,
+        publishedAt: article.publishedAt,
+        content: article.content,
+      );
 
   factory ArticleTable.fromMap(Map<String, dynamic> map) => ArticleTable(
-    author: map['author'],
-    title: map['title'],
-    description: map['description'],
-    url: map['url'],
-    urlToImage: map['urlToImage'],
-    publishedAt: DateTime.parse(map['publishedAt']),
-    content: map['content'],
-  );
+        author: map['author'],
+        title: map['title'],
+        description: map['description'],
+        url: map['url'],
+        urlToImage: map['urlToImage'],
+        publishedAt: DateTime.parse(map['publishedAt']),
+        content: map['content'],
+      );
 
   factory ArticleTable.fromDTO(ArticleModel article) => ArticleTable(
-    author: article.author,
-    title: article.title,
-    description: article.description,
-    url: article.url,
-    urlToImage: article.urlToImage,
-    publishedAt: article.publishedAt,
-    content: article.content,
-  );
+        author: article.author,
+        title: article.title,
+        description: article.description,
+        url: article.url,
+        urlToImage: article.urlToImage,
+        publishedAt: article.publishedAt,
+        content: article.content,
+      );
 
   Map<String, dynamic> toJson() => {
-    'author': author,
-    'title': title,
-    'description': description,
-    'url': url,
-    'urlToImage': urlToImage,
-    'publishedAt': publishedAt?.toIso8601String(),
-    'content': content,
-  };
+        'author': author,
+        'title': title,
+        'description': description,
+        'url': url,
+        'urlToImage': urlToImage,
+        'publishedAt': publishedAt?.toIso8601String(),
+        'content': content,
+      };
 
   Article toEntity() => Article.bookmark(
-    author: author,
-    title: title,
-    description: description,
-    url: url,
-    urlToImage: urlToImage,
-    publishedAt: publishedAt,
-    content: content,
-  );
+        author: author,
+        title: title,
+        description: description,
+        url: url,
+        urlToImage: urlToImage,
+        publishedAt: publishedAt,
+        content: content,
+      );
 
   @override
   List<Object?> get props => [
-    author,
-    title,
-    description,
-    url,
-    urlToImage,
-    publishedAt,
-    content,
-  ];
+        author,
+        title,
+        description,
+        url,
+        urlToImage,
+        publishedAt,
+        content,
+      ];
 }

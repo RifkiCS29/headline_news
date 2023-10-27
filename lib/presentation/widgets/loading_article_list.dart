@@ -63,7 +63,7 @@ class LoadingArticleList extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
             ],),
           );
         },

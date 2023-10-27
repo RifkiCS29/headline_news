@@ -9,20 +9,21 @@ import 'package:provider/provider.dart';
 
 class ArticleCategoryPage extends StatefulWidget {
   final String category;
-  const ArticleCategoryPage({Key? key, required this.category}) : super(key: key);
+  const ArticleCategoryPage({Key? key, required this.category})
+      : super(key: key);
 
   @override
   State<ArticleCategoryPage> createState() => _ArticleCategoryPageState();
 }
 
 class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
-
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<ArticleCategoryBloc>(context, listen: false)
-            .add(FetchArticleCategory(widget.category)),);
+    Future.microtask(
+      () => Provider.of<ArticleCategoryBloc>(context, listen: false)
+          .add(FetchArticleCategory(widget.category)),
+    );
   }
 
   @override
@@ -32,30 +33,30 @@ class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
         backgroundColor: kWhiteColor,
         elevation: 0.0,
         title: Text(
-          widget.category.toCapitalized(), 
+          widget.category.toCapitalized(),
           style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semiBold),
         ),
       ),
       body: BlocBuilder<ArticleCategoryBloc, ArticleCategoryState>(
-        builder: (context, state) {       
-         if(state is ArticleCategoryLoading) {
+        builder: (context, state) {
+          if (state is ArticleCategoryLoading) {
             return const Padding(
-              padding: EdgeInsets.only(top:8),
+              padding: EdgeInsets.only(top: 8),
               child: LoadingArticleList(),
-            );       
-          } else if(state is ArticleCategoryHasData) {
+            );
+          } else if (state is ArticleCategoryHasData) {
             return Padding(
-              padding: const EdgeInsets.only(top:8),
+              padding: const EdgeInsets.only(top: 8),
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: state.articles.length,
                 itemBuilder: (context, index) {
                   var article = state.articles[index];
-                  return ArticleList(article: article);              
-                }, 
+                  return ArticleList(article: article);
+                },
               ),
             );
-          } else if(state is ArticleCategoryEmpty) {
+          } else if (state is ArticleCategoryEmpty) {
             return Center(child: Text(state.message));
           } else if (state is ArticleCategoryError) {
             return Center(child: Text(state.message));

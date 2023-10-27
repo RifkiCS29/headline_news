@@ -12,44 +12,58 @@ class SearchArticleBloc extends Bloc<SearchArticleEvent, SearchArticleState> {
   final SearchArticles _searchArticles;
   List<Article> articles = [];
   SearchArticleBloc(this._searchArticles) : super(SearchArticleInitial()) {
-    on<OnQueryChanged>((event, emit) async {
-      final query = event.query;
-      if(query.isEmpty) {
-        emit(SearchArticleInitial());
-      } else {
-        emit(SearchArticleLoading());
-        final result = await _searchArticles.execute(query);
-        result.fold(
-          (failure) => emit(SearchArticleError(failure.message)),
-          (articlesData) { 
+    on<OnQueryChanged>(
+      (event, emit) async {
+        final query = event.query;
+        if (query.isEmpty) {
+          emit(SearchArticleInitial());
+        } else {
+          emit(SearchArticleLoading());
+          final result = await _searchArticles.execute(query);
+          result.fold((failure) => emit(SearchArticleError(failure.message)),
+              (articlesData) {
             articles = articlesData.articles ?? [];
-            emit(SearchArticleHasData(articlesData.articles ?? [], articlesData.totalResults ?? 0, 1));
-            if(articlesData.articles?.isEmpty == true) {
+            emit(
+              SearchArticleHasData(
+                articlesData.articles ?? [],
+                articlesData.totalResults ?? 0,
+                1,
+              ),
+            );
+            if (articlesData.articles?.isEmpty == true) {
               emit(const SearchArticleEmpty('No Result Found'));
             }
-          }
-        );
-      }
-    }, transformer: debounce(const Duration(milliseconds: 500)),);
-    on<OnNextPage>((event, emit) async {
-      final query = event.query;
-      final page = event.page + 1;
-      if(query.isEmpty) {
-        emit(SearchArticleInitial());
-      } else {
-        final result = await _searchArticles.execute(query, page: page);
-        result.fold(
-          (failure) => emit(SearchArticleError(failure.message)),
-          (articleData) {
+          });
+        }
+      },
+      transformer: debounce(const Duration(milliseconds: 500)),
+    );
+    on<OnNextPage>(
+      (event, emit) async {
+        final query = event.query;
+        final page = event.page + 1;
+        if (query.isEmpty) {
+          emit(SearchArticleInitial());
+        } else {
+          final result = await _searchArticles.execute(query, page: page);
+          result.fold((failure) => emit(SearchArticleError(failure.message)),
+              (articleData) {
             articles.addAll(articleData.articles ?? []);
-            emit(SearchArticleHasData(articles, articleData.totalResults ?? 0, page));
+            emit(
+              SearchArticleHasData(
+                articles,
+                articleData.totalResults ?? 0,
+                page,
+              ),
+            );
             if (articleData.articles?.isEmpty == true) {
               emit(const SearchArticleEmpty('No Result Found'));
             }
-          }
-        );
-      }
-    }, transformer: droppable(),);
+          });
+        }
+      },
+      transformer: droppable(),
+    );
   }
 }
 

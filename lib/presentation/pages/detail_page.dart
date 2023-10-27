@@ -8,7 +8,7 @@ import 'package:headline_news/presentation/pages/article_webview_page.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DetailPage extends StatefulWidget {
   final Article article;
@@ -39,12 +39,15 @@ class _DetailPageState extends State<DetailPage> {
                   ArticleDetailBloc.bookmarkAddSuccessMessage ||
               state.bookmarkMessage ==
                   ArticleDetailBloc.bookmarkRemoveSuccessMessage) {
-              ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(
-                  backgroundColor: state.bookmarkMessage ==
-                  ArticleDetailBloc.bookmarkAddSuccessMessage ? kGreenColor : kRedColor,
-                  content: Text(state.bookmarkMessage),
-                ),);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: state.bookmarkMessage ==
+                        ArticleDetailBloc.bookmarkAddSuccessMessage
+                    ? kGreenColor
+                    : kRedColor,
+                content: Text(state.bookmarkMessage),
+              ),
+            );
           } else {
             await showDialog(
               context: context,
@@ -59,7 +62,7 @@ class _DetailPageState extends State<DetailPage> {
         listenWhen: (previousState, currentState) =>
             previousState.bookmarkMessage != currentState.bookmarkMessage &&
             currentState.bookmarkMessage != '',
-        builder: (context, state) { 
+        builder: (context, state) {
           return Stack(
             children: [
               Stack(
@@ -81,16 +84,20 @@ class _DetailPageState extends State<DetailPage> {
                       },
                       blendMode: BlendMode.darken,
                       child: CachedNetworkImage(
-                        imageUrl: widget.article.urlToImage ?? '',
+                        imageUrl: widget.article.urlToImage ??
+                            'https://sukaharja.godesa.id/assets/templates/default/artikel.png',
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: imageProvider, fit: BoxFit.cover,),
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         errorWidget: (context, url, error) => Image.asset(
-                            'assets/errorimage.jpg',
-                            fit: BoxFit.cover,),
+                          'assets/errorimage.jpg',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -112,10 +119,11 @@ class _DetailPageState extends State<DetailPage> {
                               left: 5,
                             ),
                             decoration: BoxDecoration(
-                                color: kWhiteColor,
-                                borderRadius: BorderRadius.circular(
-                                  10,
-                                ),),
+                              color: kWhiteColor,
+                              borderRadius: BorderRadius.circular(
+                                10,
+                              ),
+                            ),
                             child: Center(
                               child: Icon(
                                 Icons.arrow_back_ios,
@@ -126,34 +134,38 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                         ),
                         Row(
-                          children: [                            
+                          children: [
                             GestureDetector(
                               onTap: () => {
-                                if (!state.isAddedToBookmark) {
+                                if (!state.isAddedToBookmark)
+                                  {
                                     Provider.of<ArticleDetailBloc>(
-                                          context,
-                                          listen: false,)
-                                        .add(AddToBookmark(widget.article))
-                                  } else {
-                                    Provider.of<ArticleDetailBloc>(
-                                          context,
-                                          listen: false,)
-                                        .add(RemoveFromBookmark(widget.article))
+                                      context,
+                                      listen: false,
+                                    ).add(AddToBookmark(widget.article)),
                                   }
+                                else
+                                  {
+                                    Provider.of<ArticleDetailBloc>(
+                                      context,
+                                      listen: false,
+                                    ).add(RemoveFromBookmark(widget.article)),
+                                  },
                               },
                               child: Container(
                                 height: 40,
                                 width: 40,
                                 decoration: BoxDecoration(
-                                    color: kWhiteColor,
-                                    borderRadius: BorderRadius.circular(
-                                      10,
-                                    ),),
+                                  color: kWhiteColor,
+                                  borderRadius: BorderRadius.circular(
+                                    10,
+                                  ),
+                                ),
                                 child: Center(
                                   child: Icon(
-                                    state.isAddedToBookmark 
-                                      ? Icons.bookmark 
-                                      : Icons.bookmark_border,
+                                    state.isAddedToBookmark
+                                        ? Icons.bookmark
+                                        : Icons.bookmark_border,
                                     color: kPrimaryColor,
                                     size: 20,
                                   ),
@@ -165,15 +177,17 @@ class _DetailPageState extends State<DetailPage> {
                             ),
                             GestureDetector(
                               onTap: () => Share.share(
-                                  "${widget.article.title}\nDetail: ${widget.article.url}",),
+                                "${widget.article.title}\nDetail: ${widget.article.url}",
+                              ),
                               child: Container(
                                 height: 40,
                                 width: 40,
                                 decoration: BoxDecoration(
-                                    color: kWhiteColor,
-                                    borderRadius: BorderRadius.circular(
-                                      10,
-                                    ),),
+                                  color: kWhiteColor,
+                                  borderRadius: BorderRadius.circular(
+                                    10,
+                                  ),
+                                ),
                                 child: Center(
                                   child: Icon(
                                     Icons.share,
@@ -184,7 +198,7 @@ class _DetailPageState extends State<DetailPage> {
                               ),
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -203,7 +217,8 @@ class _DetailPageState extends State<DetailPage> {
                         children: [
                           Text(
                             DateFormat('dd/MM/yyyy kk:mm').format(
-                                widget.article.publishedAt ?? DateTime.now(),),
+                              widget.article.publishedAt ?? DateTime.now(),
+                            ),
                             style: whiteTextStyle.copyWith(fontSize: 14),
                           ),
                           const SizedBox(
@@ -212,7 +227,9 @@ class _DetailPageState extends State<DetailPage> {
                           Text(
                             widget.article.title ?? 'No Title',
                             style: whiteTextStyle.copyWith(
-                                fontSize: 18, fontWeight: semiBold,),
+                              fontSize: 18,
+                              fontWeight: semiBold,
+                            ),
                           ),
                           const SizedBox(
                             height: 5,
@@ -265,16 +282,18 @@ class _DetailPageState extends State<DetailPage> {
                         key: const Key('button_read_more'),
                         title: 'Read More',
                         onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  ArticleWebviewPage(url: widget.article.url ?? ''),
-                            ),),
-                      )
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ArticleWebviewPage(
+                              url: widget.article.url ?? '',
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           );
         },

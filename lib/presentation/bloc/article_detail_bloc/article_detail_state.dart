@@ -28,7 +28,7 @@ class ArticleDetailState extends Equatable {
 
   @override
   List<Object> get props => [
-    bookmarkMessage, 
-    isAddedToBookmark
-  ];
+        bookmarkMessage,
+        isAddedToBookmark,
+      ];
 }

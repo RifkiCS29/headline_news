@@ -16,12 +16,14 @@ void main() {
   );
 
   group('Top Headline Article card Widget Test', () {
-    Widget _makeTestableWidget() {
-      return MaterialApp(home: Scaffold(body: TopHeadlineArticleCard(article: article)));
+    Widget makeTestableWidget() {
+      return MaterialApp(
+        home: Scaffold(body: TopHeadlineArticleCard(article: article)),
+      );
     }
 
     testWidgets('Testing if title Article shows', (WidgetTester tester) async {
-      await tester.pumpWidget(_makeTestableWidget());
+      await tester.pumpWidget(makeTestableWidget());
       expect(find.byType(Text), findsWidgets);
       expect(find.byType(GestureDetector), findsOneWidget);
       expect(find.byType(Container), findsWidgets);

@@ -41,21 +41,25 @@ class _SearchPageState extends State<SearchPage>
                 context.read<SearchArticleBloc>().add(OnQueryChanged(query));
               },
               decoration: InputDecoration(
-                  hintText: 'Search...',
-                  labelStyle: TextStyle(
-                    color: kPrimaryColor,
-                  ),
-                  prefixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor),
-                      borderRadius: BorderRadius.circular(24),),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kGreyColor),
-                      borderRadius: BorderRadius.circular(24),),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor),
-                      borderRadius: BorderRadius.circular(24),),
-                  contentPadding: const EdgeInsets.all(12),),
+                hintText: 'Search...',
+                labelStyle: TextStyle(
+                  color: kPrimaryColor,
+                ),
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: kPrimaryColor),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kGreyColor),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kPrimaryColor),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                contentPadding: const EdgeInsets.all(12),
+              ),
               textInputAction: TextInputAction.search,
             ),
           ),

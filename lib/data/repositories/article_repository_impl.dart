@@ -28,8 +28,14 @@ class ArticleRepositoryImpl implements ArticleRepository {
       try {
         final result = await remoteDataSource.getTopHeadlineArticles();
         localDataSource.cacheTopHeadlineArticles(
-            result.articles?.map((article) => ArticleTable.fromDTO(article)).toList() ?? [],);
-        return Right(result.articles?.map((model) => model.toEntity()).toList() ?? [],);
+          result.articles
+                  ?.map((article) => ArticleTable.fromDTO(article))
+                  .toList() ??
+              [],
+        );
+        return Right(
+          result.articles?.map((model) => model.toEntity()).toList() ?? [],
+        );
       } on ServerException {
         return const Left(ServerFailure(''));
       } on TlsException catch (e) {
@@ -51,8 +57,14 @@ class ArticleRepositoryImpl implements ArticleRepository {
       try {
         final result = await remoteDataSource.getHeadlineBusinessArticles();
         localDataSource.cacheHeadlineBusinessArticles(
-            result.articles?.map((article) => ArticleTable.fromDTO(article)).toList() ?? [],);
-        return Right(result.articles?.map((model) => model.toEntity()).toList() ?? [],);
+          result.articles
+                  ?.map((article) => ArticleTable.fromDTO(article))
+                  .toList() ??
+              [],
+        );
+        return Right(
+          result.articles?.map((model) => model.toEntity()).toList() ?? [],
+        );
       } on ServerException {
         return const Left(ServerFailure(''));
       } on TlsException catch (e) {
@@ -60,7 +72,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
       }
     } else {
       try {
-        final result = await localDataSource.getCachedHeadlineBusinessArticles();
+        final result =
+            await localDataSource.getCachedHeadlineBusinessArticles();
         return Right(result.map((model) => model.toEntity()).toList());
       } on CacheException catch (e) {
         return Left(CacheFailure(e.message));
@@ -69,10 +82,14 @@ class ArticleRepositoryImpl implements ArticleRepository {
   }
 
   @override
-  Future<Either<Failure, List<Article>>> getArticleCategory(String category) async {
+  Future<Either<Failure, List<Article>>> getArticleCategory(
+    String category,
+  ) async {
     try {
       final result = await remoteDataSource.getArticleCategory(category);
-      return Right(result.articles?.map((model) => model.toEntity()).toList() ?? [],);
+      return Right(
+        result.articles?.map((model) => model.toEntity()).toList() ?? [],
+      );
     } on ServerException {
       return const Left(ServerFailure(''));
     } on SocketException {
@@ -83,7 +100,10 @@ class ArticleRepositoryImpl implements ArticleRepository {
   }
 
   @override
-  Future<Either<Failure, Articles>> searchArticles(String query, {int page = 1}) async {
+  Future<Either<Failure, Articles>> searchArticles(
+    String query, {
+    int page = 1,
+  }) async {
     try {
       final result = await remoteDataSource.searchArticles(query, page);
       return Right(result.toEntity());
@@ -99,8 +119,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
   @override
   Future<Either<Failure, String>> saveBookmarkArticle(Article article) async {
     try {
-      final result =
-          await localDataSource.insertBookmarkArticle(ArticleTable.fromEntity(article));
+      final result = await localDataSource
+          .insertBookmarkArticle(ArticleTable.fromEntity(article));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -112,8 +132,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
   @override
   Future<Either<Failure, String>> removeBookmarkArticle(Article article) async {
     try {
-      final result =
-          await localDataSource.removeBookmarkArticle(ArticleTable.fromEntity(article));
+      final result = await localDataSource
+          .removeBookmarkArticle(ArticleTable.fromEntity(article));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));

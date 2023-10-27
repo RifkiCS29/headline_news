@@ -14,8 +14,8 @@ class CustomScaffold extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 90),
               child: body,
-            ), 
-            _buildCustomAppBar(context)
+            ),
+            _buildCustomAppBar(context),
           ],
         ),
       ),
@@ -37,11 +37,13 @@ class CustomScaffold extends StatelessWidget {
             children: [
               Text(
                 'Headline News',
-                style: blackTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),
+                style:
+                    blackTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),
               ),
               Text(
                 "Read Top Headline News Today",
-                style: greyTextStyle.copyWith(fontSize: 14, fontWeight: regular),
+                style:
+                    greyTextStyle.copyWith(fontSize: 14, fontWeight: regular),
               ),
             ],
           ),
@@ -50,10 +52,11 @@ class CustomScaffold extends StatelessWidget {
             height: 50,
             child: ClipRRect(
               child: Image.asset(
-                  'assets/newspaper.png',
-                  fit: BoxFit.cover,),
+                'assets/newspaper.png',
+                fit: BoxFit.cover,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

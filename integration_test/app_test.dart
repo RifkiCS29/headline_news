@@ -13,8 +13,9 @@ void main() {
       await tester.pumpAndSettle();
 
       //add boomark headline news and back to home page
-      final Finder firstItem = find.byKey(const Key('headline_news_item')).first;
-      await tester.tap(firstItem);
+      final Finder firstItem =
+          find.byKey(const Key('headline_news_item')).first;
+      await tester.tap(firstItem, warnIfMissed: false);
       await tester.pumpAndSettle();
 
       final Finder btnBookmark = find.byIcon(Icons.bookmark_border);
@@ -34,19 +35,22 @@ void main() {
       await tester.pumpAndSettle();
 
       // add boomark category new and back to home page
-      final Finder articleCategory = find.byKey(const Key('article_category')).first;
-      await tester.tap(articleCategory);
+      final Finder articleCategory =
+          find.byKey(const Key('article_category')).first;
+      await tester.tap(articleCategory, warnIfMissed: false);
       await tester.pumpAndSettle();
 
-      final Finder firstItemCategory = find.byKey(const Key('article_list_item')).first;
-      await tester.tap(firstItemCategory);
+      final Finder firstItemCategory =
+          find.byKey(const Key('article_list_item')).first;
+      await tester.tap(firstItemCategory, warnIfMissed: false);
       await tester.pumpAndSettle();
 
       final Finder btnBookmarkCategory = find.byIcon(Icons.bookmark_border);
       await tester.tap(btnBookmarkCategory);
       await tester.pumpAndSettle();
 
-      final Finder btnReadMoreCategory = find.byKey(const Key('button_read_more'));
+      final Finder btnReadMoreCategory =
+          find.byKey(const Key('button_read_more'));
       await tester.tap(btnReadMoreCategory);
       await tester.pumpAndSettle();
 
@@ -71,8 +75,9 @@ void main() {
       await tester.enterText(edtSearch, 'kalimantan');
       await tester.pumpAndSettle();
 
-      final Finder firstItemSearch = find.byKey(const Key('article_list_item')).first;
-      await tester.tap(firstItemSearch);
+      final Finder firstItemSearch =
+          find.byKey(const Key('article_list_item')).first;
+      await tester.tap(firstItemSearch, warnIfMissed: false);
       await tester.pumpAndSettle();
 
       final Finder btnBookmarkSearch = find.byIcon(Icons.bookmark_border);
@@ -88,11 +93,12 @@ void main() {
       await tester.tap(iconBookmark);
       await tester.pumpAndSettle();
 
-      final Finder firstItemBookmark = find.byKey(const Key('article_list_item')).first;
-      await tester.tap(firstItemBookmark);
+      final Finder firstItemBookmark =
+          find.byKey(const Key('article_list_item')).first;
+      await tester.tap(firstItemBookmark, warnIfMissed: false);
       await tester.pumpAndSettle();
 
-      final Finder btnUnBookmark= find.byIcon(Icons.bookmark);
+      final Finder btnUnBookmark = find.byIcon(Icons.bookmark);
       await tester.tap(btnUnBookmark);
       await tester.pumpAndSettle();
 

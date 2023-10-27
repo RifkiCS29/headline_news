@@ -24,32 +24,24 @@ class ArticleDetailBloc extends Bloc<ArticleDetailEvent, ArticleDetailState> {
     on<AddToBookmark>((event, emit) async {
       final result = await saveBookmarkArticle.execute(event.article);
 
-      result.fold(
-        (failure) {
-          emit(state.copyWith(bookmarkMessage: failure.message));
-        },
-        (successMessage) {
-          emit(state.copyWith(bookmarkMessage: successMessage));
-        }
-      );
+      result.fold((failure) {
+        emit(state.copyWith(bookmarkMessage: failure.message));
+      }, (successMessage) {
+        emit(state.copyWith(bookmarkMessage: successMessage));
+      });
 
       add(LoadBookmarkStatus(event.article.url ?? ''));
-
     });
     on<RemoveFromBookmark>((event, emit) async {
       final result = await removeBookmarkArticle.execute(event.article);
 
-      result.fold(
-        (failure) {
-          emit(state.copyWith(bookmarkMessage: failure.message));
-        },
-        (successMessage) {
-          emit(state.copyWith(bookmarkMessage: successMessage));
-        }
-      );
+      result.fold((failure) {
+        emit(state.copyWith(bookmarkMessage: failure.message));
+      }, (successMessage) {
+        emit(state.copyWith(bookmarkMessage: successMessage));
+      });
 
       add(LoadBookmarkStatus(event.article.url ?? ''));
-      
     });
     on<LoadBookmarkStatus>((event, emit) async {
       final result = await getBookmarkStatus.execute(event.url);

@@ -8,10 +8,6 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 analyzer:
-  # exclude:
-  #   - "*/.g.dart"
-  #   - "*/.freezed.dart"
-  #   - "*/.config.dart"
   errors:
     invalid_annotation_target: ignore
     non_constant_identifier_names: ignore
@@ -28,7 +24,7 @@ linter:
   # or a specific dart file by using the `// ignore: name_of_lint` and
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
-  rules:
+ rules:
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
     depend_on_referenced_packages: false
@@ -41,7 +37,6 @@ linter:
     avoid_types_as_parameter_names: true
     prefer_conditional_assignment: true
     require_trailing_commas: true
-    invalid_annotation_target: false
     use_build_context_synchronously: false
     always_declare_return_types: true
     avoid_double_and_int_checks: true 
@@ -53,7 +48,6 @@ linter:
     unnecessary_await_in_return: true
     unnecessary_brace_in_string_interps: true
     avoid_type_to_string: true
-    avoid_shadowing_type_parameters_in_closure: true
-    iterable_contains_unrelated_type: true
+    collection_methods_unrelated_type: true
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

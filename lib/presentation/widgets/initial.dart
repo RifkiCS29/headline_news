@@ -27,7 +27,7 @@ class Initial extends StatelessWidget {
         Text(
           message, 
           style: primaryTextStyle,
-        )
+        ),
       ],
     );
   }

@@ -27,7 +27,7 @@ class NoData extends StatelessWidget {
         Text(
           message, 
           style: primaryTextStyle,
-        )
+        ),
       ],
     );
   }

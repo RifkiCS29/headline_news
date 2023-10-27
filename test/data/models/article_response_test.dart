@@ -57,7 +57,7 @@ void main() {
             "url": "https://bola.okezone.com/read/2022/01/01/51/2525849/media-vietnam-bahas-potensi-timnas-indonesia-menang-7-0-atas-thailand-di-leg-ii-final-piala-aff-2020",
             "urlToImage": "https://img.okezone.com/content/2022/01/01/51/2525849/media-vietnam-bahas-potensi-timnas-indonesia-menang-7-0-atas-thailand-di-leg-ii-final-piala-aff-2020-v3wX2YYZHs.jpg",
             "publishedAt": "2022-01-01T01:28:39.000Z",
-            "content": "MEDIA Vietnam, Soha.vn, membahas potensi Timnas Indonesia menang 7-0 atas Thailand di leg II final Piala AFF 2020, Sabtu (1/1/2022) pukul 19.30 WIB. Mereka menulis artikel dengan judul Fans Indonesia… [+1977 chars]"
+            "content": "MEDIA Vietnam, Soha.vn, membahas potensi Timnas Indonesia menang 7-0 atas Thailand di leg II final Piala AFF 2020, Sabtu (1/1/2022) pukul 19.30 WIB. Mereka menulis artikel dengan judul Fans Indonesia… [+1977 chars]",
           }
         ],
       };
