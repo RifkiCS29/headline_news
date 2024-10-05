@@ -5,7 +5,7 @@ import 'package:headline_news/common/theme.dart';
 class Error extends StatelessWidget {
   final String message;
 
-  const Error({Key? key,  required this.message }) : super(key: key);
+  const Error({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +18,16 @@ class Error extends StatelessWidget {
       children: [
         Lottie.asset(
           'assets/error.json',
-          width: 250, height: 200, fit: BoxFit.fill,
+          width: 250,
+          height: 200,
+          fit: BoxFit.fill,
           repeat: false,
           reverse: false,
           animate: false,
         ),
-        const SizedBox(height:8),
+        const SizedBox(height: 8),
         Text(
-          message, 
+          message,
           style: primaryTextStyle,
         ),
       ],

@@ -16,7 +16,7 @@ import '../../json_reader.dart';
 void main() {
   const API_KEY = 'your_api_key';
   const BASE_URL = 'https://newsapi.org/v2/';
-  const COUNTRY = 'id';
+  const COUNTRY = 'us';
   const pageSize = 20;
 
   late ArticleRemoteDataSourceImpl dataSource;

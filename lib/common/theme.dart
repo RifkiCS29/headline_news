@@ -59,12 +59,10 @@ ColorScheme kColorScheme = ColorScheme(
   secondary: kGreenColor,
   secondaryContainer: kGreenColor,
   surface: kBlackColor,
-  background: kBackgroundColor,
   error: Colors.red,
   onPrimary: kPrimaryColor,
   onSecondary: Colors.white,
   onSurface: Colors.white,
-  onBackground: Colors.white,
   onError: Colors.white,
   brightness: Brightness.light,
 );

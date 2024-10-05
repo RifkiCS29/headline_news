@@ -3,11 +3,12 @@ part of 'widgets.dart';
 class CustomScaffold extends StatelessWidget {
   final Widget body;
 
-  const CustomScaffold({Key? key, required this.body}) : super(key: key);
+  const CustomScaffold({super.key, required this.body});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kWhiteColor,
       body: SafeArea(
         child: Stack(
           children: [

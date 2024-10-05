@@ -3,7 +3,7 @@ import 'package:headline_news/common/theme.dart';
 import 'package:shimmer/shimmer.dart';
 
 class LoadingArticleCard extends StatelessWidget {
-  const LoadingArticleCard({ Key? key }) : super(key: key);
+  const LoadingArticleCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +25,22 @@ class LoadingArticleCard extends StatelessWidget {
               width: 250,
               height: 210,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(spreadRadius: 1, color: Colors.black12),
-                  ],),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: const [
+                  BoxShadow(spreadRadius: 1, color: Colors.black12),
+                ],
+              ),
               child: Column(
                 children: [
                   Container(
                     height: 140,
                     decoration: BoxDecoration(
-                        color: Colors.grey[400],
-                        borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(8), topRight: Radius.circular(8),),
+                      color: Colors.grey[400],
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8),
+                      ),
                     ),
                   ),
                   Container(
@@ -45,8 +48,8 @@ class LoadingArticleCard extends StatelessWidget {
                     width: 200,
                     height: 20,
                     decoration: BoxDecoration(
-                        color: Colors.grey[400],
-                        borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      color: Colors.grey[400],
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
                     ),
                   ),
                 ],

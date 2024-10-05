@@ -5,26 +5,11 @@ import 'package:headline_news/common/theme.dart';
 import 'package:headline_news/presentation/bloc/article_category_bloc/article_category_bloc.dart';
 import 'package:headline_news/presentation/widgets/loading_article_list.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
-import 'package:provider/provider.dart';
+import 'package:headline_news/injection.dart' as di;
 
-class ArticleCategoryPage extends StatefulWidget {
+class ArticleCategoryPage extends StatelessWidget {
   final String category;
-  const ArticleCategoryPage({Key? key, required this.category})
-      : super(key: key);
-
-  @override
-  State<ArticleCategoryPage> createState() => _ArticleCategoryPageState();
-}
-
-class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(
-      () => Provider.of<ArticleCategoryBloc>(context, listen: false)
-          .add(FetchArticleCategory(widget.category)),
-    );
-  }
+  const ArticleCategoryPage({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -32,38 +17,57 @@ class _ArticleCategoryPageState extends State<ArticleCategoryPage> {
       appBar: AppBar(
         backgroundColor: kWhiteColor,
         elevation: 0.0,
+        iconTheme: IconThemeData(color: kPrimaryColor),
         title: Text(
-          widget.category.toCapitalized(),
+          category.toCapitalized(),
           style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semiBold),
         ),
       ),
-      body: BlocBuilder<ArticleCategoryBloc, ArticleCategoryState>(
-        builder: (context, state) {
-          if (state is ArticleCategoryLoading) {
-            return const Padding(
-              padding: EdgeInsets.only(top: 8),
-              child: LoadingArticleList(),
-            );
-          } else if (state is ArticleCategoryHasData) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: state.articles.length,
-                itemBuilder: (context, index) {
-                  var article = state.articles[index];
-                  return ArticleList(article: article);
+      body: BlocProvider(
+        create: (_) => di.locator<ArticleCategoryBloc>()
+          ..add(
+            FetchArticleCategory(category),
+          ),
+        child: Builder(
+          builder: (context) {
+            return RefreshIndicator(
+              onRefresh: () async {
+                await Future.microtask(
+                  () => BlocProvider.of<ArticleCategoryBloc>(context)
+                      .add(FetchArticleCategory(category)),
+                );
+              },
+              child: BlocBuilder<ArticleCategoryBloc, ArticleCategoryState>(
+                builder: (context, state) {
+                  if (state is ArticleCategoryLoading) {
+                    return const Padding(
+                      padding: EdgeInsets.only(top: 8),
+                      child: LoadingArticleList(),
+                    );
+                  } else if (state is ArticleCategoryHasData) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.articles.length,
+                        itemBuilder: (context, index) {
+                          var article = state.articles[index];
+                          return ArticleList(article: article);
+                        },
+                      ),
+                    );
+                  } else if (state is ArticleCategoryEmpty) {
+                    return Center(child: Text(state.message));
+                  } else if (state is ArticleCategoryError) {
+                    return Center(child: Text(state.message));
+                  } else {
+                    return const Center(child: Text(''));
+                  }
                 },
               ),
             );
-          } else if (state is ArticleCategoryEmpty) {
-            return Center(child: Text(state.message));
-          } else if (state is ArticleCategoryError) {
-            return Center(child: Text(state.message));
-          } else {
-            return const Center(child: Text(''));
-          }
-        },
+          },
+        ),
       ),
     );
   }

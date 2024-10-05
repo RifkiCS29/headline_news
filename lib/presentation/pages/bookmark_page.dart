@@ -7,7 +7,7 @@ import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class BookmarkPage extends StatefulWidget {
-  const BookmarkPage({Key? key}) : super(key: key);
+  const BookmarkPage({super.key});
 
   @override
   State<BookmarkPage> createState() => _BookmarkPageState();

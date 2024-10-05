@@ -3,8 +3,7 @@ part of 'widgets.dart';
 class TopHeadlineArticleCard extends StatelessWidget {
   final Article article;
 
-  const TopHeadlineArticleCard({Key? key, required this.article})
-      : super(key: key);
+  const TopHeadlineArticleCard({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {

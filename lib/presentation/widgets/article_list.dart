@@ -3,7 +3,7 @@ part of 'widgets.dart';
 class ArticleList extends StatelessWidget {
   final Article article;
 
-  const ArticleList({Key? key, required this.article}) : super(key: key);
+  const ArticleList({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {

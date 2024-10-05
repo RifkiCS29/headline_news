@@ -36,8 +36,7 @@ class ArticleResponse extends Equatable {
     return Articles(
       status: status,
       totalResults: totalResults,
-      articles:
-          articles == null ? null : articles!.map((x) => x.toEntity()).toList(),
+      articles: articles?.map((x) => x.toEntity()).toList(),
     );
   }
 

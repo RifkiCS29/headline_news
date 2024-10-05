@@ -2,14 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:headline_news/common/theme.dart';
+import 'package:headline_news/presentation/bloc/bookmark_article_bloc/bookmark_article_bloc.dart';
 import 'package:headline_news/presentation/pages/bookmark_page.dart';
 import 'package:headline_news/presentation/pages/search_page.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
+import 'package:headline_news/injection.dart' as di;
 
 import 'package:headline_news/presentation/pages/article_page.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -37,7 +41,10 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _listWidget = [
     const ArticlePage(),
     const SearchPage(),
-    const BookmarkPage(),
+    BlocProvider(
+      create: (_) => di.locator<BookmarkArticleBloc>(),
+      child: const BookmarkPage(),
+    ),
   ];
 
   @override
@@ -62,6 +69,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: _listWidget[_bottomNavIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: kWhiteColor,
         currentIndex: _bottomNavIndex,
         items: _bottomNavbarItems,
         onTap: (selected) {

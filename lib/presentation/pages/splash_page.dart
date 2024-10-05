@@ -5,7 +5,7 @@ import 'package:headline_news/presentation/pages/main_page.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  const SplashPage({super.key});
 
   @override
   State<SplashPage> createState() => _SplashPageState();

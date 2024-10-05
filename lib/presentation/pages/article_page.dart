@@ -6,56 +6,56 @@ import 'package:headline_news/presentation/widgets/loading_article_card.dart';
 import 'package:headline_news/presentation/widgets/loading_article_list.dart';
 import 'package:headline_news/presentation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:headline_news/injection.dart' as di;
 
 import 'package:headline_news/presentation/pages/article_category_page.dart';
 
-class ArticlePage extends StatefulWidget {
-  const ArticlePage({Key? key}) : super(key: key);
-
-  @override
-  State<ArticlePage> createState() => _ArticlePageState();
-}
-
-class _ArticlePageState extends State<ArticlePage> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(
-      () => Provider.of<ArticleTopHeadlineListBloc>(context, listen: false)
-          .add(ArticleListEvent()),
-    );
-    Future.microtask(
-      () => Provider.of<ArticleHeadlineBusinessListBloc>(context, listen: false)
-          .add(ArticleListEvent()),
-    );
-  }
+class ArticlePage extends StatelessWidget {
+  const ArticlePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: RefreshIndicator(
-        onRefresh: () async {
-          await Future.delayed(const Duration(seconds: 1));
-          await Future.microtask(
-            () =>
-                Provider.of<ArticleTopHeadlineListBloc>(context, listen: false)
-                    .add(ArticleListEvent()),
-          );
-          await Future.microtask(
-            () => Provider.of<ArticleHeadlineBusinessListBloc>(
-              context,
-              listen: false,
-            ).add(ArticleListEvent()),
-          );
-        },
-        child: ListView(
-          children: [
-            _listTopHeadlineArticles(),
-            const SizedBox(height: 8),
-            _listCategory(),
-            const SizedBox(height: 8),
-            _listHeadlineBusinessArticles(),
-          ],
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => di.locator<ArticleTopHeadlineListBloc>()
+              ..add(ArticleListEvent()),
+          ),
+          BlocProvider(
+            create: (_) => di.locator<ArticleHeadlineBusinessListBloc>()
+              ..add(ArticleListEvent()),
+          ),
+        ],
+        child: Builder(
+          builder: (context) {
+            return RefreshIndicator(
+              onRefresh: () async {
+                await Future.delayed(const Duration(seconds: 1));
+                await Future.microtask(
+                  () => Provider.of<ArticleTopHeadlineListBloc>(
+                    context,
+                    listen: false,
+                  ).add(ArticleListEvent()),
+                );
+                await Future.microtask(
+                  () => Provider.of<ArticleHeadlineBusinessListBloc>(
+                    context,
+                    listen: false,
+                  ).add(ArticleListEvent()),
+                );
+              },
+              child: ListView(
+                children: [
+                  _listTopHeadlineArticles(),
+                  const SizedBox(height: 8),
+                  _listCategory(context),
+                  const SizedBox(height: 8),
+                  _listHeadlineBusinessArticles(),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
@@ -101,7 +101,7 @@ class _ArticlePageState extends State<ArticlePage> {
     );
   }
 
-  Widget _listCategory() {
+  Widget _listCategory(BuildContext context) {
     return Container(
       height: 120,
       width: double.infinity,

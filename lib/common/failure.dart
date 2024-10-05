@@ -10,21 +10,21 @@ abstract class Failure extends Equatable {
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure(String message) : super(message);
+  const ServerFailure(super.message);
 }
 
 class ConnectionFailure extends Failure {
-  const ConnectionFailure(String message) : super(message);
+  const ConnectionFailure(super.message);
 }
 
 class DatabaseFailure extends Failure {
-  const DatabaseFailure(String message) : super(message);
+  const DatabaseFailure(super.message);
 }
 
 class CommonFailure extends Failure {
-  const CommonFailure(String message) : super(message);
+  const CommonFailure(super.message);
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure(String message) : super(message);
+  const CacheFailure(super.message);
 }
