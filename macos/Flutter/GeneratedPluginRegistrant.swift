@@ -7,7 +7,7 @@ import Foundation
 
 import path_provider_foundation
 import share_plus
-import sqflite
+import sqflite_darwin
 import sqflite_sqlcipher
 import webview_flutter_wkwebview
 
@@ -16,5 +16,5 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   SharePlusMacosPlugin.register(with: registry.registrar(forPlugin: "SharePlusMacosPlugin"))
   SqflitePlugin.register(with: registry.registrar(forPlugin: "SqflitePlugin"))
   SqfliteSqlCipherPlugin.register(with: registry.registrar(forPlugin: "SqfliteSqlCipherPlugin"))
-  FLTWebViewFlutterPlugin.register(with: registry.registrar(forPlugin: "FLTWebViewFlutterPlugin"))
+  WebViewFlutterPlugin.register(with: registry.registrar(forPlugin: "WebViewFlutterPlugin"))
 }
