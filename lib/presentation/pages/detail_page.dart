@@ -66,7 +66,7 @@ class DetailPage extends StatelessWidget {
                           return LinearGradient(
                             colors: [
                               Colors.transparent,
-                              Colors.black.withOpacity(0.5),
+                              Colors.black.withValues(alpha: 0.5),
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -168,8 +168,11 @@ class DetailPage extends StatelessWidget {
                                 width: 10,
                               ),
                               GestureDetector(
-                                onTap: () => Share.share(
-                                  "${article.title}\nDetail: ${article.url}",
+                                onTap: () => SharePlus.instance.share(
+                                  ShareParams(
+                                    text:
+                                        "${article.title}\nDetail: ${article.url}",
+                                  ),
                                 ),
                                 child: Container(
                                   height: 40,

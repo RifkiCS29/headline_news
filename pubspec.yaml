@@ -27,7 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  analyzer: ^6.11.0
+  analyzer: ^7.7.1
   bloc_concurrency: ^0.3.0
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
